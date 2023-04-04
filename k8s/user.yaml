@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: user-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: user-svc
+        env: test
+    spec:
+      containers:
+        - name: user-svc
+          image: hub.kaikeba.com/supergo/supergo-user-web:1.0-SNAPSHOT
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http-port
+              containerPort: 8882
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+spec:
+  selector:
+    app: user-svc
+    env: test
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8882

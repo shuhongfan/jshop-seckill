@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myweb
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myweb
+      release: stable
+  template:
+    metadata:
+      labels:
+        app: myweb
+        release: stable
+        env: test
+    spec:
+      containers:
+      - name: myweb
+        image: hub.kaikeba.com/library/tomcat-app:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 8080
+        env:
+        - name: MYSQL_SERVICE_HOST
+          value: 10.99.179.115
+        - name: MYSQL_SERVICE_PORT
+          value: "3306"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myweb
+  namespace: default
+spec:
+  selector:
+    app: myweb
+    release: stable
+  type: NodePort
+  ports:
+  - name: http
+    port: 8080
+    nodePort: 30000

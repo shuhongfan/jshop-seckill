@@ -1,0 +1,35 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: sugo-seckill-web
+  datasource:
+    url: jdbc:mysql://39.105.200.72:3306/shop?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 1
+      min-idle: 5
+      max-active: 20
+      max-wait: 10000
+      time-between-eviction-runs-millis: 600000
+      min-evictable-idle-time-millis: 300000
+      test-on-borrow: true
+      test-on-return: true
+      test-while-idle: true
+      validation-query: select 1 from dual
+      keep-alive: true
+      remove-abandoned: true
+      remove-abandoned-timeout: 80
+      log-abandoned: true
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+  redis:
+    host: 39.105.200.72
+    port: 6379
+mybatis:
+  type-aliases-package: com.supergo.pojo
+mapper:
+  not-empty: false
+  identity: mysql

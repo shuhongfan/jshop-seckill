@@ -1,0 +1,282 @@
+/* 布局 */
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.relative {
+	position: relative;
+}
+
+.top {
+	vertical-align: top;
+}
+
+.middle {
+	vertical-align: middle;
+}
+.pointer{
+	pointer-events: none;
+}
+.head-border .table a{
+	color: currentcolor;
+}
+
+/* 内容 */
+.head-border{
+	border-bottom: 2px solid #F10180;
+}
+.table{
+	width: 100%;
+	margin-top: 10px;
+}
+.logo{
+	margin-top: -10px;
+}
+.user{
+	padding: 0 10px;
+}
+.order-ctrl{
+	padding: 0 10px;
+	margin-top: 6px;
+	border-right: 1px solid #aaa;
+}
+.customer {
+	padding: 0 10px;
+	margin-top: 5px;
+	border-right: 1px solid #aaa;
+}
+.tel,
+.number {
+	padding: 0 10px;
+	margin-top: 6px;
+}
+.tel{
+	border-right: 1px solid #aaa;
+}
+.serve-img{
+	margin-bottom: 15px;
+}
+.procedure{
+	padding-top: 40px;
+	width: 700px;
+	margin: 0 auto;
+}
+.date{
+	width: 100%;
+	border-bottom: 2px solid #ddd;
+}
+.result{
+	padding: 15px 10px;
+	width: 130px;
+	border-bottom: 2px solid #F10180;
+	color: #F10180;
+	font-size: 15px;
+	font-weight: bold;
+}
+.tips{
+	color: #000000;
+	padding-top: 30px;
+}
+.tips .delivery{
+	font-size: 20px;
+	padding-right: 15px;
+	border-right: 1px solid #aaa;
+}
+.delivery span{
+	font-weight: bold;
+}
+.tips .tip{
+	font-size: 15px;
+	margin-top: 2px;
+	padding-left: 15px;
+}
+.order-tip{
+	position: absolute;
+	right: 250px;
+	top: -5px;
+	padding: 10px 20px;
+	border: 1px solid #ddd;
+	background-color: white;
+	opacity: 0;
+}
+.success{
+	padding: 10px;
+}
+.quick-pay-font{
+	font-size: 20px;
+}
+.order-operation{
+	margin-top: 10px;
+	margin-left: 30px;
+	font-size: 15px;
+}
+.order-operation .order-menu{
+	color: #157EFA;
+}
+.should-pay{
+	font-size: 15px;
+}
+.should-pay .symbol{
+	color: #F10180;
+}
+.should-pay .num{
+	font-size: 20px;
+	color: #F10180;
+}
+.real-name{
+	margin-top: 10px;
+	color: dimgray;
+	padding: 6px 15px;
+	border:1px solid #F8DBB1;
+	background-color: #FFFAF3;
+}
+.strip{
+	height: 3px;
+	border-radius: 3px;
+	background-color: #d4d4d4;
+	border: 1px solid #c5c5c5;
+	margin-bottom: 30px;
+}
+.mode-box .add-visa{
+	font-size: 15px;
+	width: 120px;
+	padding: 15px 20px;
+	border: 1px solid #ddd;
+	background-color:#F7F7F7;
+	border-radius: 5px;
+	display: inline-block;
+}
+.add-visa .mask{
+	position: absolute;
+	right: -1px;
+	bottom: -5px;
+	opacity: 0;
+}
+.mode-box .vchat{
+	font-size: 15px;
+	width: 75px;
+	padding: 15px 20px;
+	border: 1px solid #ddd;
+	border-bottom: white;
+	background-color:white;
+	border-radius: 5px;
+	display: inline-block;
+	margin-left: 15px;
+	
+}
+.vchat-box{
+	margin-top: -2px;
+	padding: 20px;
+	border-top: 1px solid #ddd;
+}
+.vchat-box .vchat-pay{
+	width: 200px;
+	padding: 10px 10px;
+	border: 1px dotted #aaa;
+}
+.vchat-box .zfb-pay{
+	width: 200px;
+	padding: 10px 10px;
+	border: 1px dotted #aaa;
+}
+.mode-box{
+	padding: 10px;
+}
+.next{
+	display: none;
+}
+.next .use{
+	font-size: 15px;
+	color: #000000;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.next .back{
+	margin-left: 40px;
+	color: #489AFB;
+}
+.next-pay-symbol{
+	font-size: 15px;
+	color: #000;
+}
+.next-pay-num{
+	font-size: 20px;
+	color: #F10180;
+}
+.second-strip{
+	height: 2px;
+	width: 100%;
+	background-color: #979797;
+}
+.ready-pay{
+	width: 80px;
+	padding: 10px 35px;
+	background-color: #D9D9D9;
+	border: 0;
+	font-size: 20px;
+	margin-top: 20px;
+	border-radius: 3px;
+	display: inline-block;
+}
+.plz-chose{
+	padding: 10px 35px;
+	color: red;
+	margin-left: 10px;
+	display: inline-block;
+}
+.code-pay-box{
+	display: none;
+}
+.code-pay-box .pay-img{
+	padding: 20px 0;
+	width: 100%;
+	text-align: center;
+	border-bottom: 3px solid #F10180;
+}
+.code-pay-box .code-img{
+	text-align: center;
+	padding-top: 40px;
+	padding-bottom: 30px;
+}
+.push-box .push{
+	margin: 0 auto;
+	width: 200px;
+	text-align: left;
+	padding: 15px 20px;
+	font-size: 15px;
+	border: 1px solid #F10180;
+	border-radius: 3px;
+	color: #F10180;
+}
+.push-box .push img{
+	margin-right: 5px;
+}
+.font-box{
+	padding-top: 30px;
+}
+.font-box .go-back{
+	color: #489AFB; 
+	position: absolute;
+	left: 0;
+	top: 45px;
+	font-size: 14px;
+}
+.font-box .price-font{
+	width: 200px;
+	margin: 0 auto;
+	font-size: 30px;
+	text-align: center;
+	color: #F10180;
+}
+.tip-box{
+	width: 600px;
+	margin: 0 auto;
+	padding-top: 20px;
+	margin-top: 40px;
+	text-align: center;
+	border-top: 1px solid #aaa;
+}

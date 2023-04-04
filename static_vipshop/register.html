@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>开课吧网站注册</title>
+		<!-- 重置样式表 -->
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<!-- valid插件 -->
+		<link rel="stylesheet" type="text/css" href="lib/Validform_v5.3.2/css/style.css" />
+		<!-- 注册の样式 -->
+		<link rel="stylesheet" type="text/css" href="css/register/style.css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="head-box clearfix">
+				<div class="logo float-left">
+					<a href="index.html"><img src="img/register/logo.png" width="130px"></a>
+				</div>
+				<div class="serve float-right">
+					<img src="img/register/serve.png" width="300px">
+				</div>
+			</div>
+		</div>
+		<div class="bg">
+			<div class="container relative">
+				<div class="login-box">
+					<div class="title clearfix">
+						<span class="num-register middle">会员注册</span>
+						<span class="num-login middle">已经注册可<a href="login.html">直接登录</a></span>
+					</div>
+					<!-- 用户框 -->
+					<div class="user-box">
+						<form class="form relative">
+							<div class="tel-input relative">
+								<img src="img/register/tel.png" class="middle" style="margin-right: 5px;">
+								<input type="text" datatype="m" nullmsg="必须输入手机号码" errormsg="请输入合格的手机号码！" id="tel" placeholder="输入手机号" class="middle" />
+								<img src="img/register/error.png" class="middle error-img" width="22px">
+								<div class="error"></div>
+							</div>
+							<div class="test-input relative">
+								<img src="img/register/test.png" class="middle" width="25px" >
+								<input type="text" datatype="m" nullmsg="必须输入验证码" errormsg="请输入合格的手机号码！" id="test" placeholder="输入验证码" class="middle" />
+								<img src="img/register/error.png" class="middle error-img" width="22px">
+								<div class="error"></div>
+							</div>
+							<div class="get-test">
+								<button type="button" id="get-btn">获取验证码</button>
+							</div>
+							<div class="password-input relative">
+								<img src="img/register/password.png" class="middle" width="25px">
+								<input type="password" datatype="n6-16" nullmsg="必须填写密码" errormsg="密码至少6位数字" id="password" name="password" class="middle" placeholder="密码" />
+								<img src="img/register/error.png" class="middle error-img" width="22px">
+								<div class="error"></div>
+							</div>
+							<div class="recheck-input relative">
+								<img src="img/register/password.png" class="middle" width="25px">
+								<input type="password" datatype="*" recheck="password" nullmsg="请再次输入密码" errormsg="密码输入不一致" id="recheck" placeholder="再次输入密码" class="middle" />
+								<img src="img/register/error.png" class="middle error-img" width="22px">
+								<div class="error"></div>
+							</div>
+							<div class="rule-confirm float-left">
+								<input type="checkbox" name="rule" id="rule-check" />
+							</div>
+							<div class="rule float-right">我已阅读并接受以下条款：<a href="">《开课吧服务条款》</a><a href="">《隐私条款》</a><a href="">《唯品支付用户服务协议》</a>
+							</div>
+							<a href="user.html"><div class="btn">
+								<button type="button" class="register-btn">立即注册</button>
+							</div></a>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="foot-box">
+				Copyright 2003-2020 kaikeba.com，All Rights Reserved ICP证：京 B2-20030329
+			</div>
+		</div>
+
+
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lib/Validform_v5.3.2/js/Validform_v5.3.2_min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 表单验证
+			$('.form').Validform({
+				tiptype: function(msg, o, cssctl) {
+					// 错误信息提示对象
+					var $tip = o.obj.next().next('.error');
+					var $errorImg = o.obj.next('.error-img');
+					var $borderRed = o.obj.parent();
+					// 显示提示信息
+					$tip.text(msg);
+					if (o.type == 3) {
+						// 验证失败，显示提示框
+						$tip.css('display', 'inline-block');
+						$errorImg.css('display', 'inline-block');
+						$borderRed.css('border', '1px solid red')
+					} else {
+						$tip.css('display', 'none');
+						$errorImg.css('display', 'none');
+						$borderRed.css('border', '1px solid #ddd')
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

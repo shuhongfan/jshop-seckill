@@ -1,0 +1,2919 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<!-- 重置样式表 -->
+	<link rel="stylesheet" type="text/css" href="./css/reset.css" />
+	<!-- 全局 header/footer -->
+	<link rel="stylesheet" type="text/css" href="./css/header&footer.css" />
+	<!-- 右侧边栏 -->
+	<link rel="stylesheet" type="text/css" href="./css/ScrollBar.css" />
+	<!-- 收藏页面CSS -->
+	<link rel="stylesheet" type="text/css" href="./css/collection/collection_style.css">
+	<title>我收藏的商品</title>
+</head>
+
+<body>
+	<!-- 注意：大导航z-index:80 右侧滚动z-index:100 -->
+	<!-- 全局header -->
+	<div class="header">
+		<div class="top_nav">
+			<div class="container clearfix">
+				<!-- 城市定位 -->
+				<div class="location relative">
+					<a href="javascript:;" class="show_city">
+						<div class="city vertical-mid">北京市</div>
+						<div class="arrow vertical-mid"></div>
+					</a>
+					<div class="city_select">
+						<div class="title clearfix">
+							<span class="text">请选择你所在的收货地区</span>
+							<a href="javascript:;" class="fr del"><b>×</b></a>
+						</div>
+					</div>
+				</div>
+				<!-- 顶部导航 -->
+				<ul class="list fr">
+					<li class="login relative">
+						<div class="title">
+							<a href="login.html" class="user_title">请登录</a>
+						</div>
+						<div class="login_box">
+							<div class="inf clearfix">
+								<i class="fl icon_header icon_header_user vertical-mid"></i>
+								<a href="login.html">您好！[请登录]</a>
+							</div>
+							<div class="link">
+								<a href="collection.html">我的收藏</a>
+								<a href="user_order.html">我的订单</a>
+								<a href="user.html">零钱</a>
+								<a href="user.html">我的优惠券</a>
+								<a href="user.html">我的唯品币</a>
+								<a href="user.html">唯品金融</a>
+							</div>
+						</div>
+					</li>
+					<li class="register">
+						<div class="title">
+							<a href="register.html">注册</a>
+						</div>
+					</li>
+					<li class="signIn">
+						<div class="title">
+							<a href="javascript:;">
+								<img src="./img/index/header_gift.gif" class="vertical-mid">
+								<span class="vertical-mid">签到有礼</span>
+							</a>
+						</div>
+					</li>
+					<li class="myOrder">
+						<div class="title">
+							<a href="user_order.html">我的订单</a>
+						</div>
+					</li>
+					<li class="specialSale relative pull_down">
+						<div class="title">
+							<a href="collection.html">
+								<span class="vertical-mid">我的特卖</span>
+								<i class="arrow vertical-mid"></i>
+							</a>
+						</div>
+						<div class="box">
+							<a href="collection.html">商品收藏</a>
+							<a href="collection.html">品牌收藏</a>
+							<a href="collection.html">我的足迹</a>
+						</div>
+					</li>
+					<li class="member relative pull_down">
+						<div class="title">
+							<a href="user.html">
+								<span class="vertical-mid">会员俱乐部</span>
+								<i class="arrow vertical-mid"></i>
+							</a>
+						</div>
+						<div class="box">
+							<a href="user.html">俱乐部首页</a>
+							<a href="user.html">唯品币兑换</a>
+						</div>
+					</li>
+					<li class="service relative pull_down">
+						<div class="title">
+							<a href="user.html">
+								<span class="vertical-mid">客户服务</span>
+								<i class="arrow vertical-mid"></i>
+							</a>
+						</div>
+						<div class="box">
+							<a href="user.html">联系客服</a>
+							<a href="user.html">帮助中心</a>
+							<a href="user.html">服务中心</a>
+							<a href="user.html">知识产权投诉</a>
+						</div>
+					</li>
+					<li class="mobileCode relative">
+						<div class="title">
+							<a href="javascript:;">
+								<i class="icon_header icon_header_mobileCode vertical-mid"></i>
+								<span class="vertical-mid">手机版</span>
+							</a>
+						</div>
+						<div class="box">
+							<img src="./img/index/code.jpg">
+							<a href="#" class="text">随时逛，及时抢</a>
+						</div>
+					</li>
+					<li class="more relative">
+						<div class="title">
+							<a href="javascript:;">
+								<span class="vertical-mid">更多</span>
+								<i class="arrow vertical-mid"></i>
+							</a>
+						</div>
+						<div class="box">
+							<div class="cooperation">
+								<span>合作专区</span>
+								<a href="user.html">唯品卡</a>
+							</div>
+							<div class="about_us">
+								<span>关于我们</span>
+								<a href="user.html">Sell on vip</a>
+								<a href="user.html">品牌招商</a>
+								<a href="user.html">官方博客</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- LOGO 标语 搜索框 购物车 -->
+		<div class="top_content">
+			<div class="container clearfix">
+				<div class="logo fl">
+					<a href="index.html"><img src="./img/index/header_logo.gif"></a>
+				</div>
+				<div class="slogan fl">
+					<a href="user.html"><i class="icon_header icon_header_slogan1"></i></a>
+					<a href="user.html"><i class="icon_header icon_header_slogan2"></i></a>
+					<a href="user.html"><i class="icon_header icon_header_slogan3"></i></a>
+				</div>
+				<div class="search fl relative">
+					<div class="input_box relative">
+						<input type="text" name="keyword" class="input" id="input" value="" placeholder="快抢商品" />
+						<a href="goods_search.html" class="search_btn"><img src="./img/index/search_btn.png"></a>
+					</div>
+					<ul class="hot_keyword">
+						<li><a href="goods_search.html">护肤套装</a></li>
+						<li><a href="goods_search.html">手机</a></li>
+						<li><a href="goods_search.html">欧莱雅Loreal</a></li>
+						<li><a href="goods_search.html">面部精华</a></li>
+						<li><a href="goods_search.html">面膜</a></li>
+						<li><a href="goods_search.html">爽肤水</a></li>
+					</ul>
+					<div class="pullDown clearfix">
+						<div class="history fl">搜索历史</div>
+						<div class="recommend fl">
+							<span class="title">精选推荐</span>
+							<a href="goods_search.html">护肤套装</a>
+							<a href="goods_search.html">手机</a>
+							<a href="goods_search.html">欧莱雅Loreal</a>
+							<a href="goods_search.html">面部精华</a>
+							<a href="goods_search.html">面膜</a>
+							<a href="goods_search.html">女式外套</a>
+							<a href="goods_search.html">女式衬衫</a>
+							<a href="goods_search.html">爽肤水</a>
+							<a href="goods_search.html">周生生</a>
+							<a href="goods_search.html">女羽绒服</a>
+						</div>
+					</div>
+				</div>
+				<div class="shoppingCart fl relative">
+					<a href="shopping_cart.html" class="title">
+						<i class="icon_header icon_header_shoppingCart vertical-mid"></i>
+						<span class="text vertical-mid">购物袋</span>
+						<span class="number vertical-mid">0</span>
+					</a>
+					<div class="box">
+						<span>好像还未登录！！！<a href="login.html" class="link">马上登录</a> 查看购物袋吧！</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 大导航 -->
+		<div class="nav_parent">
+			<div class="nav">
+				<div class="nav_con">
+					<div class="vertical_nav relative">
+						<div class="all_classify">
+							<img class="vertical-mid" src="./img/index/all_classify.png">
+							<span class="title vertical-mid">全部分类</span>
+						</div>
+						<ul class="channel_list">
+							<li class="relative">
+								<div class="channel">女装/男装/内衣</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">冬季热卖<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">人气美衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">羽绒</a>
+												<a href="goods_search.html" class="tag">毛呢大衣</a>
+												<a href="goods_search.html" class="tag">妈·妈装</a>
+												<a href="goods_search.html" class="tag">外套</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">长袖T恤</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">防晒衣</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">百搭上衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">衬衫</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短外套</a>
+												<a href="goods_search.html" class="tag">毛呢外套</a>
+												<a href="goods_search.html" class="tag">马甲</a>
+												<a href="goods_search.html" class="tag">西装外套</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">裤子<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">阔腿裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">西装裤</a>
+												<a href="goods_search.html" class="tag">连体/背带裤 </a>
+												<a href="goods_search.html" class="tag">羽绒裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">美裙衣橱<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">修身美裙</a>
+												<a href="goods_search.html" class="tag">半身裙</a>
+												<a href="goods_search.html" class="tag">套装裙</a>
+												<a href="goods_search.html" class="tag">白色连衣裙</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色服饰<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">民族风</a>
+												<a href="goods_search.html" class="tag">商场同款</a>
+												<a href="goods_search.html" class="tag">中/老年女装</a>
+												<a href="goods_search.html" class="tag">礼服/旗袍 </a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式内搭<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">纯色T恤</a>
+												<a href="goods_search.html" class="tag">印花T恤</a>
+												<a href="goods_search.html" class="tag">Polo衫</a>
+												<a href="goods_search.html" class="tag">长袖衬衫</a>
+												<a href="goods_search.html" class="tag">套头卫衣</a>
+												<a href="goods_search.html" class="tag">短袖T恤</a>
+												<a href="goods_search.html" class="tag">纯色衬衫</a>
+												<a href="goods_search.html" class="tag">连帽卫衣</a>
+												<a href="goods_search.html" class="tag">格子衬衫</a>
+												<a href="goods_search.html" class="tag">T恤衬衫</a>
+												<a href="goods_search.html" class="tag">条纹T恤 </a>
+												<a href="goods_search.html" class="tag">加绒卫衣</a>
+												<a href="goods_search.html" class="tag">保暖衬衫</a>
+												<a href="goods_search.html" class="tag">短袖衬衫</a>
+												<a href="goods_search.html" class="tag">薄衬衫</a>
+												<a href="goods_search.html" class="tag">V领T恤</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">长款羽绒</a>
+												<a href="goods_search.html" class="tag">厚羽绒</a>
+												<a href="goods_search.html" class="tag">夹克外套</a>
+												<a href="goods_search.html" class="tag">皮衣</a>
+												<a href="goods_search.html" class="tag">西装</a>
+												<a href="goods_search.html" class="tag">马甲/背心</a>
+												<a href="goods_search.html" class="tag">夹克</a>
+												<a href="goods_search.html" class="tag">短款外套</a>
+												<a href="goods_search.html" class="tag">薄羽绒</a>
+												<a href="goods_search.html" class="tag">短款羽绒</a>
+												<a href="goods_search.html" class="tag">厚外套</a>
+												<a href="goods_search.html" class="tag">中长款外套</a>
+												<a href="goods_search.html" class="tag">薄外套</a>
+												<a href="goods_search.html" class="tag">皮肤衣</a>
+												<a href="goods_search.html" class="tag">老人马甲</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男士裤装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">运动裤</a>
+												<a href="goods_search.html" class="tag">西裤</a>
+												<a href="goods_search.html" class="tag">牛仔短裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">夏季裤装</a>
+												<a href="goods_search.html" class="tag">工装裤</a>
+												<a href="goods_search.html" class="tag">亚麻裤</a>
+												<a href="goods_search.html" class="tag">冬季裤装</a>
+												<a href="goods_search.html" class="tag">加绒裤</a>
+												<a href="goods_search.html" class="tag">小脚裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">九分裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色男装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">中老年</a>
+												<a href="goods_search.html" class="tag">职场精英</a>
+												<a href="goods_search.html" class="tag">大码</a>
+												<a href="goods_search.html" class="tag">运动着装</a>
+												<a href="goods_search.html" class="tag">街头潮流</a>
+												<a href="goods_search.html" class="tag">时尚休闲</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">热销内衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男士保暖</a>
+												<a href="goods_search.html" class="tag">男士睡衣</a>
+												<a href="goods_search.html" class="tag">女士睡衣</a>
+												<a href="goods_search.html" class="tag">女士保暖</a>
+												<a href="goods_search.html" class="tag">男士内裤</a>
+												<a href="goods_search.html" class="tag">热卖文胸</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_01.png">
+												<span class="name vertical-mid">恩裳</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_02.png">
+												<span class="name vertical-mid">音儿</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_03.png">
+												<span class="name vertical-mid">波司登</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_04.png">
+												<span class="name vertical-mid">诗篇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_05.png">
+												<span class="name vertical-mid">哥弟</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_06.png">
+												<span class="name vertical-mid">罗蒙</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_07.png">
+												<span class="name vertical-mid">富铤</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_08.png">
+												<span class="name vertical-mid">米皇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_09.png">
+												<span class="name vertical-mid">帕罗</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="channel">女鞋/男鞋/箱包</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女单鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">高跟鞋</a>
+												<a href="goods_search.html" class="tag">尖头鞋</a>
+												<a href="goods_search.html" class="tag">平底鞋</a>
+												<a href="goods_search.html" class="tag">深口单鞋</a>
+												<a href="goods_search.html" class="tag">粗跟鞋</a>
+												<a href="goods_search.html" class="tag">穆勒鞋</a>
+												<a href="goods_search.html" class="tag">浅口单鞋</a>
+												<a href="goods_search.html" class="tag">低跟鞋</a>
+												<a href="goods_search.html" class="tag">厚底鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女休闲鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">内增高</a>
+												<a href="goods_search.html" class="tag">帆布鞋</a>
+												<a href="goods_search.html" class="tag">运动鞋</a>
+												<a href="goods_search.html" class="tag">板鞋</a>
+												<a href="goods_search.html" class="tag">小白鞋</a>
+												<a href="goods_search.html" class="tag">乐福鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女凉鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">一字带凉鞋</a>
+												<a href="goods_search.html" class="tag">平底凉鞋</a>
+												<a href="goods_search.html" class="tag">凉拖</a>
+												<a href="goods_search.html" class="tag">绑带凉鞋</a>
+												<a href="goods_search.html" class="tag">粗跟凉鞋</a>
+												<a href="goods_search.html" class="tag">鱼嘴鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男休闲鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">帆布鞋</a>
+												<a href="goods_search.html" class="tag">豆豆鞋</a>
+												<a href="goods_search.html" class="tag">一脚蹬</a>
+												<a href="goods_search.html" class="tag">小白鞋</a>
+												<a href="goods_search.html" class="tag">乐福鞋</a>
+												<a href="goods_search.html" class="tag">休闲皮鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男商务鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">套脚商务鞋</a>
+												<a href="goods_search.html" class="tag">德比鞋</a>
+												<a href="goods_search.html" class="tag">休闲皮鞋</a>
+												<a href="goods_search.html" class="tag">冲孔鞋</a>
+												<a href="goods_search.html" class="tag">英伦鞋</a>
+												<a href="goods_search.html" class="tag">布洛克鞋</a>
+												<a href="goods_search.html" class="tag">增高鞋</a>
+												<a href="goods_search.html" class="tag">正装鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男凉鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">凉鞋</a>
+												<a href="goods_search.html" class="tag">沙滩鞋</a>
+												<a href="goods_search.html" class="tag">凉拖</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">双肩包</a>
+												<a href="goods_search.html" class="tag">单肩包</a>
+												<a href="goods_search.html" class="tag">真皮包</a>
+												<a href="goods_search.html" class="tag">手提包</a>
+												<a href="goods_search.html" class="tag">小方包</a>
+												<a href="goods_search.html" class="tag">手拿包</a>
+												<a href="goods_search.html" class="tag">斜挎包</a>
+												<a href="goods_search.html" class="tag">实用大包</a>
+												<a href="goods_search.html" class="tag">轻便布包</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男式钱包</a>
+												<a href="goods_search.html" class="tag">单肩/斜挎包</a>
+												<a href="goods_search.html" class="tag">手拿包</a>
+												<a href="goods_search.html" class="tag">腰包</a>
+												<a href="goods_search.html" class="tag">双肩包</a>
+												<a href="goods_search.html" class="tag">商务公文包</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">功能箱包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">硬壳箱</a>
+												<a href="goods_search.html" class="tag">登机箱</a>
+												<a href="goods_search.html" class="tag">钥匙包</a>
+												<a href="goods_search.html" class="tag">电脑包</a>
+												<a href="goods_search.html" class="tag">旅行包</a>
+												<a href="goods_search.html" class="tag">男/女皮带</a>
+												<a href="goods_search.html" class="tag">运动包</a>
+												<a href="goods_search.html" class="tag">拉杆箱</a>
+												<a href="goods_search.html" class="tag">零钱包</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_01.png">
+												<span class="name vertical-mid">沙驰</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_02.png">
+												<span class="name vertical-mid">百丽</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_03.png">
+												<span class="name vertical-mid">金利来</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_04.png">
+												<span class="name vertical-mid">COACH</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_05.png">
+												<span class="name vertical-mid">骆驼</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_06.png">
+												<span class="name vertical-mid">他她</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_07.png">
+												<span class="name vertical-mid">天意美</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_08.png">
+												<span class="name vertical-mid">百思图</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_09.png">
+												<span class="name vertical-mid">卡帝乐鳄鱼</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="channel">护肤彩妆/个护</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">冬季热卖<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">人气美衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">羽绒</a>
+												<a href="goods_search.html" class="tag">毛呢大衣</a>
+												<a href="goods_search.html" class="tag">妈·妈装</a>
+												<a href="goods_search.html" class="tag">外套</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">长袖T恤</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">防晒衣</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">百搭上衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">衬衫</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短外套</a>
+												<a href="goods_search.html" class="tag">毛呢外套</a>
+												<a href="goods_search.html" class="tag">马甲</a>
+												<a href="goods_search.html" class="tag">西装外套</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">裤子<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">阔腿裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">西装裤</a>
+												<a href="goods_search.html" class="tag">连体/背带裤 </a>
+												<a href="goods_search.html" class="tag">羽绒裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">美裙衣橱<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">修身美裙</a>
+												<a href="goods_search.html" class="tag">半身裙</a>
+												<a href="goods_search.html" class="tag">套装裙</a>
+												<a href="goods_search.html" class="tag">白色连衣裙</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色服饰<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">民族风</a>
+												<a href="goods_search.html" class="tag">商场同款</a>
+												<a href="goods_search.html" class="tag">中/老年女装</a>
+												<a href="goods_search.html" class="tag">礼服/旗袍 </a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式内搭<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">纯色T恤</a>
+												<a href="goods_search.html" class="tag">印花T恤</a>
+												<a href="goods_search.html" class="tag">Polo衫</a>
+												<a href="goods_search.html" class="tag">长袖衬衫</a>
+												<a href="goods_search.html" class="tag">套头卫衣</a>
+												<a href="goods_search.html" class="tag">短袖T恤</a>
+												<a href="goods_search.html" class="tag">纯色衬衫</a>
+												<a href="goods_search.html" class="tag">连帽卫衣</a>
+												<a href="goods_search.html" class="tag">格子衬衫</a>
+												<a href="goods_search.html" class="tag">T恤衬衫</a>
+												<a href="goods_search.html" class="tag">条纹T恤 </a>
+												<a href="goods_search.html" class="tag">加绒卫衣</a>
+												<a href="goods_search.html" class="tag">保暖衬衫</a>
+												<a href="goods_search.html" class="tag">短袖衬衫</a>
+												<a href="goods_search.html" class="tag">薄衬衫</a>
+												<a href="goods_search.html" class="tag">V领T恤</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">长款羽绒</a>
+												<a href="goods_search.html" class="tag">厚羽绒</a>
+												<a href="goods_search.html" class="tag">夹克外套</a>
+												<a href="goods_search.html" class="tag">皮衣</a>
+												<a href="goods_search.html" class="tag">西装</a>
+												<a href="goods_search.html" class="tag">马甲/背心</a>
+												<a href="goods_search.html" class="tag">夹克</a>
+												<a href="goods_search.html" class="tag">短款外套</a>
+												<a href="goods_search.html" class="tag">薄羽绒</a>
+												<a href="goods_search.html" class="tag">短款羽绒</a>
+												<a href="goods_search.html" class="tag">厚外套</a>
+												<a href="goods_search.html" class="tag">中长款外套</a>
+												<a href="goods_search.html" class="tag">薄外套</a>
+												<a href="goods_search.html" class="tag">皮肤衣</a>
+												<a href="goods_search.html" class="tag">老人马甲</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男士裤装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">运动裤</a>
+												<a href="goods_search.html" class="tag">西裤</a>
+												<a href="goods_search.html" class="tag">牛仔短裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">夏季裤装</a>
+												<a href="goods_search.html" class="tag">工装裤</a>
+												<a href="goods_search.html" class="tag">亚麻裤</a>
+												<a href="goods_search.html" class="tag">冬季裤装</a>
+												<a href="goods_search.html" class="tag">加绒裤</a>
+												<a href="goods_search.html" class="tag">小脚裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">九分裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色男装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">中老年</a>
+												<a href="goods_search.html" class="tag">职场精英</a>
+												<a href="goods_search.html" class="tag">大码</a>
+												<a href="goods_search.html" class="tag">运动着装</a>
+												<a href="goods_search.html" class="tag">街头潮流</a>
+												<a href="goods_search.html" class="tag">时尚休闲</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">热销内衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男士保暖</a>
+												<a href="goods_search.html" class="tag">男士睡衣</a>
+												<a href="goods_search.html" class="tag">女士睡衣</a>
+												<a href="goods_search.html" class="tag">女士保暖</a>
+												<a href="goods_search.html" class="tag">男士内裤</a>
+												<a href="goods_search.html" class="tag">热卖文胸</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_01.png">
+												<span class="name vertical-mid">恩裳</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_02.png">
+												<span class="name vertical-mid">音儿</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_03.png">
+												<span class="name vertical-mid">波司登</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_04.png">
+												<span class="name vertical-mid">诗篇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_05.png">
+												<span class="name vertical-mid">哥弟</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_06.png">
+												<span class="name vertical-mid">罗蒙</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_07.png">
+												<span class="name vertical-mid">富铤</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_08.png">
+												<span class="name vertical-mid">米皇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_09.png">
+												<span class="name vertical-mid">帕罗</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="channel">运动户外</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女单鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">高跟鞋</a>
+												<a href="goods_search.html" class="tag">尖头鞋</a>
+												<a href="goods_search.html" class="tag">平底鞋</a>
+												<a href="goods_search.html" class="tag">深口单鞋</a>
+												<a href="goods_search.html" class="tag">粗跟鞋</a>
+												<a href="goods_search.html" class="tag">穆勒鞋</a>
+												<a href="goods_search.html" class="tag">浅口单鞋</a>
+												<a href="goods_search.html" class="tag">低跟鞋</a>
+												<a href="goods_search.html" class="tag">厚底鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女休闲鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">内增高</a>
+												<a href="goods_search.html" class="tag">帆布鞋</a>
+												<a href="goods_search.html" class="tag">运动鞋</a>
+												<a href="goods_search.html" class="tag">板鞋</a>
+												<a href="goods_search.html" class="tag">小白鞋</a>
+												<a href="goods_search.html" class="tag">乐福鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女凉鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">一字带凉鞋</a>
+												<a href="goods_search.html" class="tag">平底凉鞋</a>
+												<a href="goods_search.html" class="tag">凉拖</a>
+												<a href="goods_search.html" class="tag">绑带凉鞋</a>
+												<a href="goods_search.html" class="tag">粗跟凉鞋</a>
+												<a href="goods_search.html" class="tag">鱼嘴鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男休闲鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">帆布鞋</a>
+												<a href="goods_search.html" class="tag">豆豆鞋</a>
+												<a href="goods_search.html" class="tag">一脚蹬</a>
+												<a href="goods_search.html" class="tag">小白鞋</a>
+												<a href="goods_search.html" class="tag">乐福鞋</a>
+												<a href="goods_search.html" class="tag">休闲皮鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男商务鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">套脚商务鞋</a>
+												<a href="goods_search.html" class="tag">德比鞋</a>
+												<a href="goods_search.html" class="tag">休闲皮鞋</a>
+												<a href="goods_search.html" class="tag">冲孔鞋</a>
+												<a href="goods_search.html" class="tag">英伦鞋</a>
+												<a href="goods_search.html" class="tag">布洛克鞋</a>
+												<a href="goods_search.html" class="tag">增高鞋</a>
+												<a href="goods_search.html" class="tag">正装鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男凉鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">凉鞋</a>
+												<a href="goods_search.html" class="tag">沙滩鞋</a>
+												<a href="goods_search.html" class="tag">凉拖</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">双肩包</a>
+												<a href="goods_search.html" class="tag">单肩包</a>
+												<a href="goods_search.html" class="tag">真皮包</a>
+												<a href="goods_search.html" class="tag">手提包</a>
+												<a href="goods_search.html" class="tag">小方包</a>
+												<a href="goods_search.html" class="tag">手拿包</a>
+												<a href="goods_search.html" class="tag">斜挎包</a>
+												<a href="goods_search.html" class="tag">实用大包</a>
+												<a href="goods_search.html" class="tag">轻便布包</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男式钱包</a>
+												<a href="goods_search.html" class="tag">单肩/斜挎包</a>
+												<a href="goods_search.html" class="tag">手拿包</a>
+												<a href="goods_search.html" class="tag">腰包</a>
+												<a href="goods_search.html" class="tag">双肩包</a>
+												<a href="goods_search.html" class="tag">商务公文包</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">功能箱包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">硬壳箱</a>
+												<a href="goods_search.html" class="tag">登机箱</a>
+												<a href="goods_search.html" class="tag">钥匙包</a>
+												<a href="goods_search.html" class="tag">电脑包</a>
+												<a href="goods_search.html" class="tag">旅行包</a>
+												<a href="goods_search.html" class="tag">男/女皮带</a>
+												<a href="goods_search.html" class="tag">运动包</a>
+												<a href="goods_search.html" class="tag">拉杆箱</a>
+												<a href="goods_search.html" class="tag">零钱包</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_01.png">
+												<span class="name vertical-mid">沙驰</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_02.png">
+												<span class="name vertical-mid">百丽</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_03.png">
+												<span class="name vertical-mid">金利来</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_04.png">
+												<span class="name vertical-mid">COACH</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_05.png">
+												<span class="name vertical-mid">骆驼</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_06.png">
+												<span class="name vertical-mid">他她</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_07.png">
+												<span class="name vertical-mid">天意美</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_08.png">
+												<span class="name vertical-mid">百思图</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_09.png">
+												<span class="name vertical-mid">卡帝乐鳄鱼</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="channel">家电数码</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">冬季热卖<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">人气美衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">羽绒</a>
+												<a href="goods_search.html" class="tag">毛呢大衣</a>
+												<a href="goods_search.html" class="tag">妈·妈装</a>
+												<a href="goods_search.html" class="tag">外套</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">长袖T恤</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">防晒衣</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">百搭上衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">衬衫</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短外套</a>
+												<a href="goods_search.html" class="tag">毛呢外套</a>
+												<a href="goods_search.html" class="tag">马甲</a>
+												<a href="goods_search.html" class="tag">西装外套</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">裤子<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">阔腿裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">西装裤</a>
+												<a href="goods_search.html" class="tag">连体/背带裤 </a>
+												<a href="goods_search.html" class="tag">羽绒裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">美裙衣橱<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">修身美裙</a>
+												<a href="goods_search.html" class="tag">半身裙</a>
+												<a href="goods_search.html" class="tag">套装裙</a>
+												<a href="goods_search.html" class="tag">白色连衣裙</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色服饰<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">民族风</a>
+												<a href="goods_search.html" class="tag">商场同款</a>
+												<a href="goods_search.html" class="tag">中/老年女装</a>
+												<a href="goods_search.html" class="tag">礼服/旗袍 </a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式内搭<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">纯色T恤</a>
+												<a href="goods_search.html" class="tag">印花T恤</a>
+												<a href="goods_search.html" class="tag">Polo衫</a>
+												<a href="goods_search.html" class="tag">长袖衬衫</a>
+												<a href="goods_search.html" class="tag">套头卫衣</a>
+												<a href="goods_search.html" class="tag">短袖T恤</a>
+												<a href="goods_search.html" class="tag">纯色衬衫</a>
+												<a href="goods_search.html" class="tag">连帽卫衣</a>
+												<a href="goods_search.html" class="tag">格子衬衫</a>
+												<a href="goods_search.html" class="tag">T恤衬衫</a>
+												<a href="goods_search.html" class="tag">条纹T恤 </a>
+												<a href="goods_search.html" class="tag">加绒卫衣</a>
+												<a href="goods_search.html" class="tag">保暖衬衫</a>
+												<a href="goods_search.html" class="tag">短袖衬衫</a>
+												<a href="goods_search.html" class="tag">薄衬衫</a>
+												<a href="goods_search.html" class="tag">V领T恤</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">长款羽绒</a>
+												<a href="goods_search.html" class="tag">厚羽绒</a>
+												<a href="goods_search.html" class="tag">夹克外套</a>
+												<a href="goods_search.html" class="tag">皮衣</a>
+												<a href="goods_search.html" class="tag">西装</a>
+												<a href="goods_search.html" class="tag">马甲/背心</a>
+												<a href="goods_search.html" class="tag">夹克</a>
+												<a href="goods_search.html" class="tag">短款外套</a>
+												<a href="goods_search.html" class="tag">薄羽绒</a>
+												<a href="goods_search.html" class="tag">短款羽绒</a>
+												<a href="goods_search.html" class="tag">厚外套</a>
+												<a href="goods_search.html" class="tag">中长款外套</a>
+												<a href="goods_search.html" class="tag">薄外套</a>
+												<a href="goods_search.html" class="tag">皮肤衣</a>
+												<a href="goods_search.html" class="tag">老人马甲</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男士裤装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">运动裤</a>
+												<a href="goods_search.html" class="tag">西裤</a>
+												<a href="goods_search.html" class="tag">牛仔短裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">夏季裤装</a>
+												<a href="goods_search.html" class="tag">工装裤</a>
+												<a href="goods_search.html" class="tag">亚麻裤</a>
+												<a href="goods_search.html" class="tag">冬季裤装</a>
+												<a href="goods_search.html" class="tag">加绒裤</a>
+												<a href="goods_search.html" class="tag">小脚裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">九分裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色男装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">中老年</a>
+												<a href="goods_search.html" class="tag">职场精英</a>
+												<a href="goods_search.html" class="tag">大码</a>
+												<a href="goods_search.html" class="tag">运动着装</a>
+												<a href="goods_search.html" class="tag">街头潮流</a>
+												<a href="goods_search.html" class="tag">时尚休闲</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">热销内衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男士保暖</a>
+												<a href="goods_search.html" class="tag">男士睡衣</a>
+												<a href="goods_search.html" class="tag">女士睡衣</a>
+												<a href="goods_search.html" class="tag">女士保暖</a>
+												<a href="goods_search.html" class="tag">男士内裤</a>
+												<a href="goods_search.html" class="tag">热卖文胸</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_01.png">
+												<span class="name vertical-mid">恩裳</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_02.png">
+												<span class="name vertical-mid">音儿</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_03.png">
+												<span class="name vertical-mid">波司登</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_04.png">
+												<span class="name vertical-mid">诗篇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_05.png">
+												<span class="name vertical-mid">哥弟</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_06.png">
+												<span class="name vertical-mid">罗蒙</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_07.png">
+												<span class="name vertical-mid">富铤</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_08.png">
+												<span class="name vertical-mid">米皇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_09.png">
+												<span class="name vertical-mid">帕罗</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="channel">母婴童装</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女单鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">高跟鞋</a>
+												<a href="goods_search.html" class="tag">尖头鞋</a>
+												<a href="goods_search.html" class="tag">平底鞋</a>
+												<a href="goods_search.html" class="tag">深口单鞋</a>
+												<a href="goods_search.html" class="tag">粗跟鞋</a>
+												<a href="goods_search.html" class="tag">穆勒鞋</a>
+												<a href="goods_search.html" class="tag">浅口单鞋</a>
+												<a href="goods_search.html" class="tag">低跟鞋</a>
+												<a href="goods_search.html" class="tag">厚底鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女休闲鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">内增高</a>
+												<a href="goods_search.html" class="tag">帆布鞋</a>
+												<a href="goods_search.html" class="tag">运动鞋</a>
+												<a href="goods_search.html" class="tag">板鞋</a>
+												<a href="goods_search.html" class="tag">小白鞋</a>
+												<a href="goods_search.html" class="tag">乐福鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女凉鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">一字带凉鞋</a>
+												<a href="goods_search.html" class="tag">平底凉鞋</a>
+												<a href="goods_search.html" class="tag">凉拖</a>
+												<a href="goods_search.html" class="tag">绑带凉鞋</a>
+												<a href="goods_search.html" class="tag">粗跟凉鞋</a>
+												<a href="goods_search.html" class="tag">鱼嘴鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男休闲鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">帆布鞋</a>
+												<a href="goods_search.html" class="tag">豆豆鞋</a>
+												<a href="goods_search.html" class="tag">一脚蹬</a>
+												<a href="goods_search.html" class="tag">小白鞋</a>
+												<a href="goods_search.html" class="tag">乐福鞋</a>
+												<a href="goods_search.html" class="tag">休闲皮鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男商务鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">套脚商务鞋</a>
+												<a href="goods_search.html" class="tag">德比鞋</a>
+												<a href="goods_search.html" class="tag">休闲皮鞋</a>
+												<a href="goods_search.html" class="tag">冲孔鞋</a>
+												<a href="goods_search.html" class="tag">英伦鞋</a>
+												<a href="goods_search.html" class="tag">布洛克鞋</a>
+												<a href="goods_search.html" class="tag">增高鞋</a>
+												<a href="goods_search.html" class="tag">正装鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男凉鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">凉鞋</a>
+												<a href="goods_search.html" class="tag">沙滩鞋</a>
+												<a href="goods_search.html" class="tag">凉拖</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">双肩包</a>
+												<a href="goods_search.html" class="tag">单肩包</a>
+												<a href="goods_search.html" class="tag">真皮包</a>
+												<a href="goods_search.html" class="tag">手提包</a>
+												<a href="goods_search.html" class="tag">小方包</a>
+												<a href="goods_search.html" class="tag">手拿包</a>
+												<a href="goods_search.html" class="tag">斜挎包</a>
+												<a href="goods_search.html" class="tag">实用大包</a>
+												<a href="goods_search.html" class="tag">轻便布包</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男式钱包</a>
+												<a href="goods_search.html" class="tag">单肩/斜挎包</a>
+												<a href="goods_search.html" class="tag">手拿包</a>
+												<a href="goods_search.html" class="tag">腰包</a>
+												<a href="goods_search.html" class="tag">双肩包</a>
+												<a href="goods_search.html" class="tag">商务公文包</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">功能箱包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">硬壳箱</a>
+												<a href="goods_search.html" class="tag">登机箱</a>
+												<a href="goods_search.html" class="tag">钥匙包</a>
+												<a href="goods_search.html" class="tag">电脑包</a>
+												<a href="goods_search.html" class="tag">旅行包</a>
+												<a href="goods_search.html" class="tag">男/女皮带</a>
+												<a href="goods_search.html" class="tag">运动包</a>
+												<a href="goods_search.html" class="tag">拉杆箱</a>
+												<a href="goods_search.html" class="tag">零钱包</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_01.png">
+												<span class="name vertical-mid">沙驰</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_02.png">
+												<span class="name vertical-mid">百丽</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_03.png">
+												<span class="name vertical-mid">金利来</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_04.png">
+												<span class="name vertical-mid">COACH</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_05.png">
+												<span class="name vertical-mid">骆驼</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_06.png">
+												<span class="name vertical-mid">他她</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_07.png">
+												<span class="name vertical-mid">天意美</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_08.png">
+												<span class="name vertical-mid">百思图</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_09.png">
+												<span class="name vertical-mid">卡帝乐鳄鱼</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="channel">手表配饰</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">冬季热卖<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">人气美衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">羽绒</a>
+												<a href="goods_search.html" class="tag">毛呢大衣</a>
+												<a href="goods_search.html" class="tag">妈·妈装</a>
+												<a href="goods_search.html" class="tag">外套</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">长袖T恤</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">防晒衣</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">百搭上衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">衬衫</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短外套</a>
+												<a href="goods_search.html" class="tag">毛呢外套</a>
+												<a href="goods_search.html" class="tag">马甲</a>
+												<a href="goods_search.html" class="tag">西装外套</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">裤子<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">阔腿裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">西装裤</a>
+												<a href="goods_search.html" class="tag">连体/背带裤 </a>
+												<a href="goods_search.html" class="tag">羽绒裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">美裙衣橱<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">修身美裙</a>
+												<a href="goods_search.html" class="tag">半身裙</a>
+												<a href="goods_search.html" class="tag">套装裙</a>
+												<a href="goods_search.html" class="tag">白色连衣裙</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色服饰<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">民族风</a>
+												<a href="goods_search.html" class="tag">商场同款</a>
+												<a href="goods_search.html" class="tag">中/老年女装</a>
+												<a href="goods_search.html" class="tag">礼服/旗袍 </a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式内搭<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">纯色T恤</a>
+												<a href="goods_search.html" class="tag">印花T恤</a>
+												<a href="goods_search.html" class="tag">Polo衫</a>
+												<a href="goods_search.html" class="tag">长袖衬衫</a>
+												<a href="goods_search.html" class="tag">套头卫衣</a>
+												<a href="goods_search.html" class="tag">短袖T恤</a>
+												<a href="goods_search.html" class="tag">纯色衬衫</a>
+												<a href="goods_search.html" class="tag">连帽卫衣</a>
+												<a href="goods_search.html" class="tag">格子衬衫</a>
+												<a href="goods_search.html" class="tag">T恤衬衫</a>
+												<a href="goods_search.html" class="tag">条纹T恤 </a>
+												<a href="goods_search.html" class="tag">加绒卫衣</a>
+												<a href="goods_search.html" class="tag">保暖衬衫</a>
+												<a href="goods_search.html" class="tag">短袖衬衫</a>
+												<a href="goods_search.html" class="tag">薄衬衫</a>
+												<a href="goods_search.html" class="tag">V领T恤</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">长款羽绒</a>
+												<a href="goods_search.html" class="tag">厚羽绒</a>
+												<a href="goods_search.html" class="tag">夹克外套</a>
+												<a href="goods_search.html" class="tag">皮衣</a>
+												<a href="goods_search.html" class="tag">西装</a>
+												<a href="goods_search.html" class="tag">马甲/背心</a>
+												<a href="goods_search.html" class="tag">夹克</a>
+												<a href="goods_search.html" class="tag">短款外套</a>
+												<a href="goods_search.html" class="tag">薄羽绒</a>
+												<a href="goods_search.html" class="tag">短款羽绒</a>
+												<a href="goods_search.html" class="tag">厚外套</a>
+												<a href="goods_search.html" class="tag">中长款外套</a>
+												<a href="goods_search.html" class="tag">薄外套</a>
+												<a href="goods_search.html" class="tag">皮肤衣</a>
+												<a href="goods_search.html" class="tag">老人马甲</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男士裤装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">运动裤</a>
+												<a href="goods_search.html" class="tag">西裤</a>
+												<a href="goods_search.html" class="tag">牛仔短裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">夏季裤装</a>
+												<a href="goods_search.html" class="tag">工装裤</a>
+												<a href="goods_search.html" class="tag">亚麻裤</a>
+												<a href="goods_search.html" class="tag">冬季裤装</a>
+												<a href="goods_search.html" class="tag">加绒裤</a>
+												<a href="goods_search.html" class="tag">小脚裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">九分裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色男装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">中老年</a>
+												<a href="goods_search.html" class="tag">职场精英</a>
+												<a href="goods_search.html" class="tag">大码</a>
+												<a href="goods_search.html" class="tag">运动着装</a>
+												<a href="goods_search.html" class="tag">街头潮流</a>
+												<a href="goods_search.html" class="tag">时尚休闲</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">热销内衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男士保暖</a>
+												<a href="goods_search.html" class="tag">男士睡衣</a>
+												<a href="goods_search.html" class="tag">女士睡衣</a>
+												<a href="goods_search.html" class="tag">女士保暖</a>
+												<a href="goods_search.html" class="tag">男士内裤</a>
+												<a href="goods_search.html" class="tag">热卖文胸</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_01.png">
+												<span class="name vertical-mid">恩裳</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_02.png">
+												<span class="name vertical-mid">音儿</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_03.png">
+												<span class="name vertical-mid">波司登</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_04.png">
+												<span class="name vertical-mid">诗篇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_05.png">
+												<span class="name vertical-mid">哥弟</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_06.png">
+												<span class="name vertical-mid">罗蒙</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_07.png">
+												<span class="name vertical-mid">富铤</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_08.png">
+												<span class="name vertical-mid">米皇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_09.png">
+												<span class="name vertical-mid">帕罗</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="channel">居家用品</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女单鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">高跟鞋</a>
+												<a href="goods_search.html" class="tag">尖头鞋</a>
+												<a href="goods_search.html" class="tag">平底鞋</a>
+												<a href="goods_search.html" class="tag">深口单鞋</a>
+												<a href="goods_search.html" class="tag">粗跟鞋</a>
+												<a href="goods_search.html" class="tag">穆勒鞋</a>
+												<a href="goods_search.html" class="tag">浅口单鞋</a>
+												<a href="goods_search.html" class="tag">低跟鞋</a>
+												<a href="goods_search.html" class="tag">厚底鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女休闲鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">内增高</a>
+												<a href="goods_search.html" class="tag">帆布鞋</a>
+												<a href="goods_search.html" class="tag">运动鞋</a>
+												<a href="goods_search.html" class="tag">板鞋</a>
+												<a href="goods_search.html" class="tag">小白鞋</a>
+												<a href="goods_search.html" class="tag">乐福鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女凉鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">一字带凉鞋</a>
+												<a href="goods_search.html" class="tag">平底凉鞋</a>
+												<a href="goods_search.html" class="tag">凉拖</a>
+												<a href="goods_search.html" class="tag">绑带凉鞋</a>
+												<a href="goods_search.html" class="tag">粗跟凉鞋</a>
+												<a href="goods_search.html" class="tag">鱼嘴鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男休闲鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">帆布鞋</a>
+												<a href="goods_search.html" class="tag">豆豆鞋</a>
+												<a href="goods_search.html" class="tag">一脚蹬</a>
+												<a href="goods_search.html" class="tag">小白鞋</a>
+												<a href="goods_search.html" class="tag">乐福鞋</a>
+												<a href="goods_search.html" class="tag">休闲皮鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男商务鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">套脚商务鞋</a>
+												<a href="goods_search.html" class="tag">德比鞋</a>
+												<a href="goods_search.html" class="tag">休闲皮鞋</a>
+												<a href="goods_search.html" class="tag">冲孔鞋</a>
+												<a href="goods_search.html" class="tag">英伦鞋</a>
+												<a href="goods_search.html" class="tag">布洛克鞋</a>
+												<a href="goods_search.html" class="tag">增高鞋</a>
+												<a href="goods_search.html" class="tag">正装鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男凉鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">凉鞋</a>
+												<a href="goods_search.html" class="tag">沙滩鞋</a>
+												<a href="goods_search.html" class="tag">凉拖</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">双肩包</a>
+												<a href="goods_search.html" class="tag">单肩包</a>
+												<a href="goods_search.html" class="tag">真皮包</a>
+												<a href="goods_search.html" class="tag">手提包</a>
+												<a href="goods_search.html" class="tag">小方包</a>
+												<a href="goods_search.html" class="tag">手拿包</a>
+												<a href="goods_search.html" class="tag">斜挎包</a>
+												<a href="goods_search.html" class="tag">实用大包</a>
+												<a href="goods_search.html" class="tag">轻便布包</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男式钱包</a>
+												<a href="goods_search.html" class="tag">单肩/斜挎包</a>
+												<a href="goods_search.html" class="tag">手拿包</a>
+												<a href="goods_search.html" class="tag">腰包</a>
+												<a href="goods_search.html" class="tag">双肩包</a>
+												<a href="goods_search.html" class="tag">商务公文包</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">功能箱包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">硬壳箱</a>
+												<a href="goods_search.html" class="tag">登机箱</a>
+												<a href="goods_search.html" class="tag">钥匙包</a>
+												<a href="goods_search.html" class="tag">电脑包</a>
+												<a href="goods_search.html" class="tag">旅行包</a>
+												<a href="goods_search.html" class="tag">男/女皮带</a>
+												<a href="goods_search.html" class="tag">运动包</a>
+												<a href="goods_search.html" class="tag">拉杆箱</a>
+												<a href="goods_search.html" class="tag">零钱包</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_01.png">
+												<span class="name vertical-mid">沙驰</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_02.png">
+												<span class="name vertical-mid">百丽</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_03.png">
+												<span class="name vertical-mid">金利来</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_04.png">
+												<span class="name vertical-mid">COACH</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_05.png">
+												<span class="name vertical-mid">骆驼</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_06.png">
+												<span class="name vertical-mid">他她</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_07.png">
+												<span class="name vertical-mid">天意美</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_08.png">
+												<span class="name vertical-mid">百思图</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_09.png">
+												<span class="name vertical-mid">卡帝乐鳄鱼</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="channel">唯品生活</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">冬季热卖<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">人气美衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">羽绒</a>
+												<a href="goods_search.html" class="tag">毛呢大衣</a>
+												<a href="goods_search.html" class="tag">妈·妈装</a>
+												<a href="goods_search.html" class="tag">外套</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">长袖T恤</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">防晒衣</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">百搭上衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">衬衫</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短外套</a>
+												<a href="goods_search.html" class="tag">毛呢外套</a>
+												<a href="goods_search.html" class="tag">马甲</a>
+												<a href="goods_search.html" class="tag">西装外套</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">裤子<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">阔腿裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">西装裤</a>
+												<a href="goods_search.html" class="tag">连体/背带裤 </a>
+												<a href="goods_search.html" class="tag">羽绒裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">美裙衣橱<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">修身美裙</a>
+												<a href="goods_search.html" class="tag">半身裙</a>
+												<a href="goods_search.html" class="tag">套装裙</a>
+												<a href="goods_search.html" class="tag">白色连衣裙</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色服饰<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">民族风</a>
+												<a href="goods_search.html" class="tag">商场同款</a>
+												<a href="goods_search.html" class="tag">中/老年女装</a>
+												<a href="goods_search.html" class="tag">礼服/旗袍 </a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式内搭<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">纯色T恤</a>
+												<a href="goods_search.html" class="tag">印花T恤</a>
+												<a href="goods_search.html" class="tag">Polo衫</a>
+												<a href="goods_search.html" class="tag">长袖衬衫</a>
+												<a href="goods_search.html" class="tag">套头卫衣</a>
+												<a href="goods_search.html" class="tag">短袖T恤</a>
+												<a href="goods_search.html" class="tag">纯色衬衫</a>
+												<a href="goods_search.html" class="tag">连帽卫衣</a>
+												<a href="goods_search.html" class="tag">格子衬衫</a>
+												<a href="goods_search.html" class="tag">T恤衬衫</a>
+												<a href="goods_search.html" class="tag">条纹T恤 </a>
+												<a href="goods_search.html" class="tag">加绒卫衣</a>
+												<a href="goods_search.html" class="tag">保暖衬衫</a>
+												<a href="goods_search.html" class="tag">短袖衬衫</a>
+												<a href="goods_search.html" class="tag">薄衬衫</a>
+												<a href="goods_search.html" class="tag">V领T恤</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">长款羽绒</a>
+												<a href="goods_search.html" class="tag">厚羽绒</a>
+												<a href="goods_search.html" class="tag">夹克外套</a>
+												<a href="goods_search.html" class="tag">皮衣</a>
+												<a href="goods_search.html" class="tag">西装</a>
+												<a href="goods_search.html" class="tag">马甲/背心</a>
+												<a href="goods_search.html" class="tag">夹克</a>
+												<a href="goods_search.html" class="tag">短款外套</a>
+												<a href="goods_search.html" class="tag">薄羽绒</a>
+												<a href="goods_search.html" class="tag">短款羽绒</a>
+												<a href="goods_search.html" class="tag">厚外套</a>
+												<a href="goods_search.html" class="tag">中长款外套</a>
+												<a href="goods_search.html" class="tag">薄外套</a>
+												<a href="goods_search.html" class="tag">皮肤衣</a>
+												<a href="goods_search.html" class="tag">老人马甲</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男士裤装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">运动裤</a>
+												<a href="goods_search.html" class="tag">西裤</a>
+												<a href="goods_search.html" class="tag">牛仔短裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">夏季裤装</a>
+												<a href="goods_search.html" class="tag">工装裤</a>
+												<a href="goods_search.html" class="tag">亚麻裤</a>
+												<a href="goods_search.html" class="tag">冬季裤装</a>
+												<a href="goods_search.html" class="tag">加绒裤</a>
+												<a href="goods_search.html" class="tag">小脚裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">九分裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色男装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">中老年</a>
+												<a href="goods_search.html" class="tag">职场精英</a>
+												<a href="goods_search.html" class="tag">大码</a>
+												<a href="goods_search.html" class="tag">运动着装</a>
+												<a href="goods_search.html" class="tag">街头潮流</a>
+												<a href="goods_search.html" class="tag">时尚休闲</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">热销内衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男士保暖</a>
+												<a href="goods_search.html" class="tag">男士睡衣</a>
+												<a href="goods_search.html" class="tag">女士睡衣</a>
+												<a href="goods_search.html" class="tag">女士保暖</a>
+												<a href="goods_search.html" class="tag">男士内裤</a>
+												<a href="goods_search.html" class="tag">热卖文胸</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_01.png">
+												<span class="name vertical-mid">恩裳</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_02.png">
+												<span class="name vertical-mid">音儿</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_03.png">
+												<span class="name vertical-mid">波司登</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_04.png">
+												<span class="name vertical-mid">诗篇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_05.png">
+												<span class="name vertical-mid">哥弟</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_06.png">
+												<span class="name vertical-mid">罗蒙</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_07.png">
+												<span class="name vertical-mid">富铤</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_08.png">
+												<span class="name vertical-mid">米皇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_09.png">
+												<span class="name vertical-mid">帕罗</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="channel">唯品国际/唯品奢</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女单鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">高跟鞋</a>
+												<a href="goods_search.html" class="tag">尖头鞋</a>
+												<a href="goods_search.html" class="tag">平底鞋</a>
+												<a href="goods_search.html" class="tag">深口单鞋</a>
+												<a href="goods_search.html" class="tag">粗跟鞋</a>
+												<a href="goods_search.html" class="tag">穆勒鞋</a>
+												<a href="goods_search.html" class="tag">浅口单鞋</a>
+												<a href="goods_search.html" class="tag">低跟鞋</a>
+												<a href="goods_search.html" class="tag">厚底鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女休闲鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">内增高</a>
+												<a href="goods_search.html" class="tag">帆布鞋</a>
+												<a href="goods_search.html" class="tag">运动鞋</a>
+												<a href="goods_search.html" class="tag">板鞋</a>
+												<a href="goods_search.html" class="tag">小白鞋</a>
+												<a href="goods_search.html" class="tag">乐福鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女凉鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">一字带凉鞋</a>
+												<a href="goods_search.html" class="tag">平底凉鞋</a>
+												<a href="goods_search.html" class="tag">凉拖</a>
+												<a href="goods_search.html" class="tag">绑带凉鞋</a>
+												<a href="goods_search.html" class="tag">粗跟凉鞋</a>
+												<a href="goods_search.html" class="tag">鱼嘴鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男休闲鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">帆布鞋</a>
+												<a href="goods_search.html" class="tag">豆豆鞋</a>
+												<a href="goods_search.html" class="tag">一脚蹬</a>
+												<a href="goods_search.html" class="tag">小白鞋</a>
+												<a href="goods_search.html" class="tag">乐福鞋</a>
+												<a href="goods_search.html" class="tag">休闲皮鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男商务鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">套脚商务鞋</a>
+												<a href="goods_search.html" class="tag">德比鞋</a>
+												<a href="goods_search.html" class="tag">休闲皮鞋</a>
+												<a href="goods_search.html" class="tag">冲孔鞋</a>
+												<a href="goods_search.html" class="tag">英伦鞋</a>
+												<a href="goods_search.html" class="tag">布洛克鞋</a>
+												<a href="goods_search.html" class="tag">增高鞋</a>
+												<a href="goods_search.html" class="tag">正装鞋</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男凉鞋<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">凉鞋</a>
+												<a href="goods_search.html" class="tag">沙滩鞋</a>
+												<a href="goods_search.html" class="tag">凉拖</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">女包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">双肩包</a>
+												<a href="goods_search.html" class="tag">单肩包</a>
+												<a href="goods_search.html" class="tag">真皮包</a>
+												<a href="goods_search.html" class="tag">手提包</a>
+												<a href="goods_search.html" class="tag">小方包</a>
+												<a href="goods_search.html" class="tag">手拿包</a>
+												<a href="goods_search.html" class="tag">斜挎包</a>
+												<a href="goods_search.html" class="tag">实用大包</a>
+												<a href="goods_search.html" class="tag">轻便布包</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男式钱包</a>
+												<a href="goods_search.html" class="tag">单肩/斜挎包</a>
+												<a href="goods_search.html" class="tag">手拿包</a>
+												<a href="goods_search.html" class="tag">腰包</a>
+												<a href="goods_search.html" class="tag">双肩包</a>
+												<a href="goods_search.html" class="tag">商务公文包</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">功能箱包<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">硬壳箱</a>
+												<a href="goods_search.html" class="tag">登机箱</a>
+												<a href="goods_search.html" class="tag">钥匙包</a>
+												<a href="goods_search.html" class="tag">电脑包</a>
+												<a href="goods_search.html" class="tag">旅行包</a>
+												<a href="goods_search.html" class="tag">男/女皮带</a>
+												<a href="goods_search.html" class="tag">运动包</a>
+												<a href="goods_search.html" class="tag">拉杆箱</a>
+												<a href="goods_search.html" class="tag">零钱包</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_01.png">
+												<span class="name vertical-mid">沙驰</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_02.png">
+												<span class="name vertical-mid">百丽</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_03.png">
+												<span class="name vertical-mid">金利来</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_04.png">
+												<span class="name vertical-mid">COACH</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_05.png">
+												<span class="name vertical-mid">骆驼</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_06.png">
+												<span class="name vertical-mid">他她</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_07.png">
+												<span class="name vertical-mid">天意美</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_08.png">
+												<span class="name vertical-mid">百思图</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_2_09.png">
+												<span class="name vertical-mid">卡帝乐鳄鱼</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="channel">医药健康</div>
+								<div class="list clearfix">
+									<div class="tags  fl">
+										<!-- 横向 -->
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">冬季热卖<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">人气美衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">羽绒</a>
+												<a href="goods_search.html" class="tag">毛呢大衣</a>
+												<a href="goods_search.html" class="tag">妈·妈装</a>
+												<a href="goods_search.html" class="tag">外套</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">长袖T恤</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">防晒衣</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">百搭上衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">衬衫</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">针织衫</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">卫衣</a>
+												<a href="goods_search.html" class="tag">套装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短外套</a>
+												<a href="goods_search.html" class="tag">毛呢外套</a>
+												<a href="goods_search.html" class="tag">马甲</a>
+												<a href="goods_search.html" class="tag">西装外套</a>
+												<a href="goods_search.html" class="tag">棉衣</a>
+												<a href="goods_search.html" class="tag">羽绒服</a>
+												<a href="goods_search.html" class="tag">针织外套</a>
+												<a href="goods_search.html" class="tag">皮衣皮草</a>
+												<a href="goods_search.html" class="tag">风衣</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">裤子<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">阔腿裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">西装裤</a>
+												<a href="goods_search.html" class="tag">连体/背带裤 </a>
+												<a href="goods_search.html" class="tag">羽绒裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">打底裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">短裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">美裙衣橱<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">修身美裙</a>
+												<a href="goods_search.html" class="tag">半身裙</a>
+												<a href="goods_search.html" class="tag">套装裙</a>
+												<a href="goods_search.html" class="tag">白色连衣裙</a>
+												<a href="goods_search.html" class="tag">连衣裙</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色服饰<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">民族风</a>
+												<a href="goods_search.html" class="tag">商场同款</a>
+												<a href="goods_search.html" class="tag">中/老年女装</a>
+												<a href="goods_search.html" class="tag">礼服/旗袍 </a>
+												<a href="goods_search.html" class="tag">大码女装</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式内搭<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">纯色T恤</a>
+												<a href="goods_search.html" class="tag">印花T恤</a>
+												<a href="goods_search.html" class="tag">Polo衫</a>
+												<a href="goods_search.html" class="tag">长袖衬衫</a>
+												<a href="goods_search.html" class="tag">套头卫衣</a>
+												<a href="goods_search.html" class="tag">短袖T恤</a>
+												<a href="goods_search.html" class="tag">纯色衬衫</a>
+												<a href="goods_search.html" class="tag">连帽卫衣</a>
+												<a href="goods_search.html" class="tag">格子衬衫</a>
+												<a href="goods_search.html" class="tag">T恤衬衫</a>
+												<a href="goods_search.html" class="tag">条纹T恤 </a>
+												<a href="goods_search.html" class="tag">加绒卫衣</a>
+												<a href="goods_search.html" class="tag">保暖衬衫</a>
+												<a href="goods_search.html" class="tag">短袖衬衫</a>
+												<a href="goods_search.html" class="tag">薄衬衫</a>
+												<a href="goods_search.html" class="tag">V领T恤</a>
+												<a href="goods_search.html" class="tag">羊绒/羊毛衫</a>
+												<a href="goods_search.html" class="tag">毛衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男式外套<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">长款羽绒</a>
+												<a href="goods_search.html" class="tag">厚羽绒</a>
+												<a href="goods_search.html" class="tag">夹克外套</a>
+												<a href="goods_search.html" class="tag">皮衣</a>
+												<a href="goods_search.html" class="tag">西装</a>
+												<a href="goods_search.html" class="tag">马甲/背心</a>
+												<a href="goods_search.html" class="tag">夹克</a>
+												<a href="goods_search.html" class="tag">短款外套</a>
+												<a href="goods_search.html" class="tag">薄羽绒</a>
+												<a href="goods_search.html" class="tag">短款羽绒</a>
+												<a href="goods_search.html" class="tag">厚外套</a>
+												<a href="goods_search.html" class="tag">中长款外套</a>
+												<a href="goods_search.html" class="tag">薄外套</a>
+												<a href="goods_search.html" class="tag">皮肤衣</a>
+												<a href="goods_search.html" class="tag">老人马甲</a>
+												<a href="goods_search.html" class="tag">牛仔外套</a>
+												<a href="goods_search.html" class="tag">大衣</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">男士裤装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">短裤</a>
+												<a href="goods_search.html" class="tag">运动裤</a>
+												<a href="goods_search.html" class="tag">西裤</a>
+												<a href="goods_search.html" class="tag">牛仔短裤</a>
+												<a href="goods_search.html" class="tag">牛仔裤</a>
+												<a href="goods_search.html" class="tag">哈伦裤</a>
+												<a href="goods_search.html" class="tag">夏季裤装</a>
+												<a href="goods_search.html" class="tag">工装裤</a>
+												<a href="goods_search.html" class="tag">亚麻裤</a>
+												<a href="goods_search.html" class="tag">冬季裤装</a>
+												<a href="goods_search.html" class="tag">加绒裤</a>
+												<a href="goods_search.html" class="tag">小脚裤</a>
+												<a href="goods_search.html" class="tag">休闲裤</a>
+												<a href="goods_search.html" class="tag">九分裤</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">特色男装<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">中老年</a>
+												<a href="goods_search.html" class="tag">职场精英</a>
+												<a href="goods_search.html" class="tag">大码</a>
+												<a href="goods_search.html" class="tag">运动着装</a>
+												<a href="goods_search.html" class="tag">街头潮流</a>
+												<a href="goods_search.html" class="tag">时尚休闲</a>
+											</div>
+										</div>
+										<div class="item clearfix">
+											<span class="title relative vertical-top fl">热销内衣<i class="right_arrow">^</i></span>
+											<div class="con vertical-top fl">
+												<a href="goods_search.html" class="tag">男士保暖</a>
+												<a href="goods_search.html" class="tag">男士睡衣</a>
+												<a href="goods_search.html" class="tag">女士睡衣</a>
+												<a href="goods_search.html" class="tag">女士保暖</a>
+												<a href="goods_search.html" class="tag">男士内裤</a>
+												<a href="goods_search.html" class="tag">热卖文胸</a>
+											</div>
+										</div>
+									</div>
+									<div class="brands fl">
+										<div class="title">品牌推荐</div>
+										<div class="brand_box clearfix">
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_01.png">
+												<span class="name vertical-mid">恩裳</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_02.png">
+												<span class="name vertical-mid">音儿</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_03.png">
+												<span class="name vertical-mid">波司登</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_04.png">
+												<span class="name vertical-mid">诗篇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_05.png">
+												<span class="name vertical-mid">哥弟</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_06.png">
+												<span class="name vertical-mid">罗蒙</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_07.png">
+												<span class="name vertical-mid">富铤</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_08.png">
+												<span class="name vertical-mid">米皇</span>
+											</a>
+											<a href="goods_search.html" class="fl">
+												<img class="vertical-mid" src="./img/index/brand_box_1_09.png">
+												<span class="name vertical-mid">帕罗</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<ul class="crosswise_nav">
+						<li><a href="goods_search.html">首页</a></li>
+						<li><a href="goods_search.html">最后疯抢</a></li>
+						<li><a href="goods_search.html">唯品快抢</a></li>
+						<li><a href="goods_search.html">女装</a></li>
+						<li><a href="goods_search.html">母婴</a></li>
+						<li><a href="goods_search.html">家电</a></li>
+						<li><a href="goods_search.html">国际</a></li>
+						<li><a href="goods_search.html">美妆</a></li>
+						<li><a href="goods_search.html">鞋包</a></li>
+						<li><a href="goods_search.html">男装</a></li>
+						<li><a href="goods_search.html">预告</a></li>
+						<li class="more relative">
+							<a href="goods_search.html">更多 <i class="more_arrow">^</i></a>
+							<div class="more_box">
+								<span><a href="goods_search.html">运动</a></span>
+								<span><a href="goods_search.html">家居</a></span>
+								<span><a href="goods_search.html">生活</a></span>
+								<span><a href="goods_search.html">配饰</a></span>
+								<span><a href="goods_search.html">唯品·奢</a></span>
+								<span><a href="goods_search.html">扶贫</a></span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<!-- 右侧栏 -->
+		<div class="scrollBar">
+			<div class="scrollBar_bg">
+				<div class="user relative">
+					<div class="user_icon">
+						<img src="./img/index/user.png">
+						<span>账号</span>
+					</div>
+					<div class="user_box clearfix">
+						<a class="fr" href="javascript:;">
+							<b>×</b>
+						</a>
+						<div class="head_img">
+							<img src="./img/index/user_img.jpg">
+						</div>
+						<div class="tips">
+							<span>你好！请<a href="login.html"> 登录 </a>|<a href="register.html"> 注册 </a></span>
+						</div>
+						<div class="link_box">
+							<a href="user_order.html" class="link_item">
+								<img src="./img/index/order_%23d9d9d9.png">
+								<span>我的订单</span>
+							</a>
+							<a href="user.html" class="link_item">
+								<img src="./img/index/rmb_%23d9d9d9.png">
+								<span>我的唯品币</span>
+							</a>
+						</div>
+						<div class="member_box">
+							<a href="user.html">会员俱乐部</a>
+						</div>
+					</div>
+				</div>
+				<div class="shoppingCart relative">
+					<div class="shoppingCart_icon">
+						<img src="./img/index/shoppingCart.png">
+						<span>购物袋</span>
+						<i>0</i>
+					</div>
+					<div class="shoppingCart_box clearfix">
+						<a class="fr" href="javascript:;">
+							<b>×</b>
+						</a>
+						<div class="head_img">
+							<img src="./img/index/user_img.jpg">
+						</div>
+						<div class="tips">
+							<span>你好！请<a href="login.html"> 登录 </a>|<a href="register.html"> 注册 </a></span>
+						</div>
+					</div>
+				</div>
+				<a href="user.html" class="discountCoupon unify_item relative ">
+					<div class="discountCoupon_icon unify_icon">
+						<img src="./img/index/discount_coupon_icon.png">
+					</div>
+					<div class="discountCoupon_box unify_box first_unify">
+						<span>我的优惠券</span>
+					</div>
+				</a>
+				<a href="collection.html" class="brandCollection unify_item relative">
+					<div class="brandCollection_icon unify_icon">
+						<img src="./img/index/favorites.png">
+					</div>
+					<div class="brandCollection_box unify_box">
+						<span>品牌收藏</span>
+					</div>
+				</a>
+				<a href="collection.html" class="shoppingCollection unify_item relative">
+					<div class="shoppingCollection_icon unify_icon">
+						<img src="./img/index/collection_icon.png">
+					</div>
+					<div class="shoppingCollection_box unify_box">
+						<span>商品收藏</span>
+					</div>
+				</a>
+				<a href="collection.html" class="history unify_item relative">
+					<div class="history_icon unify_icon">
+						<img src="./img/index/history.png">
+					</div>
+					<div class="history_box unify_box">
+						<span>我的足迹</span>
+					</div>
+				</a>
+				<div class="feedBack unify_item relative">
+					<div class="feedBack_icon unify_icon">
+						<img src="./img/index/feedback.png">
+					</div>
+					<div class="feedBack_box unify_box">
+						<span>会员反馈</span>
+					</div>
+				</div>
+				<div class="backTop unify_item relative">
+					<div class="backTop_icon unify_icon">
+						<img src="./img/index/back_top.png">
+					</div>
+					<div class="backTop_box unify_box">
+						<span>返回顶部</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<!-- 背景 -->
+	<div class="banner">
+		<div class="container_col">
+			<div class="title">
+				<span>我的特卖</span>
+				<span>DISCOUNT</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- 收藏导航 -->
+	<div class="col_nav">
+		<div class="container_col">
+			<div class="col_nav_wrapper">
+				<ul>
+					<li class="relative">
+						<a href="collection.html">商品收藏</a>
+					</li>
+					<li class="relative">
+						<a href="collection.html">品牌收藏</a>
+					</li>
+					<li class="relative">
+						<a href="collection.html">店铺收藏</a>
+					</li>
+					<li class="relative">
+						<a href="collection.html">我的足迹</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- 筛选操作 -->
+	<div class="filtrate">
+		<div class="container_col">
+			<ul>
+				<li>全部</li>
+				<li>有货</li>
+				<li>优惠中</li>
+				<li>即将促销</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- 收藏列表 -->
+	<div class="col_list">
+		<div class="container_col">
+			<div class="list_wrapper">
+				<ul>
+					<li class="relative">
+						<div class="del" id="del">
+							<i class=" icon_collection icon_collection_del"></i>
+						</div>
+						<a href="goods_detail.html">
+							<div class="img">
+								<img src="./img/collection/col_goods_01.jpg" alt="">
+							</div>
+							<div class="text">
+								<div class="price">
+									<div class="now_price">
+										<span>疯抢价</span>
+										<span>￥</span>
+										<span>38</span>
+									</div>
+									<div class="prev_price">
+										<span>128</span>
+										<span>3.0折</span>
+									</div>
+								</div>
+								<div class="title">
+									<span>佩佩经典多功能化妆刷6支（白色恋人）</span>
+									<span>均码</span>
+								</div>
+							</div>
+						</a>
+						<a href="shopping_cart.html" class="add_cart">
+							<i class=" vertical-mid icon_collection icon_collection_add"></i>
+							<span class="vertical-mid">加入购物袋</span>
+						</a>
+					</li>
+					<li class="relative">
+						<div class="del" id="del">
+							<i class=" icon_collection icon_collection_del"></i>
+						</div>
+						<a href="goods_detail.html">
+							<div class="img">
+								<img src="./img/collection/col_goods_02.jpg" alt="">
+							</div>
+							<div class="text">
+								<div class="price">
+									<div class="now_price">
+										<span>疯抢价</span>
+										<span>￥</span>
+										<span>19</span>
+									</div>
+									<div class="prev_price">
+										<span>￥168</span>
+										<span>1.2折</span>
+									</div>
+								</div>
+								<div class="title">
+									<span>【12支】丝绒慕斯唇釉套装哑光水润持久保湿不易脱色</span>
+									<span>高光1.2g/遮瑕1.2g</span>
+								</div>
+							</div>
+						</a>
+						<a href="shopping_cart.html" class="add_cart">
+							<i class=" vertical-mid icon_collection icon_collection_add"></i>
+							<span class="vertical-mid">加入购物袋</span>
+						</a>
+					</li>
+					<li class="relative">
+						<div class="del" id="del">
+							<i class=" icon_collection icon_collection_del"></i>
+						</div>
+						<a href="goods_detail.html">
+							<div class="img">
+								<img src="./img/collection/col_goods_03.jpg" alt="">
+							</div>
+							<div class="text">
+								<div class="price">
+									<div class="now_price">
+										<span>疯抢价</span>
+										<span>￥</span>
+										<span>499</span>
+									</div>
+									<div class="prev_price">
+										<span>￥2799</span>
+										<span>1.8折</span>
+									</div>
+								</div>
+								<div class="title">
+									<span>【顺丰包邮 触控大屏】破壁料理机家用豆浆机九阳破壁机JYL-Y921</span>
+									<span>均码</span>
+								</div>
+							</div>
+						</a>
+						<a href="shopping_cart.html" class="add_cart">
+							<i class=" vertical-mid icon_collection icon_collection_add"></i>
+							<span class="vertical-mid">加入购物袋</span>
+						</a>
+					</li>
+					<li class="relative">
+						<div class="del" id="del">
+							<i class=" icon_collection icon_collection_del"></i>
+						</div>
+						<a href="goods_detail.html">
+							<div class="img">
+								<img src="./img/collection/col_goods_04.jpg" alt="">
+							</div>
+							<div class="text">
+								<div class="price">
+									<div class="now_price">
+										<span>疯抢价</span>
+										<span>￥</span>
+										<span>12</span>
+									</div>
+									<div class="prev_price">
+										<span>￥98</span>
+										<span>1.3折</span>
+									</div>
+								</div>
+								<div class="title">
+									<span>【超防水百米不断水】防晕染眼线液笔0.7g持久浓黑速干不易晕</span>
+									<span>0.7g</span>
+								</div>
+							</div>
+						</a>
+						<a href="shopping_cart.html" class="add_cart">
+							<i class=" vertical-mid icon_collection icon_collection_add"></i>
+							<span class="vertical-mid">加入购物袋</span>
+						</a>
+					</li>
+					<li class="relative">
+						<div class="del" id="del">
+							<i class=" icon_collection icon_collection_del"></i>
+						</div>
+						<a href="goods_detail.html">
+							<div class="img">
+								<img src="./img/collection/col_goods_05.jpg" alt="">
+							</div>
+							<div class="text">
+								<div class="price">
+									<div class="now_price">
+										<span>疯抢价</span>
+										<span>￥</span>
+										<span>29</span>
+									</div>
+									<div class="prev_price">
+										<span>￥228</span>
+										<span>1.3折</span>
+									</div>
+								</div>
+								<div class="title">
+									<span>佩佩纷泽滋润口红滋润不易脱色3.5g</span>
+									<span>3.5g</span>
+								</div>
+							</div>
+						</a>
+						<a href="shopping_cart.html" class="add_cart">
+							<i class=" vertical-mid icon_collection icon_collection_add"></i>
+							<span class="vertical-mid">加入购物袋</span>
+						</a>
+					</li>
+					<li class="relative">
+						<div class="del" id="del">
+							<i class=" icon_collection icon_collection_del"></i>
+						</div>
+						<a href="goods_detail.html">
+							<div class="img">
+								<img src="./img/collection/col_goods_07.jpg" alt="">
+							</div>
+							<div class="text">
+								<div class="price">
+									<div class="now_price">
+										<span>疯抢价</span>
+										<span>￥</span>
+										<span>1540</span>
+									</div>
+									<div class="prev_price">
+										<span>￥1722</span>
+										<span>9.0折</span>
+									</div>
+								</div>
+								<div class="title">
+									<span>SK-II神仙水230ml 护肤品 护肤品套装 补水控油提亮</span>
+									<span>230ml</span>
+								</div>
+							</div>
+						</a>
+						<a href="shopping_cart.html" class="add_cart">
+							<i class=" vertical-mid icon_collection icon_collection_add"></i>
+							<span class="vertical-mid">加入购物袋</span>
+						</a>
+					</li>
+					<li class="relative">
+						<div class="del" id="del">
+							<i class=" icon_collection icon_collection_del"></i>
+						</div>
+						<a href="goods_detail.html">
+							<div class="img">
+								<img src="./img/collection/ia_400000001.jpg" alt="">
+							</div>
+							<div class="text">
+								<div class="price">
+									<div class="now_price">
+										<span>疯抢价</span>
+										<span>￥</span>
+										<span>29</span>
+									</div>
+									<div class="prev_price">
+										<span>￥228</span>
+										<span>1.3折</span>
+									</div>
+								</div>
+								<div class="title">
+									<span>【12支】丝绒慕斯唇釉套装哑光水润持久保湿不易脱色</span>
+									<span>均码</span>
+								</div>
+							</div>
+						</a>
+						<a href="shopping_cart.html" class="add_cart">
+							<i class=" vertical-mid icon_collection icon_collection_add"></i>
+							<span class="vertical-mid">加入购物袋</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 全局footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="slogan">
+				<i class="icon_footer icon_footer_slogan01"></i>
+				<i class="icon_footer icon_footer_slogan02"></i>
+				<i class="icon_footer icon_footer_slogan03"></i>
+				<i class="icon_footer icon_footer_slogan04"></i>
+				<i class="icon_footer icon_footer_slogan05"></i>
+				<i class="icon_footer icon_footer_slogan06"></i>
+				<i class="icon_footer icon_footer_slogan07"></i>
+				<i class="icon_footer icon_footer_slogan08"></i>
+				<i class="icon_footer icon_footer_slogan09"></i>
+				<i class="icon_footer icon_footer_slogan10"></i>
+			</div>
+			<div class="link">
+				<div class="item vertical-top">
+					<span class="title">服务保障</span>
+					<ul>
+						<li><a href="#">正品保证</a></li>
+						<li><a href="#">7天无理由放心退</a></li>
+						<li><a href="#">退货返10元唯品币</a></li>
+						<li><a href="#">7x15小时客户服务</a></li>
+						<li><a href="#">7天无理由随心换</a></li>
+					</ul>
+				</div>
+				<div class="item vertical-top">
+					<span class="title">购物指南</span>
+					<ul>
+						<li><a href="#">导购演示</a></li>
+						<li><a href="#">订单操作</a></li>
+						<li><a href="#">会员注册</a></li>
+						<li><a href="#">账户管理</a></li>
+						<li><a href="#">收货样品</a></li>
+						<li><a href="#">会员等级</a></li>
+					</ul>
+				</div>
+				<div class="item vertical-top">
+					<span class="title">支付方式</span>
+					<ul>
+						<li><a href="#">快捷支付</a></li>
+						<li><a href="#">23家主流网银支付</a></li>
+						<li><a href="#">支付宝、银联等支付</a></li>
+						<li><a href="#">信用卡支付</a></li>
+						<li><a href="#">零钱支付</a></li>
+					</ul>
+				</div>
+				<div class="item vertical-top">
+					<span class="title">配送方式</span>
+					<ul>
+						<li><a href="#">配送范围及运费</a></li>
+						<li><a href="#">验货与签收</a></li>
+					</ul>
+				</div>
+				<div class="item vertical-top">
+					<span class="title">售后服务</span>
+					<ul>
+						<li><a href="#">退货政策</a></li>
+						<li><a href="#">退货流程</a></li>
+						<li><a href="#">退款方式和时效</a></li>
+						<li><a href="#">换货服务</a></li>
+					</ul>
+				</div>
+				<div class="code vertical-top">
+					<span class="title">开课吧APP二维码</span>
+					<img src="./img/index/footer_code.png">
+					<span class="des">下载开课吧移动APP</span>
+				</div>
+			</div>
+			<div class="about">
+				<ul>
+					<li><a href="#">关于我们</a></li>
+					<li><a href="#">About us</a></li>
+					<li><a href="#">Investor Relations</a></li>
+					<li><a href="#">媒体报道</a></li>
+					<li><a href="#">品牌招商</a></li>
+					<li><a href="#">隐私条款</a></li>
+					<li><a href="#">慧科诚聘</a></li>
+					<li><a href="#">开课吧卡</a></li>
+					<li><a href="#">联系我们</a></li>
+				</ul>
+			</div>
+				<div class="Copyright">Copyright 2003-2020 kaikeba.com，All Rights Reserved 使用本网站即表示接受 <a href="#">开课吧用户协议</a>。版权所有
+				<a href="#">北京开课吧电子商务有限公司</a> </div>
+			<div class="put_on_records">
+				<span><a href="#" class="vertical-mid"><img src="./img/index/police_icon.png" class="vertical-mid">京公网安备
+						xxxxxxxxxxxxxxx号</a> <a href="#">京ICP备xxxxxxxx号</a> <a href="#">增值业务经营许可证：京B2-20200000</a> <a
+						href="#">网络文化经营许可证：京网文〔2020〕5030-1743号</a>
+				</span>
+				<span><a href="#">自营主体经营证照</a> <a href="#">风险监测信息</a> <a href="#">互联网药品信息服务资格证书：（京）-经营性-2020-0271</a> <a
+						href="#">网络食品交易第三方平台备案凭证：京B2-20200000</a>
+					<a href="#">医疗器械网络交易服务第三方平台</a></span>
+				<span><a href="#">备案凭证：（京）网械平台备字[2020]第00001号</a></span>
+			</div>
+			<div class="identification">
+				<a href="#"><i class="icon_identification icon_identification_Unionpay"></i></a>
+				<!-- <a href="#"><i class="icon_identification icon_identification_Alipay"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_CreditEnterprise"></i></a> -->
+				<a href="#"><i class="icon_identification icon_identification_LegalRights"></i></a>
+				<a href="#"><i class="icon_identification icon_identification_RedLink"></i></a>
+				<a href="#"><i class="icon_identification icon_identification_callPolice"></i></a>
+				<a href="#"><i class="icon_identification icon_identification_netPolice"></i></a>
+				<!-- <a href="#"><i class="icon_identification icon_identification_ccredit"></i></a> -->
+				<a href="#"><i class="icon_identification icon_identification_integrityWeb"></i></a>
+				<a href="#"><i class="icon_identification icon_identification_credibleWeb"></i></a>
+			</div>
+		</div>
+	</div>
+	<!-- 引入jQuery -->
+	<script src="./js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<!-- 全局header、footer----勿删 -->
+	<script src="./js/header&footer.js" type="text/javascript" charset="utf-8"></script>
+	<!-- 右侧栏JS -->
+	<script src="./js/ScrollBar.js" type="text/javascript" charset="utf-8"></script>
+	<!-- 当前页 index.js -->
+	<script src="./js/collection/collection.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>

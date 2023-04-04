@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>开课吧-我的购物袋</title>
+		<!-- 重置样式表 -->
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<!-- valid插件 -->
+		<link rel="stylesheet" type="text/css" href="lib/Validform_v5.3.2/css/style.css" />
+		<!-- 全局 header/footer -->
+		<link rel="stylesheet" type="text/css" href="css/goods_search/header&footer.css" />
+		<!-- 购物车の样式 -->
+		<link rel="stylesheet" type="text/css" href="css/shopping_cart/style.css" />
+	</head>
+	<body>
+		<div class="head-border">
+			<div class="container">
+				<table class="table">
+					<tr>
+						<td rowspan="2">
+							<div class="logo">
+								<a href="index.html"><img src="img/shopping_cart/shop-logo.png" width="200px"></a>
+							</div>
+						</td>
+						<td class="clearfix head">
+							<a href="">
+								<div class="number float-right">
+									<img src="img/pay_verify/number.png" class="middle">
+									<span class="middle">会员服务</span>
+								</div>
+							</a>
+							<a href="">
+								<div class="customer float-right">
+									<img src="img/pay_verify/customer.png" class="middle">
+									<span class="middle">在线客服</span>
+								</div>
+							</a>
+							<a href="">
+								<div class="tel float-right">
+									<img src="img/pay_verify/tel.png" class="middle">
+									<span class="middle">400-6789-888</span>
+								</div>
+							</a>
+							<div class="order-ctrl float-right">
+								<a href="user_order.html"><span class="middle ">订单管理</span></a>
+							</div>
+							<div class="user float-right">
+								<a href="user.html"><span class="middle">您好，********！</span>
+									<img src="img/shopping_cart/user.png" class="middle"></a>
+								<span>[退出]</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="serve-img float-right">
+								<img src="img/shopping_cart/serve.png" width="400px">
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="container">
+			<div class="procedure">
+				<img src="img/shopping_cart/look.png" width="700px">
+			</div>
+
+			<div class="date">
+				<div class="result">
+				</div>
+			</div>
+			<div class="tips relative clearfix">
+				<div class="delivery float-left">配送至<span>青岛市</span></div>
+				<div class="tip float-left"><span class="middle">请在倒计时结束前提交订单，下单后你另有 30 分钟的支付时间。</span>
+					<img src="img/shopping_cart/tip.png" class="middle">
+				</div>
+				<div class="order-tip">
+					<ul style="list-style-type: circle;">
+						<li>
+							好商品需要精挑细选，特意为你留足20分钟考虑时间；
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="cart-box">
+				<table class="cart">
+					<thead class="cart-head">
+						<tr>
+							<td class="goods">精选特卖</td>
+							<td class="price">单价</td>
+							<td class="number">数量</td>
+							<td class="small-sum">小计</td>
+							<td class="del">操作</td>
+						</tr>
+					</thead>
+					<tbody class="cart-body">
+						<tr>
+							<td class="goods-td clearfix">
+								<div class="goods-img float-left">
+									<a href="goods_detail.html"><img src="img/shopping_cart/good1.jpg" width="60px"></a>
+								</div>
+								<div class="goods-font float-left clearfix">
+									<div class="font">
+										<span class="self-support">自营</span>
+										<span class="content">【1盒6色】粉悦木马轻雾感口红小样套盒 哑光雾面唇膏非</span>
+									</div>
+									<div class="size">尺码：1.4g*6</div>
+									<div class="sign">折后价</div>
+								</div>
+							</td>
+							<td class="now-price">
+								<div>¥<span class="price-num">69</span></div>
+								<div class="before-price"><s>¥354</s></div>
+							</td>
+							<td class="adjust-td">
+								<div class="adjust">
+									<button class="minus float-left" type="button">-</button>
+									<div class="num float-left">1</div>
+									<button class="add float-left" type="button">+</button>
+								</div>
+							</td>
+							<td class="goods-sum">
+								<div>￥<span class="sum-num">69</span></div>
+							</td>
+							<td>
+								<div class="goods-del">删除</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="goods-td clearfix">
+								<div class="goods-img float-left">
+									<a href="goods_detail.html"><img src="img/shopping_cart/good1.jpg" width="60px"></a>
+								</div>
+								<div class="goods-font float-left clearfix">
+									<div class="font">
+										<span class="self-support">自营</span>
+										<span class="content">【1盒6色】粉悦木马轻雾感口红小样套盒 哑光雾面唇膏非</span>
+									</div>
+									<div class="size">尺码：1.4g*6</div>
+									<div class="sign">折后价</div>
+								</div>
+							</td>
+							<td class="now-price">
+								<div>¥<span class="price-num">69</span></div>
+								<div class="before-price"><s>¥354</s></div>
+							</td>
+							<td class="adjust-td">
+								<div class="adjust">
+									<button class="minus float-left" type="button">-</button>
+									<div class="num float-left">1</div>
+									<button class="add float-left" type="button">+</button>
+								</div>
+							</td>
+							<td class="goods-sum">
+								<div>￥<span class="sum-num">69</span></div>
+							</td>
+							<td>
+								<div class="goods-del">删除</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="goods-td clearfix">
+								<div class="goods-img float-left">
+									<a href="goods_detail.html"><img src="img/shopping_cart/good1.jpg" width="60px"></a>
+								</div>
+								<div class="goods-font float-left clearfix">
+									<div class="font">
+										<span class="self-support">自营</span>
+										<span class="content">【1盒6色】粉悦木马轻雾感口红小样套盒 哑光雾面唇膏非</span>
+									</div>
+									<div class="size">尺码：1.4g*6</div>
+									<div class="sign">折后价</div>
+								</div>
+							</td>
+							<td class="now-price">
+								<div>¥<span class="price-num">69</span></div>
+								<div class="before-price"><s>¥354</s></div>
+							</td>
+							<td class="adjust-td">
+								<div class="adjust">
+									<button class="minus float-left" type="button">-</button>
+									<div class="num float-left">1</div>
+									<button class="add float-left" type="button">+</button>
+								</div>
+							</td>
+							<td class="goods-sum">
+								<div>￥<span class="sum-num">69</span></div>
+							</td>
+							<td>
+								<div class="goods-del">删除</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="cart-foot">
+					<div class="clearfix">
+						<div class="freight float-left">运费</div>
+						<div class="freight-tip float-left float-left">开课吧自营: 开课吧自营商品已满足新会员专享首单满38元免邮（限开课吧自营商品，部分商品不可用）</div>
+					</div>
+					<div class="clearfix">
+						<div class="limit float-left">限制</div>
+						<div class="limit-tip float-left float-left">快抢商品仅支持叠加参与买赠、返券、免邮活动，不支持使用优惠券及满减、折扣、任选活动</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="pay-box clearfix">
+				<div class="coupon float-left"><span class="middle">使用优惠券</span> <img src="img/shopping_cart/pink-down.jpg" class="middle"></div>
+				<div class="sum-box float-right">
+					共<span class="total">0</span>件商品 商品金额<span class="sum">0</span>元
+					<div class="no-freight">总金额（未含运费）<span class="sum">0</span>元</div>
+				</div>
+			</div>
+			<div class="calculation clearfix">
+				<div class="tips float-left"><span class="middle">请在倒计时结束前结算</span><img src="img/shopping_cart/tip.png" class="middle"></div>
+				<a href="pay_verify.html">
+					<div class="calculation-btn float-right">立即结算<span class=""></span></div>
+				</a>
+			</div>
+			<div class="serve-box">
+				<img src="img/shopping_cart/serve-content.png" width="1000px">
+			</div>
+		</div>
+
+		<div class="footer">
+			<div class="container">
+				<div class="about">
+					<ul>
+						<li><a href="#">关于我们</a></li>
+						<li><a href="#">About us</a></li>
+						<li><a href="#">Investor Relations</a></li>
+						<li><a href="#">媒体报道</a></li>
+						<li><a href="#">品牌招商</a></li>
+						<li><a href="#">隐私条款</a></li>
+						<li><a href="#">慧科诚聘</a></li>
+						<li><a href="#">开课吧卡</a></li>
+						<li><a href="#">联系我们</a></li>
+					</ul>
+				</div>
+				<div class="Copyright">Copyright 2003-2020 kaikeba.com，All Rights Reserved 使用本网站即表示接受 <a href="#">开课吧用户协议</a>。版权所有
+				<a href="#">北京开课吧电子商务有限公司</a> </div>
+			<div class="put_on_records">
+				<span><a href="#" class="vertical-mid"><img src="./img/index/police_icon.png" class="vertical-mid">京公网安备
+						xxxxxxxxxxxxxxx号</a> <a href="#">京ICP备xxxxxxxx号</a> <a href="#">增值业务经营许可证：京B2-20200000</a> <a
+						href="#">网络文化经营许可证：京网文〔2020〕5030-1743号</a>
+				</span>
+				<span><a href="#">自营主体经营证照</a> <a href="#">风险监测信息</a> <a href="#">互联网药品信息服务资格证书：（京）-经营性-2020-0271</a> <a
+						href="#">网络食品交易第三方平台备案凭证：京B2-20200000</a>
+					<a href="#">医疗器械网络交易服务第三方平台</a></span>
+				<span><a href="#">备案凭证：（京）网械平台备字[2020]第00001号</a></span>
+			</div>
+				<div class="identification">
+					<a href="#"><i class="icon_identification icon_identification_Unionpay"></i></a>
+					<!-- <a href="#"><i class="icon_identification icon_identification_Alipay"></i></a>
+			<a href="#"><i class="icon_identification icon_identification_CreditEnterprise"></i></a> -->
+					<a href="#"><i class="icon_identification icon_identification_LegalRights"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_RedLink"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_callPolice"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_netPolice"></i></a>
+					<!-- <a href="#"><i class="icon_identification icon_identification_ccredit"></i></a> -->
+					<a href="#"><i class="icon_identification icon_identification_integrityWeb"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_credibleWeb"></i></a>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// 特价售卖倒计时
+			window.onload = function() {
+				var oResult = document.querySelector(".result");
+				var oCalculation = document.querySelector(".calculation-btn");
+				var time = 1200;
+				setInterval(function() {
+					time = time - 1;
+					var minute = parseInt(time / 60);
+					var second = parseInt(time % 60);
+					oResult.innerHTML = '特卖商品 ' + minute + ' : ' + second;
+					oCalculation.innerHTML = '立即结算 ' + minute + ' : ' + second;
+				}, 1000);
+
+			}
+			$('.tips .tip img').hover(function() {
+				$('.order-tip').css('opacity', '1');
+				$('.order-tip').css('transition', 'all 0.5s');
+			}, function() {
+				$('.order-tip').css('opacity', '0');
+			})
+
+			$('.add').click(function() {
+				//数量显示
+				var $num = $(this).siblings('.num');
+				var num = parseFloat($num.text());
+				num++;
+				$num.text(num);
+				//小计显示
+				var price = $(this).parents('.adjust-td').siblings('.now-price').find('.price-num').text();
+				$(this).parents('.adjust-td').siblings('.goods-sum').find('.sum-num').text(num * price);
+				//调用计算总数量函数
+				calNum();
+				calSum();
+				console.log(price)
+				console.log(num)
+			});
+			$('.minus').click(function() {
+				//数量显示
+				var $num = $(this).siblings('.num');
+				var num = parseFloat($num.text());
+				num--;
+				$num.text(num);
+				//小计显示
+				var price = $(this).parents('.adjust-td').siblings('.now-price').find('.price-num').text();
+				$(this).parents('.adjust-td').siblings('.goods-sum').find('.sum-num').text(num * price);
+				//调用计算总数量函数
+				calNum();
+				calSum();
+			});
+			$('.goods-del').click(function() {
+				//数量显示
+				$(this).parent('td').siblings('.adjust-td').find('.num').text('0');
+				//小计显示
+				$(this).parent('td').siblings().find('.sum-num').text('0');
+				//调用计算总数量函数
+				calNum();
+				calSum();
+			});
+			//计算总数量
+			function calNum() {
+				var total = 0;
+				$('.num').each(function(index) {
+					var n = parseFloat($(this).text()); //每一个元素里的数字   this指每一个元素
+					total += n;
+				});
+				$('.total').text(total);
+			};
+			//计算总价格
+			function calSum() {
+				var sum = 0;
+				$('.goods-sum .sum-num').each(function(index) {
+					var n = parseFloat($(this).text());
+					sum += n;
+				});
+				$('.sum-box .sum').text(sum);
+			};
+		</script>
+	</body>
+</html>

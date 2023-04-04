@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>开课吧网站登录</title>
+		<!-- 重置样式表 -->
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<!-- valid插件 -->
+		<link rel="stylesheet" type="text/css" href="lib/Validform_v5.3.2/css/style.css"/>
+		<!-- 登录の样式 -->
+		<link rel="stylesheet" type="text/css" href="css/login/style.css" />
+	</head>
+	<body>
+		<div id="app">
+		<div class="container">
+			<div class="head-box clearfix">
+				<div class="logo float-left">
+					<a href="index.html"><img src="img/login/logo.png" width="130px"></a>
+				</div>
+				<div class="serve float-right">
+					<img src="img/login/serve.png" width="300px">
+				</div>
+			</div>
+		</div>
+		<div class="bg">
+			<div class="container relative">
+				<div class="login-box">
+					<div class="outtitle">
+						<div class="intitle clearfix">
+							<div class="QR float-left QR-change">扫码登录</div>
+							<div class="user float-left user-change">账户登录</div>
+						</div>
+					</div>
+					<!-- 扫描二维码登录 -->
+					<div class="code-box">
+						<div class="code">
+							<img src="img/login/QR.png" class="top" >
+						</div>
+						<div class="phone">
+							<img src="img/login/phone.png" width="130px" >
+						</div>
+						<div class="content">
+							<img src="img/login/scan.png" class="middle" ><a href="" class="middle">打开<span>开课吧APP-个人中心</span>，扫一扫登录</a>
+						</div>
+					</div>
+					<!-- 账户登录 -->
+					<div class="user-box clearfix">
+						<form class="form">
+						<div class="name-input relative">
+							<img src="img/login/user.png" class="middle" width="25px" >
+							<input type="text" datatype="*6-16" v-model="user.username" nullmsg="必须填写用户名" errormsg="用户名至少6个字符" id="name" class="middle" placeholder="手机号/用户名/邮箱" />
+							<img src="img/login/error.png" class="middle error-img" width="22px" >
+						    <div class="error"></div>
+						</div>
+						<div class="password-input relative">
+							<img src="img/login/password.png" class="middle" width="25px" >
+							<input type="password" datatype="n6-16" v-model="user.password" nullmsg="必须填写密码" errormsg="密码至少6位数字" id="password" class="middle" placeholder="密码" />
+							<img src="img/login/error.png" class="middle error-img" width="22px" >
+						    <div class="error"></div>
+						</div>
+						<div class="msg-log float-left">
+							短信验证登录
+						</div>
+						<div class="lost-pass float-right">忘记密码</div>
+						<a href="javascript:void(0)"><div class="btn">
+							<button type="button" class="login-btn" @click.prevent="submitLogin">登录</button>
+						</div></a>
+						</form>
+					</div>
+					<!-- 短信验证登录 -->
+					<div class="test-confirm clearfix relative">
+						<form class="form">
+						<div class="tel-input relative">
+							<img src="img/login/tel.png" class="middle" width="15px" style="margin-right: 5px;">
+							<input type="text" datatype="m" v-model="user.username" nullmsg="必须输入手机号码" errormsg="请输入合格的手机号码！" id="tel" placeholder="输入手机号" class="middle" />
+							<img src="img/login/error.png" class="middle error-img" width="22px">
+							<div class="error"></div>
+						</div>
+						<div class="test-input relative">
+							<img src="img/register/test.png" class="middle" width="25px" >
+							<input type="text" datatype="m" v-model="user.password" nullmsg="必须输入验证码" errormsg="请输入正确的验证码！" id="test" placeholder="输入验证码" class="middle" />
+							<img src="img/register/error.png" class="middle error-img" width="22px">
+							<div class="error"></div>
+						</div>
+						<div class="get-test">
+							<button type="button" id="get-btn">获取验证码</button>
+						</div>
+						<div class="user-log float-left">
+							密码验证登录
+						</div>
+						<a href="javascript:void(0)"><div class="btn">
+							<button type="button" class="login-btn" @click.prevent="submitLogin" >登录</button>
+						</div></a>
+						</form>
+					</div>
+					
+					
+					
+					<div class="vchat">
+						<span class=" middle">—————————</span>
+						<a href="#"><img src="img/login/vchat.png" class=" middle" ></a>
+						<span class="middle">—————————</span>
+					</div>
+					<div class="other clearfix">
+						<div class="sina float-left"><div class="insina"><a href="">新浪微博</a></div></div>
+						<div class="qq float-left"><div class="inqq"><a href="">QQ</a></div></div>
+						<div class="pay float-left"><a href="">支付宝</a></div>
+					    <div class="more float-left"><a href="">更多</a></div>
+						<div class="register float-left"><a href="register.html">免费注册</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="foot-box">
+				Copyright 2003-2020 kaikeba.com，All Rights Reserved ICP证：京 B2-20030329
+			</div>
+		</div>
+	</div>
+		
+	
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="lib/Validform_v5.3.2/js/Validform_v5.3.2_min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/vuejs-2.5.16.js"></script>
+	<script src="js/axios-0.18.0.js"></script>
+	<script src="js/api.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+			data: {
+				user: {}		
+			},
+			methods: {
+				//提交表单，实现用户登录
+				submitLogin: function () {
+					//调用api函数
+					login(this.user).then(res => {
+						//判断登录状态
+						if (res.data.code == 200) {
+							//登录成功
+							//把登录令牌保存到localStorage
+							localStorage.setItem("token", res.data.msg);
+							//登录成功，返回用户名，把用户名存储到localStorage
+							//localStorage.setItem("name", res.data.data.username);
+							//存储用户登录手机号
+							//localStorage.setItem("mobile", res.data.data.phone);							
+							//跳转到首页
+							location.href = "index.html";	
+	
+						} else {
+							//打印登录失败信息
+							alert(res.data.msg);
+						}
+					})
+	
+				}
+			},
+			mounted:function(){
+					// 鼠标移入移出变色
+			$('.QR-change').hover(function () {
+				$('.QR-change').css('color','#f10180');
+			},function () {
+				// 如果二维码登录框显示，title就不变色，防止页面刷新，click事件没执行，title会因为移入移出变色
+				var isCode =$('.code-box').is(':visible')
+				if(isCode){
+					$('.QR-change').css('color','#f10180');
+				} else{
+					$('.QR-change').css('color','dimgray');
+				}
+			})
+			$('.user-change').hover(function () {
+				$('.user-change').css('color','#f10180');
+			},function () {
+				$('.user-change').css('color','dimgray');
+			})
+			// 点击title变换登录框
+			$('.QR').click(function () {
+				$('.user-box').css('display','none');
+				$('.test-confirm').css('display','none');
+				$('.code-box').css('display','block');
+				$(this).css('color','#f10180');
+				$('.user').css('color','dimgray');
+				$(this).removeClass('QR-change');
+				$('.user').addClass('user-change');
+			})
+			$('.user').click(function () {
+				$('.code-box').css('display','none');
+				$('.user-box').css('display','block');
+				$(this).css('color','#f10180');
+				$('.QR').css('color','dimgray');
+				$(this).removeClass('user-change');
+				$('.QR').addClass('QR-change');
+			})
+			// 点击短信/密码验证登录切换登录框
+			$('.msg-log').click(function () {
+				$('.user-box').css('display','none');
+				$('.test-confirm').css('display','block');
+			})
+			$('.user-log').click(function () {
+				$('.test-confirm').css('display','none');
+				$('.user-box').css('display','block');
+			})
+			// 短信/密码验证登录移入移出变色
+			$('.msg-log').hover(function () {
+				$(this).css('color','#f10180');
+			},function () {
+				$(this).css('color','dimgray');
+			})
+			$('.user-log').hover(function () {
+				$(this).css('color','#f10180');
+			},function () {
+				$(this).css('color','dimgray');
+			})
+			// 免费注册移入移出变色
+			$('.register a').hover(function () {
+				$(this).css('color','#f10180');
+			},function () {
+				$(this).css('color','black');
+			})
+			
+			// 表单验证
+			$('.form').Validform({
+				tiptype:function (msg,o,cssctl) {
+					// 错误信息提示对象
+					var $tip= o.obj.next().next('.error');
+					var $errorImg =o.obj.next('.error-img');
+					var $borderRed =o.obj.parent();
+					// 显示提示信息
+					$tip.text(msg);
+					if(o.type==3){
+						// 验证失败，显示提示框
+						$tip.css('display','inline-block');
+						$errorImg.css('display','inline-block');
+						$borderRed.css('border','1px solid red')
+					}else{
+						$tip.css('display','none');
+						$errorImg.css('display','none');
+						$borderRed.css('border','1px solid #ddd')
+					}
+				}
+			});
+			$('.code-box .code').mouseenter(function () {
+				$('.code').css('margin-left','40px');
+				$('.phone').css('opacity','1');
+				$('.code').css('transition','all 0.5s');
+				$('.phone').css('transition','all 0.5s');
+			});
+			$('.code-box').mouseleave(function () {
+				$('.code').css('margin-left','125px');
+				$('.phone').css('opacity','0');
+			});
+			},
+			created: function () {
+	
+			}
+		})
+	</script>
+</html>

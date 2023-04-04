@@ -1,0 +1,146 @@
+.bg{
+	background: url(../../img/login/loginbg.png) top center;
+	height: 650px;
+}
+/* 布局 */
+.float-left{
+	float: left;
+}
+.float-right{
+	float: right;
+}
+.relative{
+	position: relative;
+}
+.top{
+	vertical-align: top;
+}
+.middle{
+	vertical-align: middle;
+}
+
+/* 内容 */
+.head-box{
+	height: 100px;
+}
+.head-box .logo{
+	margin-top: 15px;
+}
+.head-box .serve{
+	margin-top: 30px;
+}
+.login-box{
+	border: 1px solid #ddd;
+	width: 400px;
+	background-color: white;
+	position: absolute;
+	right: 0px;
+	top: 50px;
+}
+.title{
+	border-bottom: 1px solid #ddd;
+	padding: 10px 25px;
+}
+.num-register{
+	font-size: 20px;
+}
+.num-login{
+	color: dimgray;
+	height: 10px;
+	margin-left: 150px;
+}
+.num-login a{
+	color: #F10180;
+}
+.user-box{
+	width: 313px;
+	margin: 0 auto;
+	padding-top: 30px;
+}
+.tel-input,.password-input,.recheck-input{
+	width: 290px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 10px 5px 10px 10px;
+}
+.password-input,.recheck-input{
+	margin-top: 30px;
+}
+.test-input{
+	width: 150px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 10px 5px 10px 10px;
+	margin-top: 30px;
+}
+#tel,#password,#recheck{
+	margin-left: 10px;
+	width: 210px;
+	font-size: 15px;
+	border: 0;
+	outline: 0;
+	background-color: white;
+}
+#test{
+	margin-left: 10px;
+	width: 80px;
+	font-size: 15px;
+	border: 0;
+	outline: 0;
+	background-color: white;
+}
+.get-test{
+	position: absolute;
+	right: 4px;
+	top: 76px;
+}
+#get-btn{
+	padding: 12px 27px 13px;
+	color: white;
+	background-color: #F10180;
+	border: 0;
+	border-radius: 4px;
+	outline: 0;
+	font-size: 15px;
+}
+.user-box .error{
+	position: absolute;
+	bottom: -22px;
+	left: 0px;
+	color: red;
+	display: none;
+}
+.error-img{
+	display: none;
+}
+.rule-confirm,.rule{
+	margin-top: 30px;
+}
+.rule{
+	width: 95%;
+}
+.rule a{
+	color: #1D94D1;
+}
+.btn{
+	padding-top: 85px;
+	padding-bottom: 60px;
+}
+.register-btn{
+	border: 0;
+	background-color: #f10180;
+	color: white;
+	padding: 12px 120px;
+	font-size: 18px;
+	border-radius: 4px;
+	outline: 0;
+}
+
+
+
+
+.foot-box{
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+}

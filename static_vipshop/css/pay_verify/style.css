@@ -1,0 +1,493 @@
+/* 布局 */
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.relative {
+	position: relative;
+}
+
+.top {
+	vertical-align: top;
+}
+
+.middle {
+	vertical-align: middle;
+}
+.pointer{
+	pointer-events: none;
+}
+
+
+/* 内容 */
+.head-border{
+	border-bottom: 2px solid #F10180;
+}
+.table{
+	width: 100%;
+	margin-top: 10px;
+}
+.logo{
+	margin-top: -10px;
+}
+.user{
+	padding: 0 10px;
+}
+.order-ctrl{
+	padding: 0 10px;
+	margin-top: 6px;
+	border-right: 1px solid #aaa;
+}
+.customer {
+	padding: 0 10px;
+	margin-top: 5px;
+	border-right: 1px solid #aaa;
+}
+.tel-tel,
+.number {
+	padding: 0 10px;
+	margin-top: 6px;
+}
+.tel-tel{
+	border-right: 1px solid #aaa;
+}
+.serve-img{
+	margin-bottom: 15px;
+}
+.procedure{
+	padding-top: 40px;
+	width: 700px;
+	margin: 0 auto;
+}
+.date{
+	width: 100%;
+	border-bottom: 2px solid #ddd;
+}
+.result{
+	padding: 15px 10px;
+	width: 130px;
+	border-bottom: 2px solid #F10180;
+	color: #F10180;
+	font-size: 15px;
+	font-weight: bold;
+}
+.tips{
+	color: #000000;
+	padding-top: 30px;
+}
+.tips .delivery{
+	font-size: 20px;
+	padding-right: 15px;
+	border-right: 1px solid #aaa;
+}
+.delivery span{
+	font-weight: bold;
+}
+.tips .tip{
+	font-size: 15px;
+	margin-top: 2px;
+	padding-left: 15px;
+}
+.order-tip{
+	position: absolute;
+	right: 250px;
+	top: -5px;
+	padding: 10px 20px;
+	border: 1px solid #ddd;
+	background-color: white;
+	opacity: 0;
+}
+.cart-box{
+	margin-top: 30px;
+}
+.cart{
+	width: 100%;
+}
+.cart .cart-head td{
+	padding: 10px 50px;
+	background-color: #f5f5f5;
+	color: #000000;
+	text-align: center;
+}
+.cart .cart-head tr{
+	padding: 15px;
+	border: 1px solid #ddd;
+}
+.cart .cart-body{
+	border: 1px solid #ddd;
+}
+.pay-person{
+	padding-left: 30px;
+}
+.pay-person .must-write{
+	color: #F10180;
+}
+.pay-person tr{
+    height: 46px;
+	padding-left: 30px;
+}
+.pay-person input{
+	padding: 7px 10px;
+	border-radius: 4px;
+	border: 1px solid #aaa;
+	outline: 0;
+}
+.pay-person .time select{
+	padding: 7px 10px;
+	border-radius: 4px;
+}
+.pay-person .area select{
+	padding: 7px 0px;
+	width: 100px;
+	border-radius: 4px;
+}
+#save-btn{
+	border: 0;
+	background-color:#F10180;
+	padding: 10px 40px;
+	border-radius: 3px;
+	margin-right: 50px;
+	color: white;
+}
+#cancel-btn{
+	border: 1px solid #ddd;
+	background-color:#F3F3F3;
+	padding: 10px 40px;
+	border-radius: 3px;
+	margin-right: 50px;
+	color: #AAAAAA;
+}
+.cart-box .cart .cart-head .goods{
+	width: 1000px;
+	font-size: 15px;
+	color: #F10180;
+	padding-left: 15px;
+	border-left: 3px solid #F10180;
+	text-align: left;
+}
+.detailed-list{
+	background-color: #f5f5f5;
+	color: #000000;
+	border: 1px solid #ddd;
+	border-left: 3px solid #F10180;
+	padding:10px 15px;
+	margin-top: 50px;
+}
+.detailed-list-head{
+	width: 1000px;
+	font-size: 15px;
+	color: #F10180;
+	text-align: left;
+}
+.detailed-list-body{
+	width: 1000px;
+	border-bottom: 1px solid #ddd;
+}
+.detailed-list-body thead{
+	border-bottom: 1px solid #ddd;
+	width: 1000px;
+}
+
+.self-support{
+	height: 10px;
+}
+.goods-font{
+	margin-left: 15px;
+}
+.font{
+	width: 180px;
+}
+.font .self-support{
+	color: #F10180;
+	padding-right: 5px;
+	border-right: 1px solid #ddd;
+	
+}
+.size{
+	margin-top: 10px;
+}
+.goods-font .sign{
+	margin-top: 5px;
+	width: 45px;
+	text-align: center;
+	color: white;
+	background-color: #F10180;
+	padding: 3px 5px;
+	border-radius: 20px;
+}
+.now-price .price-num{
+	font-size: 13px;
+	font-weight: bold;
+	color: #000000;
+}
+.cart-box .cart .cart-body .adjust-td{
+	padding: 20px 35px;
+}
+.adjust .num{
+	height: 21px;
+	line-height: 21px;
+	width: 25px;
+	border: 1px solid #ddd;
+}
+.minus,.add{
+	border: 1px solid #ddd;
+	height: 23px;
+	width: 25px;
+	outline: 0;
+	background-color: white;
+}
+.goods-sum{
+	color: #F10180;
+	font-size: 13px;
+	font-weight: bold;
+}
+.cart-foot{
+	border: 1px solid #ddd;
+	border-top: 0;
+}
+.freight,.limit{
+	margin: 15px;
+	padding: 3px 10px;
+	background-color: #FF9933;
+	color: white;
+	border-radius: 2px;
+	margin-right: 20px;
+}
+.freight-tip,.limit-tip{
+	margin-top: 20px;
+}
+.pay-box{
+	padding: 20px;
+	margin-top: 50px;
+	border: 1px solid #ddd;
+	height: 110px;
+}
+.pay-box .coupon{
+	padding: 5px 10px;
+	border: 1px solid #F10180;
+	border-radius: 3px;
+	color: #F10180;
+}
+.pay-box .coupon span{
+	margin-right: 10px;
+}
+.pay-box .sum-box{
+	margin-right: 50px;
+}
+.pay-box .sum-box .total{
+	color: #F10180;
+	margin: 0 10px;
+}
+.pay-box .sum-box .calculation-price .sum{
+	margin-left: 70px;
+}
+.sum-box .no-freight{
+	margin-top: 10px;
+	text-align: right;
+}
+.pay-box .sum-box .no-freight .fre-num{
+	margin-left: 70px;
+	font-size: 15px;
+	color: #F10180;
+}
+.pay-box .sum-box .calculation-price{
+	text-align: right;
+}
+.pay-box .sum-box .wait-pay{
+	margin-top: 10px;
+	text-align: right;
+	font-size: 20px;
+}
+.pay-box .sum-box .wait-pay .sum{
+	margin-left: 50px;
+	color: #f10180;
+}
+.pay-box .sum-box .arrive-address{
+	border: none;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.calculation{
+	width: 100%;
+	border: 1px solid #ddd;
+	border-top: 0;
+}
+.calculation .tips{
+	width: 70%;
+	padding: 17px 30px;
+	text-align: right;
+	background-color: #F3F3F3;
+}
+.calculation .tips img{
+	margin-left: 10px;
+}
+.calculation .calculation-btn{
+	width: 20%;
+	padding: 15px 20px;
+	color: white;
+	background-color: #F10180;
+	text-align: center;
+	font-size: 20px;
+}
+.serve-box{
+	margin-top: 60px;
+}
+
+
+
+/* 新增 */
+.cart-body{
+	padding-top: 30px;
+}
+.address-item{
+	background: url(../../img/user_address/address_bg.png) no-repeat;
+	width: 252px;
+	height: 151px;
+}
+.item-head{
+	padding: 15px 0;
+	margin:  0 auto;
+	width: 85%;
+	border-bottom: 1px solid #ddd;
+	
+}
+.item-head .name{
+	font-size: 15px;
+}
+.item-body{
+	margin:  0 auto;
+	width: 85%;
+	margin-top: 20px;
+}
+.item-body .item-address{
+	margin-top: 15px;
+}
+.add-address{
+	width: 252px;
+	height: 149px;
+	margin-top: 10px;
+	border: 1px solid #ddd;
+	background-color: #F9F9F9;
+	margin-left: 15px;
+	color: #ddd;
+}
+.add-content{
+	width: 100px;
+	height: 90px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	text-align: center;
+}
+.add-content .plus{
+	font-size: 50px;
+}
+.body-title{
+	width: 1000px;
+}
+.title-logo{
+	width: 40%;
+	padding: 20px 50px 10px 10px;
+	font-size: 15px;
+	color: #000000;
+	font-weight: bold;
+}
+.title-size{
+	width: 16%;
+	padding: 20px 70px 10px 70px;
+}
+.title-price{
+	width: 16%;
+	padding: 20px 70px 10px 70px;
+}
+.title-num{
+	width: 17%;
+	padding: 20px 70px 10px 70px;
+}
+.body-logo{
+	width: 40%;
+	padding: 0px 50px 10px 10px;
+	color: #000000;
+}
+.body-size{
+	width: 16%;
+	padding: 0px 70px 10px 70px;
+}
+.body-price{
+	width: 16%;
+	padding: 0px 70px 10px 70px;
+}
+.body-num{
+	width: 17%;
+	padding: 0px 70px 10px 70px;
+}
+.arrive-time{
+	padding: 5px;
+}
+.my-money{
+	padding: 15px;
+}
+.money-title{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 15px;
+	color: #000000;
+	font-weight: bold;
+}
+.vipcard{
+	font-size: 15px;
+	margin-bottom: 15px;
+}
+a{
+	color: #6394D3;
+}
+.balance{
+	font-size: 15px;
+	padding-bottom: 20px;
+	border-bottom: 1px dotted #ddd;
+}
+.pay-mode{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 15px;
+	color: #000000;
+	font-weight: bold;
+}
+.mode-box{
+    border: 1px solid #7CBF13;
+    background-color: #FCFEF9;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+.mode-box .mode-title{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.pay-mode .mode{
+	margin-left: 20px;
+}
+.invoice-title{
+	margin-top: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 15px;
+	color: #000000;
+	font-weight: bold;
+	border-top: 1px dotted #ddd;
+}
+.invoice-box{
+	font-size: 15px;
+}
+.input_box{
+	display: none;
+}
+#cancel{
+	display: none;
+}

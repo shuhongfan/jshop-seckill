@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mysql
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+      release: stable
+  template:
+    metadata:
+      labels:
+        app: mysql
+        release: stable
+        env: test
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "123456"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: default
+spec:
+  selector:
+    app: mysql
+    release: stable
+  ports:
+  - name: http
+    port: 3306
+
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: mysql-endpoints
+subsets:
+  - addresses:
+    - ip: 10.20.24.52
+    ports:
+    - port: 3306
+      protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc
+spec:
+  selector:
+    app: mysql
+  ports:
+  - port: 3306
+    targetPort: 3306
+    protocol: TCP
+

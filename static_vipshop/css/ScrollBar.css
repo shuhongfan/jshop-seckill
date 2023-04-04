@@ -1,0 +1,332 @@
+/* -----右侧固定栏------ */
+
+.scrollBar {
+	position: fixed;
+	z-index: 100;
+	top: 0;
+	right: 0;
+	width: 36px;
+	height: 100%;
+	background-color: #000000;
+}
+
+.scrollBar .scrollBar_bg {
+	background-color: #000000;
+	height: 100%;
+}
+
+/* 用户中心 */
+
+.scrollBar .user_icon {
+	text-align: center;
+	margin-top: 50px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 1px;
+	cursor: pointer;
+}
+
+.scrollBar .user_icon.active {
+	background-color: #df147f;
+}
+
+.scrollBar .user_icon img {
+	width: 24px;
+}
+
+.scrollBar .user_icon span {
+	color: #FFFFFF;
+}
+
+/* 用户弹出框 */
+
+.scrollBar .user_box {
+	width: 246px;
+	background-color: #FFFFFF;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	border-right: 0;
+	position: absolute;
+	top: 0;
+	left: 40px;
+	z-index: -1;
+	/* left: -247px; */
+}
+
+/* 关闭按钮 */
+
+.scrollBar .user_box b {
+	color: gray;
+	font-size: 22px;
+	font-weight: bold;
+	display: block;
+	margin-right: 10px;
+}
+
+.scrollBar .user_box a:hover b {
+	color: #000000;
+}
+
+/* 头像 */
+
+.scrollBar .user_box .head_img img {
+	display: block;
+	margin: 30px auto 20px;
+	width: 66px;
+	height: 66px;
+	padding: 4px;
+	border-radius: 66px;
+	background-color: #fff;
+	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .11);
+}
+
+/* 请登录注册 */
+
+.scrollBar .user_box .tips a {
+	color: #df147f;
+}
+
+.scrollBar .user_box .tips {
+	display: block;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+/* 我的订单 我的货币 */
+
+.scrollBar .user_box .link_box {
+	background-color: rgb(248, 248, 248);
+	height: 86px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 15px;
+	padding: 10px;
+}
+
+.scrollBar .user_box .link_item img {
+	width: 26px;
+	height: 26px;
+	margin-bottom: 10px;
+	display: block;
+	padding-left: 42px;
+	padding-top: 15px;
+}
+
+.scrollBar .user_box .link_item {
+	display: inline-block;
+	height: 86px;
+	width: 110px;
+	text-align: center;
+	border-right: 1px solid #ccc;
+}
+
+.scrollBar .user_box .link_item:last-child {
+	border-right: 0;
+}
+
+/* 会员俱乐部 */
+
+.scrollBar .user_box .member_box {
+	text-align: right;
+	padding-bottom: 10px;
+	padding-right: 20px;
+}
+
+.scrollBar .user_box .member_box a {
+	color: #007AFF;
+}
+
+/* 购物袋 */
+
+.scrollBar .shoppingCart .shoppingCart_icon {
+	text-align: center;
+	cursor: pointer;
+	background-color: #df147f;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-bottom: 5px;
+}
+
+.scrollBar .shoppingCart .shoppingCart_icon img {
+	width: 24px;
+}
+
+.scrollBar .shoppingCart .shoppingCart_icon span {
+	display: inline-block;
+	color: #FFFFFF;
+	width: 14px;
+	line-height: 18px;
+	font-size: 14px;
+}
+
+.scrollBar .shoppingCart .shoppingCart_icon i {
+	color: #df147f;
+	font-size: 12px;
+	font-style: normal;
+	display: inline-block;
+	line-height: 22px;
+	width: 20px;
+	height: 22px;
+	border-radius: 100%;
+	background-color: #FFFFFF;
+	margin-top: 10px;
+}
+
+/* 购物袋弹出框 */
+
+.scrollBar .shoppingCart_box {
+	width: 246px;
+	background-color: #FFFFFF;
+	border: 1px solid #ccc;
+	border-radius: 1px;
+	border-right: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	/* left: -247px; */
+}
+
+.scrollBar .shoppingCart_box.active {
+	/* ----勿删   用于判断状态---- */
+}
+
+/* 关闭按钮 */
+
+.scrollBar .shoppingCart_box b {
+	color: gray;
+	font-size: 22px;
+	font-weight: bold;
+	display: block;
+	margin-right: 10px;
+}
+
+.scrollBar .shoppingCart_box a:hover b {
+	color: #000000;
+}
+
+/* 头像 */
+
+.scrollBar .shoppingCart_box .head_img img {
+	display: block;
+	margin: 30px auto 20px;
+	width: 66px;
+	height: 66px;
+	padding: 4px;
+	border-radius: 66px;
+	background-color: #fff;
+	box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .11);
+}
+
+/* 请登录注册 */
+
+.scrollBar .shoppingCart_box .tips a {
+	color: #df147f;
+}
+
+.scrollBar .shoppingCart_box .tips {
+	display: block;
+	text-align: center;
+	padding-bottom: 50px;
+}
+
+/* 优惠券 */
+
+.scrollBar .discountCoupon .discountCoupon_icon {
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+
+.scrollBar .discountCoupon .discountCoupon_icon img {
+	width: 24px;
+}
+
+/* 品牌收藏 */
+
+.scrollBar .brandCollection .brandCollection_icon {
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+
+.scrollBar .brandCollection .brandCollection_icon img {
+	width: 24px;
+}
+
+/* 商品收藏 */
+
+.scrollBar .shoppingCollection .shoppingCollection_icon {
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+
+.scrollBar .shoppingCollection .shoppingCollection_icon img {
+	width: 24px;
+}
+
+/* 我的足迹 */
+
+.scrollBar .history .history_icon {
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+
+.scrollBar .history .history_icon img {
+	width: 24px;
+}
+
+/* 反馈 */
+
+.scrollBar .feedBack .feedBack_icon {
+	text-align: center;
+	margin-top: 90px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+
+.scrollBar .feedBack .feedBack_icon img {
+	width: 24px;
+}
+
+/* 返回顶部 */
+
+.scrollBar .backTop .backTop_icon {
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+
+.scrollBar .backTop .backTop_icon img {
+	width: 24px;
+}
+
+/* 其他菜单触摸 统一CSS */
+
+.scrollBar .unify_item .unify_icon.active {
+	background-color: #df147f;
+}
+
+.scrollBar .unify_box {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: #ffffff;
+	padding: 10px 10px;
+	width: 100px;
+	text-align: center;
+	display: inline-block;
+	color: #000000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/* 	left: -122px; */
+	z-index: -1;
+}

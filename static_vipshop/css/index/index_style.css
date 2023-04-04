@@ -1,0 +1,566 @@
+/* -----大banner----- */
+.banner {
+	background: url(../../img/index/banner.jpg) top center no-repeat;
+	height: 500px;
+	background-color: #ad7554;
+}
+
+/* 白色半透明框 */
+.border_color {
+	padding: 10px;
+	background-color: rgba(255, 255, 255, 0.7);
+	margin-top: 30px;
+	padding-bottom: 40px;
+	box-shadow: 0 1px 3px rgba(167, 167, 167, .4);
+}
+
+/* 图片大小 */
+.swiper-slide img {
+	height: 342px;
+}
+
+/* 箭头 */
+.swiper-button-next,
+.swiper-button-prev {
+	background-color: rgba(0, 0, 0, 0.2);
+	color: #CCCCCC;
+	padding: 25px 15px;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+	background-color: rgba(0, 0, 0, 0.6);
+	color: #fff;
+}
+
+.swiper-button-next {
+	right: -45px;
+}
+
+.swiper-button-prev {
+	left: -45px;
+}
+
+.swiper-container {
+	--swiper-navigation-size: 20px;
+	/* 设置按钮大小 */
+}
+
+/* 文字 */
+.banner .title_box {
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 40px;
+}
+
+.banner .title_box .title {
+	display: inline-block;
+	color: #666;
+	height: 100%;
+	width: 195px;
+	display: inline-block;
+	cursor: pointer;
+	line-height: 40px;
+}
+
+.banner .title_box .title:hover {
+	color: #333;
+}
+
+/* 分页器 */
+.swiper-pagination {
+	width: 1000px;
+	margin-left: -10px;
+}
+
+.swiper-pagination-bullet {
+	outline: 0;
+	display: inline-block;
+	color: #333333;
+	opacity: 1;
+	width: 195px;
+	border-radius: 0;
+	height: 40px;
+	line-height: 40px;
+	background-color: rgb(255, 255, 255);
+}
+
+.swiper-pagination-bullet-active {
+	color: #333333;
+	background-color: rgb(255, 255, 255);
+	border-bottom: 5px solid rgb(230, 5, 125);
+}
+
+/* -----活动页面------ */
+.activity .activity_title {
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+.activity .activity_show a img {
+	display: inline-block;
+	width: 490px;
+	margin-right: 16px;
+}
+
+.activity .activity_show a:last-child img {
+	margin-right: 0;
+}
+
+/* ------每日必看------ */
+.everyday .everyday_title {
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+	margin-top: 40px;
+	margin-bottom: 10px;
+}
+
+.everyday .everyday_show .first_bg img {
+	display: inline-block;
+	height: 291px;
+}
+
+.everyday .everyday_show .second_bg img {
+	display: inline-block;
+	margin-right: 0;
+	height: 291px;
+}
+
+.everyday .everyday_show .item {
+	display: inline-block;
+}
+
+/* 最后疯抢  三个商品 */
+.everyday_show .shopping_end {
+	position: absolute;
+	bottom: 15px;
+	left: 20px;
+}
+
+.everyday_show .shopping_end li {
+	margin-right: 10px;
+}
+
+.everyday_show .shopping_end .bgImg img {
+	display: inline-block;
+	width: 146px;
+	height: 186px;
+}
+
+.everyday_show .shopping_end .brand {
+	position: absolute;
+	bottom: 28px;
+	left: 20px;
+	width: 104px;
+	height: 64px;
+	background-color: rgba(255, 255, 255, 0.8);
+	text-align: center;
+}
+
+.everyday_show .shopping_end .brand img {
+	display: inline;
+	width: 66px;
+	height: 33px;
+	margin-right: 0;
+	padding-top: 2px;
+}
+
+.everyday_show .shopping_end .brand span {
+	display: block;
+	color: rgb(88, 92, 100);
+	padding-top: 5px;
+}
+
+.everyday_show .shopping_end .price {
+	padding-left: 34px;
+}
+
+.everyday_show .shopping_end .price img {
+	display: inline-block;
+	width: 40px;
+	height: 15px;
+	margin-right: 0;
+}
+
+.everyday_show .shopping_end .price span {
+	display: inline-block;
+	font-size: 16px;
+	color: #000000;
+}
+
+/* 每日必看 排行榜 */
+.everyday_show .shopping_sort {
+	position: absolute;
+	bottom: 15px;
+	left: 20px;
+	text-align: center;
+}
+
+.everyday_show .shopping_sort li {
+	margin-right: 8px;
+}
+
+.everyday_show .shopping_sort li:last-child {
+	margin-right: 0;
+}
+
+.everyday_show .shopping_sort .bgImg img {
+	display: inline-block;
+	width: 146px;
+	height: 213px;
+}
+
+.everyday_show .shopping_sort .showImg img {
+	position: absolute;
+	bottom: 30px;
+	left: 0;
+	display: inline-block;
+	width: 146px;
+	height: 186px;
+}
+
+.everyday_show .shopping_sort .sloganImg img {
+	position: absolute;
+	bottom: 40px;
+	left: 16px;
+	display: inline-block;
+	width: 104px;
+	height: 19px;
+}
+
+.everyday_show .shopping_sort .titleSpan span {
+	position: absolute;
+	bottom: 9px;
+	left: 45px;
+	display: inline-block;
+
+}
+
+
+/* -------唯品快抢-------- */
+
+.quickly .quickly_bg img {
+	display: block;
+	height: 298px;
+}
+
+.quickly .item .titleSpan img {
+	width: 40px;
+	height: 15px;
+}
+
+.quickly .item .showImg img {
+	width: 145px;
+	height: 145px;
+}
+
+.quickly .item .showImg {
+	margin-bottom: 30px;
+}
+
+.quickly .item .brandImg img {
+	width: 68px;
+	height: 35px;
+}
+
+.quickly .item .brandImg {
+	position: absolute;
+	bottom: 25px;
+	left: 30px;
+	border: 1px solid #ccc;
+	background-color: #FFFFFF;
+	padding: 4px 8px;
+}
+
+.quickly .item {
+	text-align: center;
+	display: inline-block;
+	margin-right: 16px;
+}
+
+.quickly .item:last-child {
+	margin-right: 0;
+}
+
+/* 横向列表定位 */
+.quickly .quickly_show {
+	position: absolute;
+	bottom: 15px;
+	left: 20px;
+}
+
+/* 动态 */
+.quickly .quickly_show .list_2 {
+	display: none;
+}
+
+.quickly .quickly_show .list_1 {
+	/* display: none; */
+}
+
+/* -------每日上新-------- */
+.update .update_title {
+	width: 100%;
+	margin-top: 50px;
+	margin-bottom: 0;
+}
+
+/* 倒计时 */
+.update .count_down {
+	position: absolute;
+	top: 6px;
+	left: 275px;
+	color: #FFFFFF;
+	font-size: 14px;
+}
+
+.update .count_down span {
+	margin-right: 16px;
+}
+
+
+/* 每层标题 */
+.update .title img {
+	display: block;
+}
+
+.update .title {
+	margin-top: 50px;
+	/* 底线 */
+	border-bottom: 1px solid #000000;
+}
+
+/* 预告 */
+.update .tomorrow .title {
+	border: 0;
+}
+
+.update .tomorrow .title img {
+	display: block;
+	width: 100%;
+}
+
+/* 列表 */
+.update .list .item_img img {
+	width: 490px;
+	height: 235px;
+}
+
+/* 标题 */
+.update .list .item_title span {
+	font-weight: 700;
+	font-size: 18px;
+	color: #333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 455px;
+	margin-top: 18px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+/* 描述 */
+.update .list .item_des .number {
+	font-size: 16px;
+	color: #f10582;
+	margin-right: 3px;
+	font-weight: 700;
+	display: inline-block;
+}
+
+.update .list .item_des .des_1 {
+	color: #333;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.update .list .item_des .des_2 {
+	display: inline-block;
+	font-size: 16px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #333;
+	width: 360px;
+	display: inline-block;
+}
+
+.update .list .item_des .symbol {
+	display: inline-block;
+	margin-right: 8px;
+	font-size: 14px;
+	color: #333;
+}
+
+/* 边距控制 */
+.update .list .item {
+	display: inline-block;
+	margin-right: 17px;
+	margin-top: 30px;
+}
+
+.update .list {
+	width: 1020px;
+}
+
+/* 查看更多 */
+.update .view_more {
+	border-top: 1px solid #e8e8e8;
+	display: block;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.update .view_more a {
+	width: 324px;
+	color: #fff;
+	display: inline-block;
+	height: 44px;
+	background-color: rgba(214, 1, 128, 1);
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	font-size: 16px;
+	text-align: center;
+	line-height: 44px;
+}
+
+.update .view_more a:hover {
+	background-color: rgba(244, 52, 135, 1);
+}
+
+.update .view_more_mask {
+	display: inline-block;
+}
+
+/* 遮罩 */
+.update .item_show .item_mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: rgba(255, 255, 255, 0);
+	width: 100%;
+	height: 100%;
+}
+
+/* 收藏图标 */
+.update .item_show .item_collection {
+	position: absolute;
+	right: 10px;
+	top: 200px;
+	display: inline-block;
+	height: 20px;
+	opacity: 0;
+	border-radius: 11px;
+	font-size: 12px;
+	background-color: #f2f2f2;
+	text-align: center;
+	padding: 0 5px;
+	cursor: pointer;
+}
+
+/* 变化 */
+
+.update .list .item_collection .icon_wrapper {
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.update .list .item_collection img {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+
+.update .item_collection span {
+	color: #333333;
+	display: inline-block;
+}
+
+.floor_nav {
+	position: absolute;
+	top: 150px;
+	left: -100px;
+	width: 78px;
+	height: 436px;
+	background-color: #FFFFFF;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	text-align: center;
+}
+
+.floor_nav.fixed{
+	position: fixed;
+	right: 50%;
+	left: auto;
+	margin-right: 520px;
+	top: 100px;
+	z-index: 99;
+}
+
+
+.floor_nav li {
+	padding: 5px 10px;
+	border: 1px solid rgba(214, 1, 128, 0);
+	margin: 4px;
+	border-radius: 0;
+	cursor: pointer;
+	border-bottom: 1px solid rgba(234, 234, 234, 1);
+}
+
+.floor_nav li:last-child {
+	border-bottom: 1px solid rgba(234, 234, 234, 0);
+}
+
+.floor_nav li:hover {
+	color: rgba(214, 1, 128, 1);
+}
+
+/* 图标原色 */
+.floor_nav li .icon_wrapper {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	overflow: hidden;
+}
+
+.floor_nav li img {
+	width: 100%;
+	height: 100%;
+}
+
+/* 鼠标移入 利用投影 图标变色 */
+.floor_nav li:hover img {
+	position: relative;
+	left: -20px;
+	-webkit-filter: drop-shadow(20px 0 rgba(214, 1, 128, 1));
+	filter: drop-shadow(20px 0 rgba(214, 1, 128, 1));
+	border-right: 20px solid transparent;
+}
+
+/* 当前/点击状态 img色变成白 */
+.floor_nav li.active img {
+	position: relative;
+	left: -20px;
+	-webkit-filter: drop-shadow(20px 0 rgba(255, 255, 255, 1));
+	filter: drop-shadow(20px 0 rgba(255, 255, 255, 1));
+	overflow: hidden;
+	border-right: 20px solid transparent;
+}
+
+/* 当前/点击状态 背景色 */
+.floor_nav li.active {
+	background-color: rgba(214, 1, 128, 1);
+	border: 1px solid rgba(214, 1, 128, 1);
+	border-radius: 4px;
+	color: #FFFFFF;
+}

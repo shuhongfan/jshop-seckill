@@ -1,0 +1,553 @@
+/* 雪碧图 */
+
+.icon_detail {
+  background: url(../../img/goods_detail/detail_sprite.png);
+  font-style: normal;
+  display: inline-block;
+}
+
+/* 金卡会员图标 */
+
+.icon_detail_gold {
+  width: 20px;
+  height: 20px;
+  background-position: -564px -189px;
+}
+
+/* 白金卡会员 */
+
+.icon_detail_platina {
+  width: 20px;
+  height: 20px;
+  background-position: -520px -189px;
+}
+
+/* 银卡 */
+
+.icon_detail_silver {
+  width: 20px;
+  height: 20px;
+  background-position: -542px -189px;
+}
+
+/* 引入雪碧图 */
+
+.icon_user {
+  background: url(../../img/user/user_sprite_01.png);
+  font-style: normal;
+  display: inline-block;
+}
+
+/* 展开目录 关闭目录 按钮 */
+
+.icon_user_open {
+  width: 13px;
+  height: 13px;
+  background-position: -274px -178px;
+}
+
+.icon_user_close {
+  width: 13px;
+  height: 13px;
+  background-position: -257px -178px;
+}
+
+/* 引入雪碧图 */
+
+.icon_lock_phone {
+  background: url(../../img/user/user_center_phone_sprite.png);
+  font-style: normal;
+  display: inline-block;
+}
+
+.icon_phone_blue {
+  width: 9px;
+  height: 13px;
+  background-position: -2px -2px;
+}
+
+.icon_lock_gray {
+  width: 9px;
+  height: 13px;
+  background-position: -56px -2px;
+}
+
+/* 引入雪碧图 */
+
+.icon_order {
+  background: url(../../img/user/ia_100000038.png);
+  font-style: normal;
+  display: inline-block;
+}
+
+/* 待付款 */
+
+.icon_order_pay {
+  width: 70px;
+  height: 70px;
+  background-position: -148px -74px;
+}
+
+.icon_order_pay_touch {
+  width: 70px;
+  height: 70px;
+  background-position: -148px 0;
+}
+
+/* 待收货 */
+
+.icon_order_receive {
+  width: 70px;
+  height: 70px;
+  background-position: -74px -148px;
+}
+
+.icon_order_receive_touch {
+  width: 70px;
+  height: 70px;
+  background-position: 0 -148px;
+}
+
+/* 退换/售后 */
+
+.icon_order_afterSale {
+  width: 70px;
+  height: 70px;
+  background-position: -74px 0;
+}
+
+.icon_order_afterSale_touch {
+  width: 70px;
+  height: 70px;
+  background-position: 0 0;
+}
+
+/* 全部订单 */
+
+.icon_order_all {
+  width: 70px;
+  height: 70px;
+  background-position: -74px -74px;
+}
+
+.icon_order_all_touch {
+  width: 70px;
+  height: 70px;
+  background-position: 0 -74px;
+}
+
+/* ---------------横向大标题------------------ */
+
+.levelTitle_bg {
+  background-color: #f10180;
+  height: 40px;
+  line-height: 40px;
+}
+
+.levelTitle a {
+  color: #fff;
+  height: 40px;
+  padding: 0 14px;
+  text-align: center;
+  font-size: 16px;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* 鼠标触摸 */
+
+.levelTitle a:hover {
+  background-color: #db0a76;
+}
+
+.levelTitle .levelTitle_left a:first-child {
+  background-color: #bd1067;
+  cursor: default;
+  font-weight: 700;
+  color: #fff;
+  margin-right: 0;
+}
+
+/* 竖线 */
+
+.levelTitle .levelTitle_right a:first-child::after {
+  content: "|";
+  position: relative;
+  right: -16px;
+  color: #333;
+  font-weight: normal;
+}
+
+.levelTitle .levelTitle_right:hover a:first-child::after {
+  content: "|";
+  color: rgba(0, 0, 0, 0);
+}
+
+/* ------------------主要内容区---------------- */
+
+.swiper_con {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.user_center_bg {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f6f8;
+}
+
+/* 大背景 */
+
+.user_center {
+  background: url(../../img/user/content_bg_user.png)top center no-repeat;
+  width: 100%;
+}
+
+/* 目录背景 */
+
+.catalog {
+  width: 100px;
+  padding: 20px 10px;
+  border: 1px solid #e4e4e4;
+  background: #fff;
+  margin-right: 15px;
+  display: inline-block;
+}
+
+/* 目录标题 */
+
+.catalog .title {
+  line-height: 16px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bolder;
+  height: 16px;
+  margin-bottom: 15px;
+}
+
+.catalog .title i {
+  margin-right: 8px;
+}
+
+/* 目录列表 */
+
+.catalog ul li a {
+  color: #666;
+  line-height: 17px;
+}
+
+.catalog ul li a:hover {
+  color: #f10180;
+}
+
+.catalog ul li {
+  height: 17px;
+  padding-left: 13px;
+  margin-left: 12px;
+  margin-bottom: 10px;
+}
+
+/* 底线 */
+
+.catalog .deal, .catalog .asset {
+  border-bottom: 1px dotted #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+/* --------个人信息------- */
+
+.content {
+  display: inline-block;
+}
+
+/* 个人信息 */
+
+.information {
+  background: #fff;
+  border-color: #e4e4e4;
+  border-width: 1px 1px 0 1px;
+  border-style: solid;
+  width: 820px;
+}
+
+.information .user_inf {
+  width: 510px;
+  margin: 24px 0 24px 0;
+  padding-left: 25px;
+}
+
+.information .user_inf .user_header {
+  width: 92px;
+  height: 92px;
+  border-radius: 92px;
+  border: 4px solid #fff;
+  box-shadow: 2px 2px 2px #d8d7d7;
+  position: relative;
+  top: 0;
+  overflow: hidden;
+  margin-right: 30px;
+}
+
+.information .user_inf .user_header img {
+  width: 92px;
+  height: 92px;
+}
+
+.information .user_inf .user_header span {
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  z-index: 2;
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: rgba(0, 0, 0, .7);
+  color: #fff;
+}
+
+/* 账户信息  登录名 */
+
+.information .account_name {
+  padding: 6px 0;
+}
+
+.information .account_name span:first-child {
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.information .account_name .account_number {
+  font-size: 14px;
+  color: #333;
+}
+
+.information .account_name i {
+  margin-right: 10px;
+}
+
+.information .account_name .account_hello {
+  font-size: 14px;
+  color: #666;
+  margin-right: 20px;
+}
+
+.information .account_name a {
+  font-size: 14px;
+  color: #1d94d1;
+}
+
+.information .account_name a:hover {
+  font-size: 14px;
+  color: #3cbdff;
+}
+
+/* 账户信息 资料完整度 */
+
+.information .account_percent {
+  padding: 6px 0;
+}
+
+.information .account_percent a {
+  color: #666;
+  font-size: 14px;
+}
+
+.information .account_percent a:hover {
+  color: #3cbdff;
+}
+
+.information .account_percent span i {
+  width: 45px;
+  background-color: rgb(240, 148, 18);
+  display: block;
+  font-size: 10px;
+  height: 100%;
+  text-align: center;
+  line-height: 12px;
+  color: #fff;
+  font-style: normal;
+}
+
+.information .account_percent span {
+  display: inline-block;
+  width: 90px;
+  height: 12px;
+  background: #ddd;
+  margin: 0 10px 0 0;
+  border: none;
+  margin-right: 10px;
+}
+
+/* 账户信息 安全等级 */
+
+.information .account_safe {
+  padding: 6px 0;
+}
+
+.information .account_safe a {
+  color: #666;
+  font-size: 14px;
+}
+
+.information .account_safe a:last-child {
+  color: #1d94d1;
+}
+
+.information .account_safe a:hover {
+  color: #3cbdff;
+}
+
+.information .account_safe span {
+  color: #ef0001;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.information .account_safe i, .information .account_safe img {
+  margin-right: 10px;
+}
+
+/* 账户余额 优惠券 */
+
+.information .remaining_container {
+  display: block;
+  padding-bottom: 12px;
+  background-position: center bottom;
+  height: auto;
+  padding: 0 30px 12px;
+}
+
+.information .remaining_content {
+  padding: 0 30px;
+  background-color: #f5f8f9;
+}
+
+.information .remaining_content ul {
+  padding: 10px 0 10px;
+}
+
+.information .remaining_content li {
+  display: inline-block;
+  width: 140px;
+  height: 22px;
+  font-size: 12px;
+  color: #333;
+}
+
+.information .remaining_content li span {
+  color: #444;
+  font-weight: 700;
+  line-height: 22px;
+  margin-left: 5px;
+}
+
+.information .remaining_content li a {
+  color: #666;
+  line-height: 22px;
+}
+
+.information .remaining_content li a:hover {
+  height: 22px;
+  font-size: 12px;
+  color: #3cbdff;
+}
+
+/* 提现 */
+
+.information .remaining_content li:last-child {
+  height: 22px;
+  line-height: 22px;
+  padding-right: 5px;
+  background-color: #d0d0d0;
+  cursor: not-allowed;
+  width: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.information .remaining_content li:last-child span {
+  color: #999;
+}
+
+/* -------------我的订单------------ */
+
+.content .myOrder {
+  color: #333;
+  background-color: #fff;
+  border: 1px #ececec solid;
+  margin-top: 16px;
+}
+
+/* 标题 */
+
+.content .myOrder .order_title {
+  background-color: #f9f9f9;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 44px;
+  padding-left: 32px;
+  position: relative;
+  border-bottom: 1px #ececec solid;
+}
+
+.content .myOrder .order_title::before {
+  content: "";
+  position: absolute;
+  background-color: #f21389;
+  width: 2px;
+  height: 14px;
+  top: 15px;
+  left: 20px;
+}
+
+/* 订单操作 */
+
+.content .myOrder .order_con {
+  padding: 44px 0 36px 0;
+  border-bottom: 1px solid #f5f6f8;
+}
+
+.content .myOrder .order_con a {
+  text-align: center;
+  margin-left: 105px;
+  width: 68px;
+  font-size: 14px;
+}
+
+.content .myOrder .order_con a:hover {
+  color: #f10180;
+}
+
+.content .myOrder .order_con a span {
+  padding-top: 22px;
+  display: block;
+}
+
+/* 图标变色 */
+
+.content .myOrder .icon_swiper {
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.content .myOrder .icon_swiper i {
+  width: 100%;
+  height: 100%;
+}
+
+.content .myOrder .order_con a:hover i {
+  position: relative;
+  left: -70px;
+  -webkit-filter: drop-shadow(70px 0 rgb(214, 1, 132));
+  filter: drop-shadow(70px 0 rgb(214, 1, 132));
+}

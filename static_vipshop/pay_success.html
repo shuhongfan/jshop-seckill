@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>订单支付</title>
+		<!-- 重置样式表 -->
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<!-- valid插件 -->
+		<link rel="stylesheet" type="text/css" href="lib/Validform_v5.3.2/css/style.css" />
+		<!-- 全局 header/footer -->
+		<link rel="stylesheet" type="text/css" href="css/goods_search/header&footer.css" />
+		<!-- 订单验证の样式 -->
+		<link rel="stylesheet" type="text/css" href="css/pay_success/style.css" />
+	</head>
+	<body >
+		<div id="app">
+		<div class="head-border">
+			<div class="container">
+				<table class="table">
+					<tr>
+						<td rowspan="2">
+							<div class="logo">
+								<a href="index.html"><img src="img/pay_success/logo.png" width="100px"></a>
+							</div>
+						</td>
+						<td class="clearfix head">
+							<a href="">
+								<div class="number float-right">
+									<img src="img/pay_verify/number.png" class="middle">
+									<span class="middle">会员服务</span>
+								</div>
+							</a>
+							<a href="">
+								<div class="customer float-right">
+									<img src="img/pay_verify/customer.png" class="middle">
+									<span class="middle">在线客服</span>
+								</div>
+							</a>
+							<a href="">
+								<div class="tel float-right">
+									<img src="img/pay_verify/tel.png" class="middle">
+									<span class="middle">400-6789-888</span>
+								</div>
+							</a>
+							<div class="order-ctrl float-right">
+								<a href="user_order.html"><span class="middle ">订单管理</span></a>
+							</div>
+							<div class="user float-right">
+								<a href="user.html"><span class="middle">您好，********！</span>
+									<img src="img/shopping_cart/user.png" class="middle"></a>
+								<span>[退出]</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="serve-img float-right">
+								<img src="img/pay_verify/serve.png" width="400px">
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="container">
+			<div class="success">
+				<div class="quick-pay">
+					<img src="img/pay_success/success.png" class="middle" width="35px">
+					<span class="quick-pay-font middle">订单提交成功，还差一步就抢到心爱的商品，快快支付吧~</span>
+				</div>
+				<div class="clearfix">
+					<div class="order-operation float-left">
+						<span>共1张订单，<span class="order-menu">订单详情</span>。请于<span id="time-result"></span>内完成支付</span>
+					</div>
+					<div class="should-pay float-right">待支付：<span class="symbol">￥</span><span class="num">{{money}}</span></div>
+				</div>
+				<div class="real-name">
+					<span>请选择实名认证为大陆身份证的支付方式，否则海关会退单。</span>
+				</div>
+			</div>
+
+			<div class="strip"></div>
+
+			<div class="mode-box">
+				<div class="add-visa relative">
+					添加新银行卡支付
+					<div class="mask"><img src="img/pay_success/confirm.png"></div>
+				</div>
+				<div class="vchat">
+					微信等平台
+				</div>
+				
+				<div class="vchat-box" style="display: flex" >
+					<div class="vchat-pay">
+						<img src="./img/pay_success/vchat.png" width="25px" class="middle">
+						<span class="vchat-font">微信支付</span>
+					</div>
+					<div class="zfb-pay" style="margin-left: 5px;">
+						<img src="./img/pay_success/zfb.jpg" width="25px" class="middle">
+						<span class="vchat-font">支付宝</span>
+					</div>
+					<div class="next">
+						<div class="use" style="display: flex">
+							<span class="use-chat">使用：
+								<img src="./img/pay_success/vchat.png" width="25px" class="middle">
+								微信支付</span>
+							<span class="zfb-chat">使用：
+								<img src="./img/pay_success/zfb.jpg" width="25px" class="middle">
+								支付宝支付</span>
+							<span class="back">返回改选其他</span>
+						</div>
+						<div class="next-pay">
+							<span>
+								支付：
+								<span class="next-pay-symbol">￥</span>
+								<span class="next-pay-num">{{money}}</span>
+								（已优惠：￥0）
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="second-strip"></div>
+				<div class="ready-pay ready">
+					<span>立即支付</span>
+				</div>
+				<div class="plz-chose">
+					<span>请选择支付方式</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="code-pay-box">
+			<div class="container">
+				<div class="pay-img">
+					<img src="img/pay_success/vchat-pay.png">
+				</div>
+				<div class="code-img">
+					<img src="img/pay_success/code.png" width="250px">
+				</div>
+				<div class="push-box">
+					<div class="push">
+						<table>
+							<tr>
+								<td rowspan="2"><img src="img/pay_success/push.png" class="top" width="50px"></td>
+								<td><span class="top">请使用微信“扫一扫”</span></td>
+							</tr>
+							<tr>
+								<td><span class="top">扫描二维码支付</span></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="font-box relative">
+					<div class="go-back">改选其他支付方式</div>
+					<div class="price-font">￥{{money}}</div>
+				</div>
+				<div class="tip-box">
+					<span>完成支付没有提示？</span>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="footer">
+			<div class="container">
+				<div class="slogan">
+					<i class="icon_footer icon_footer_slogan01"></i>
+					<i class="icon_footer icon_footer_slogan02"></i>
+					<i class="icon_footer icon_footer_slogan03"></i>
+					<i class="icon_footer icon_footer_slogan04"></i>
+					<i class="icon_footer icon_footer_slogan05"></i>
+					<i class="icon_footer icon_footer_slogan06"></i>
+					<i class="icon_footer icon_footer_slogan07"></i>
+					<i class="icon_footer icon_footer_slogan08"></i>
+					<i class="icon_footer icon_footer_slogan09"></i>
+					<i class="icon_footer icon_footer_slogan10"></i>
+				</div>
+				<div class="link">
+					<div class="item vertical-top">
+						<span class="title">服务保障</span>
+						<ul>
+							<li><a href="#">正品保证</a></li>
+							<li><a href="#">7天无理由放心退</a></li>
+							<li><a href="#">退货返10元唯品币</a></li>
+							<li><a href="#">7x15小时客户服务</a></li>
+							<li><a href="#">7天无理由随心换</a></li>
+						</ul>
+					</div>
+					<div class="item vertical-top">
+						<span class="title">购物指南</span>
+						<ul>
+							<li><a href="#">导购演示</a></li>
+							<li><a href="#">订单操作</a></li>
+							<li><a href="#">会员注册</a></li>
+							<li><a href="#">账户管理</a></li>
+							<li><a href="#">收货样品</a></li>
+							<li><a href="#">会员等级</a></li>
+						</ul>
+					</div>
+					<div class="item vertical-top">
+						<span class="title">支付方式</span>
+						<ul>
+							<li><a href="#">快捷支付</a></li>
+							<li><a href="#">23家主流网银支付</a></li>
+							<li><a href="#">支付宝、银联等支付</a></li>
+							<li><a href="#">信用卡支付</a></li>
+							<li><a href="#">零钱支付</a></li>
+						</ul>
+					</div>
+					<div class="item vertical-top">
+						<span class="title">配送方式</span>
+						<ul>
+							<li><a href="#">配送范围及运费</a></li>
+							<li><a href="#">验货与签收</a></li>
+						</ul>
+					</div>
+					<div class="item vertical-top">
+						<span class="title">售后服务</span>
+						<ul>
+							<li><a href="#">退货政策</a></li>
+							<li><a href="#">退货流程</a></li>
+							<li><a href="#">退款方式和时效</a></li>
+							<li><a href="#">换货服务</a></li>
+						</ul>
+					</div>
+					<div class="code vertical-top">
+						<span class="title">开课吧APP二维码</span>
+						<img src="./img/index/footer_code.png">
+						<span class="des">下载开课吧移动APP</span>
+					</div>
+				</div>
+				<div class="about">
+					<ul>
+						<li><a href="#">关于我们</a></li>
+						<li><a href="#">About us</a></li>
+						<li><a href="#">Investor Relations</a></li>
+						<li><a href="#">媒体报道</a></li>
+						<li><a href="#">品牌招商</a></li>
+						<li><a href="#">隐私条款</a></li>
+						<li><a href="#">慧科诚聘</a></li>
+						<li><a href="#">开课吧卡</a></li>
+						<li><a href="#">联系我们</a></li>
+					</ul>
+				</div>
+				<div class="Copyright">Copyright 2003-2020 kaikeba.com，All Rights Reserved 使用本网站即表示接受 <a href="#">开课吧用户协议</a>。版权所有
+				<a href="#">北京开课吧电子商务有限公司</a> </div>
+			<div class="put_on_records">
+				<span><a href="#" class="vertical-mid"><img src="./img/index/police_icon.png" class="vertical-mid">京公网安备
+						xxxxxxxxxxxxxxx号</a> <a href="#">京ICP备xxxxxxxx号</a> <a href="#">增值业务经营许可证：京B2-20200000</a> <a
+						href="#">网络文化经营许可证：京网文〔2020〕5030-1743号</a>
+				</span>
+				<span><a href="#">自营主体经营证照</a> <a href="#">风险监测信息</a> <a href="#">互联网药品信息服务资格证书：（京）-经营性-2020-0271</a> <a
+						href="#">网络食品交易第三方平台备案凭证：京B2-20200000</a>
+					<a href="#">医疗器械网络交易服务第三方平台</a></span>
+				<span><a href="#">备案凭证：（京）网械平台备字[2020]第00001号</a></span>
+			</div>
+				<div class="identification">
+					<a href="#"><i class="icon_identification icon_identification_Unionpay"></i></a>
+					<!-- <a href="#"><i class="icon_identification icon_identification_Alipay"></i></a>
+						<a href="#"><i class="icon_identification icon_identification_CreditEnterprise"></i></a> -->
+					<a href="#"><i class="icon_identification icon_identification_LegalRights"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_RedLink"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_callPolice"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_netPolice"></i></a>
+					<!-- <a href="#"><i class="icon_identification icon_identification_ccredit"></i></a> -->
+					<a href="#"><i class="icon_identification icon_identification_integrityWeb"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_credibleWeb"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+		<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/vuejs-2.5.16.js"></script>
+		<script src="js/axios-0.18.0.js"></script>
+		<script src="js/api.js"></script>
+		<script src="js/urlParm.js"></script>
+	<script>
+		new Vue({
+			el: "#app",
+			data: {
+				money:'',
+				orderId:''
+			},
+			methods :{
+				getOrderMoney:function(orderId){
+					getOrderMoney(orderId).then(res =>{
+						console.log(res.data.data)
+						this.money=res.data.data;
+					})
+				},	
+				
+			},
+			created:function(){
+				var test =window.location.href;
+				var orderId=test.split("?orderId=")[1];
+				this.orderId = orderId;
+				this.getOrderMoney(orderId);
+			},
+			mounted:function(){
+				window.onload = function() {
+					var oTimeResult = document.querySelector("#time-result");
+					var time = 1800;
+					setInterval(function() {
+						time = time - 1;
+						var minute = parseInt(time / 60);
+						var second = parseInt(time % 60);
+						oTimeResult.innerHTML = minute + '分' + second + '秒';
+					}, 1000);
+				}
+
+			$('.add-visa').click(function() {
+				$(this).css('background-color', 'white');
+				$(this).css('border', '1px solid #96CB44');
+				$(this).css('margin-bottom', '20px');
+				$('.mask').css('opacity', '1');
+				$('.vchat').css('border', '1px dotted #aaa');
+				$('.vchat-box').css('display', 'none');
+
+			})
+			$('.mode-box .vchat').click(function() {
+				$(this).css('border', '1px solid #ddd');
+				$(this).css('border-bottom', 'white');
+				$('.vchat-box').css('display', 'flex');
+				$('.add-visa').css('background-color', 'white');
+				$('.add-visa').css('margin-bottom', '0');
+				$('.add-visa').css('border', '1px solid #ddd');
+				$('.mask').css('opacity', '0');
+			})
+			$('.mode-box .vchat-pay').click(function() {
+				$('.mode-box .vchat-pay').css('display', 'none')
+				$('.mode-box .zfb-pay').css('display', 'none')
+				$('.mode-box .zfb-chat').css('display', 'none')
+				$('.mode-box .use-chat').css('display', 'block')
+				$('.next').css('display', 'block')
+				$('.ready-pay').css('background-color', '#DE3D96')
+				$('.ready-pay').css('color', 'white')
+				$('.ready-pay').addClass('ready')
+				$('.ready').hover(function() {
+					$(this).css('background-color', '#EB4E76')
+				}, function() {
+					$(this).css('background-color', '#DE3D96')
+				})
+			})
+		
+					$('.ready').click(function() {
+					if($('.mode-box .zfb-chat').css('display')=="none"){
+						// 微信
+						$('.mode-box').css('display', 'none')
+						$('.code-pay-box').css('display', 'block')
+						$('.strip').css('display', 'none')
+					}else{	
+						var test =window.location.href;
+						var orderId=test.split("?orderId=")[1];
+						this.orderId = orderId;
+						getAliPay(this.orderId).then(res=>{
+						if(res.data.code == 200){
+							$('body').append(res.data.data)
+						}else{
+							alert(res.data.mag)
+						}
+					})
+					}
+				})
+			 
+			$('.mode-box .zfb-pay').click(function() {
+				$('.mode-box .zfb-pay').css('display', 'none')
+				$('.mode-box .vchat-pay').css('display', 'none')
+				$('.mode-box .use-chat').css('display', 'none')
+				$('.mode-box .zfb-chat').css('display', 'block')
+				$('.next').css('display', 'block')
+				$('.ready-pay').css('background-color', '#DE3D96')
+				$('.ready-pay').css('color', 'white')
+				$('.ready-pay').addClass('ready')
+				$('.ready').hover(function() {
+					$(this).css('background-color', '#EB4E76')
+				}, function() {
+					$(this).css('background-color', '#DE3D96')
+				})
+			})
+			$('.next .back').click(function() {
+				$(this).parents('.next').css('display', 'none')
+				$('.vchat-pay').css('display', 'block')
+				$('.zfb-pay').css('display', 'block');
+				$('.ready-pay').css('background-color', '#d9d9d9')
+				$('.ready-pay').css('color', '#89898C')
+				$('.ready-pay').removeClass('ready')
+				$('.ready-pay').hover(function() {
+					$(this).css('background-color', '#D9D9D9')
+				}, function() {
+					$(this).css('background-color', '#D9D9D9')
+				})
+			})
+			$('.code-pay-box .go-back').click(function() {
+				$('.code-pay-box').css('display', 'none')
+				$('.mode-box').css('display', 'block')
+				$('.strip').css('display', 'block')
+			})	
+			},
+			
+		})
+			
+		</script>
+	</body>
+</html>

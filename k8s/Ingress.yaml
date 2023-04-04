@@ -1,0 +1,75 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: 5m
+  name: jshop-ingress
+  namespace: edu
+spec:
+  rules:
+  - host: edu1.kaikeba.com
+    http:
+      paths:
+      - backend:
+          serviceName: jshopserver
+          servicePort: 80
+        path: /
+  tls:
+  - hosts:
+    - edu1.kaikeba.com
+    secretName: kkb-nginx-cert
+---
+
+
+
+
+
+
+# ingress配置说明
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: 'true'
+    nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/proxy-body-size: 5m
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: 名称
+  namespace: 命名空间
+spec:
+  rules:
+    - host: 域名
+      http:
+        paths:
+          - backend:
+              serviceName: pilipa-salary-frontend
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+        - 域名
+      secretName: 证书
+
+
+
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-cpu-jshopserver
+  namespace: edu
+spec:
+  maxReplicas: 30
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 70
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: jshop-server

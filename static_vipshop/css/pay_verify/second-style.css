@@ -1,0 +1,541 @@
+/* 引入雪碧图 */
+
+.icon_user {
+  background: url(../../img/user/user_sprite_01.png);
+  font-style: normal;
+  display: inline-block;
+}
+
+/* 展开目录 关闭目录 按钮 */
+
+.icon_user_open {
+  width: 13px;
+  height: 13px;
+  background-position: -274px -178px;
+}
+
+.icon_user_close {
+  width: 13px;
+  height: 13px;
+  background-position: -257px -178px;
+}
+
+/* ---------------横向大标题------------------ */
+
+.levelTitle_bg {
+  background-color: #f10180;
+  height: 40px;
+  line-height: 40px;
+}
+
+.levelTitle a {
+  color: #fff;
+  height: 40px;
+  padding: 0 14px;
+  text-align: center;
+  font-size: 16px;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* 鼠标触摸 */
+
+.levelTitle a:hover {
+  background-color: #db0a76;
+}
+
+.levelTitle .levelTitle_left a:first-child {
+  background-color: #bd1067;
+  cursor: default;
+  font-weight: 700;
+  color: #fff;
+  margin-right: 0;
+}
+
+/* 竖线 */
+
+.levelTitle .levelTitle_right a:first-child::after {
+  content: "|";
+  position: relative;
+  right: -16px;
+  color: #333;
+  font-weight: normal;
+}
+
+.levelTitle .levelTitle_right:hover a:first-child::after {
+  content: "|";
+  color: rgba(0, 0, 0, 0);
+}
+
+/* ------------------主要内容区---------------- */
+
+.swiper_con {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.user_center_bg {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f6f8;
+}
+
+/* 大背景 */
+
+.user_center {
+  background: url(../../img/user/content_bg_user.png)top center no-repeat;
+  width: 100%;
+}
+
+/* 目录背景 */
+
+.catalog {
+  width: 100px;
+  padding: 20px 10px;
+  border: 1px solid #e4e4e4;
+  background: #fff;
+  margin-right: 15px;
+  display: inline-block;
+}
+
+/* 目录标题 */
+
+.catalog .title {
+  line-height: 16px;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bolder;
+  height: 16px;
+  margin-bottom: 15px;
+}
+
+.catalog .title i {
+  margin-right: 8px;
+}
+
+/* 目录列表 */
+
+.catalog ul li a {
+  color: #666;
+  line-height: 17px;
+}
+
+.catalog ul li a:hover {
+  color: #f10180;
+}
+
+.catalog ul li {
+  height: 17px;
+  padding-left: 13px;
+  margin-left: 12px;
+  margin-bottom: 10px;
+}
+
+/* 底线 */
+
+.catalog .deal, .catalog .asset {
+  border-bottom: 1px dotted #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+/* ------------主页内容 操作----------------- */
+
+.content {
+  width: 820px;
+  min-height: 600px;
+}
+
+/* 跳转目录 */
+
+.content .catalog_src a::before {
+  content: "";
+  position: absolute;
+  background-color: #f21389;
+  width: 2px;
+  height: 14px;
+  top: 0;
+  left: 0;
+}
+
+.content .catalog_src a {
+  margin-left: 10px;
+  color: #333;
+}
+
+.content .catalog_src span {
+  color: #333;
+}
+
+/* ---------------已经保存的收货地址------------ */
+
+.save_box {
+  background: #fff;
+  margin: 10px 0;
+}
+
+.save_box .title {
+  padding: 16px 20px 18px;
+  border-bottom: 1px solid #ebebeb;
+  color: grey;
+  margin-bottom: 20px;
+}
+
+.save_box .title span:first-child {
+  color: #333;
+  font-size: 14px;
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.save_box .title .now_num, .save_box .title .reside_num {
+  color: #f10180;
+  font-size: 14px;
+  margin: 0 5px;
+}
+
+.save_box .title button {
+  display: inline-block;
+  outline: 0;
+  margin-top: -4px;
+  padding: 0 19px;
+  font-size: 12px;
+  background-color: rgba(241, 1, 128, 1);
+  border: 0;
+  color: #fff;
+  min-width: 60px;
+  height: 30px;
+  border-radius: 3px;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.save_box .title button:hover {
+  background-color: rgba(241, 1, 128, 0.8);
+}
+
+/* ---------保存的地址-------主体------ */
+
+/* 正则不通过 */
+
+.edit_box input.illegal {
+  border: 1px solid rgb(252, 151, 165);
+  background-color: rgb(255, 230, 231);
+}
+
+.edit_box .error-tip {
+  display: inline-block;
+  background-color: #fffaf3;
+  padding: 6px 15px;
+  margin-bottom: 10px;
+  border: 1px solid #dbdada;
+  border-radius: 2px;
+  display: none;
+  position: absolute;
+  top: -35px;
+  left: 126px;
+}
+
+.address_box {
+  padding: 0 0 10px 3px;
+}
+
+/* 默认地址 */
+
+.address_box li.isDefault {
+  background: url(../../img/user_address/address_bg.png) top center no-repeat;
+  width: 252px;
+  height: 151px;
+  display: inline-block;
+  margin: 0 0 10px 10px;
+}
+
+/* 不是默认 */
+
+.address_box li {
+  background: url(../../img/user_address/notaddress_bg.png) top center no-repeat;
+  width: 252px;
+  height: 151px;
+  display: inline-block;
+  margin: 0 0 10px 10px;
+  overflow: hidden;
+}
+
+.address_box li .item {
+  padding: 14px;
+}
+
+.address_box li .default {
+  border-radius: 0 0 5px 5px;
+  color: #fff;
+  padding: 0 10px;
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  top: -20px;
+  background: #ee3495;
+}
+
+.address_box li.isDefault .default {
+  border-radius: 0 0 5px 5px;
+  color: #fff;
+  padding: 0 10px;
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  top: 0;
+  background: #ee3495;
+}
+
+.address_box li .default.cannot {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 收货人 */
+
+.address_box li .name {
+  padding: 0 0 3px 0;
+  border-bottom: 1px dotted #dcdcdc;
+  font-size: 14px;
+  color: #333;
+}
+
+.address_box li .name img {
+  margin-right: 10px;
+  margin-top: -3px;
+}
+
+/* 收货地址 */
+
+.address_box li .location {
+  padding: 0 0 3px 0;
+  border-bottom: 1px dotted #dcdcdc;
+  font-size: 12px;
+  color: #333;
+  padding: 6px 0 3px 0;
+  height: 54px;
+}
+
+.address_box li .location img {
+  margin-right: 10px;
+  margin-top: -5px;
+}
+
+/* 手机号码 */
+
+.address_box li .tel {
+  padding: 0 0 3px 0;
+  border-bottom: 1px dotted #dcdcdc;
+  font-size: 12px;
+  color: #333;
+  padding: 6px 0 3px 0;
+  height: 54px;
+}
+
+.address_box li .tel img {
+  margin-right: 10px;
+  margin-top: -3px;
+}
+
+/* 修改  删除 */
+
+.address_box li .btn {
+  position: absolute;
+  bottom: 12px;
+  right: 20px;
+}
+
+/* 样式 */
+
+.address_box li .btn button {
+  background-color: #fafafa;
+  border: 1px solid #c2c2c2;
+  outline: 0;
+  min-width: 24px;
+  padding: 0 5px;
+  display: inline-block;
+  border-radius: 3px;
+  text-align: center;
+  transition: .3s;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 5px;
+  color: #333;
+  height: 20px;
+}
+
+/* -----------编辑收货地址-------------- */
+
+.input_box {
+  border-top: 1px solid #ef50a3;
+  margin-top: 25px;
+  background: #fff none repeat;
+  color: #333;
+  font-size: 12px;
+}
+
+.input_box .title {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  font-weight: bolder;
+  padding: 18px 0 12px 20px;
+}
+
+/* ------编辑区域 ------*/
+
+.input_box .edit_box {
+  padding: 20px 0 5px;
+  border-top: 1px solid #dcdcdc;
+  background: #fbfbfb;
+}
+
+.input_box .edit_box .item {
+  display: block;
+  margin-bottom: 15px;
+}
+
+.input_box .edit_box .item .tip {
+  font-size: 14px;
+  height: 18px;
+  line-height: 18px;
+  width: 126px;
+  color: #333;
+  cursor: default;
+  text-align: right;
+  padding: 7px 0 7px 0
+}
+
+.input_box .edit_box .item span:first-child {
+  color: #f10180;
+  margin-right: 5px;
+}
+
+.input_box .edit_box .item span:nth-child(2) {
+  font-size: 14px;
+  width: 126px;
+  color: #333;
+  cursor: default;
+  text-align: right;
+}
+
+.input_box .edit_box .item input {
+  width: 220px;
+  height: 18px;
+  line-height: 18px;
+  color: #333;
+  padding: 6px 10px;
+  border: 1px solid #b2b2b2;
+  background-color: #fff;
+  border-radius: 3px;
+  white-space: nowrap;
+  outline: 0;
+}
+
+/* 收货时间 */
+
+.input_box .edit_box .time .time_sel {
+  padding: 4px;
+  border: 1px solid #b3b3b3;
+  border-radius: 3px;
+  background-color: #fff;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  width: 242px;
+  height: 30px;
+  line-height: 30px;
+  outline: 0;
+  font-size: 14px;
+}
+
+/* 收货地址 */
+
+.input_box .edit_box .city .city_sel {
+  color: #999;
+  line-height: 30px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-right: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+  outline: 0;
+}
+
+.input_box .edit_box .city .city_sel select {
+  width: 160px;
+  height: 30px;
+  border-radius: 3px;
+  color: #999;
+  padding-left: 6px;
+}
+
+/* 收货地址类型 */
+
+.input_box .edit_box .type .check_box {
+  padding-top: 8px;
+}
+
+.input_box .edit_box .type .check_box input {
+  width: 15px;
+  margin-right: 5px;
+}
+
+.input_box .edit_box .type .check_box span {
+  margin-right: 15px;
+}
+
+/* 是否设为默认地址 */
+
+.input_box .edit_box .setDefault span {
+  color: #333;
+  font-size: 14px;
+}
+
+.input_box .edit_box .setDefault input {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+/* 保存 取消 */
+
+.input_box .edit_box .btn #save {
+  margin-right: 20px;
+  background-color: #f10180;
+  border: 0;
+  outline: 0;
+  min-width: 60px;
+  padding: 6px 25px;
+  display: inline-block;
+  border-radius: 3px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  border: 1px solid #f10180;
+}
+
+.input_box .edit_box .btn #cancel {
+  margin-right: 20px;
+  background-color: #fafafa;
+  border: 0;
+  outline: 0;
+  min-width: 60px;
+  padding: 6px 25px;
+  display: inline-block;
+  border-radius: 3px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  color: #333;
+  font-size: 14px;
+  border: 1px solid #c2c2c2;
+  display: none;
+}

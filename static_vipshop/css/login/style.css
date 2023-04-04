@@ -1,0 +1,223 @@
+.bg{
+	background: url(../../img/login/loginbg.png) top center;
+	height: 650px;
+}
+/* 布局 */
+.float-left{
+	float: left;
+}
+.float-right{
+	float: right;
+}
+.relative{
+	position: relative;
+}
+.top{
+	vertical-align: top;
+}
+.middle{
+	vertical-align: middle;
+}
+
+/* 内容 */
+.head-box{
+	height: 100px;
+}
+.head-box .logo{
+	margin-top: 15px;
+}
+.head-box .serve{
+	margin-top: 30px;
+}
+.login-box{
+	border: 1px solid #ddd;
+	width: 400px;
+	background-color: white;
+	position: absolute;
+	right: 0px;
+	top: 50px;
+}
+.outtitle{
+	border-bottom: 1px solid #ddd;
+}
+.QR{
+	border: 1px solid #aaa;
+	border-top: 1px solid transparent;
+	border-left: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+	font-size: 20px;
+	margin-left: 40px;
+	padding-right: 60px;
+	font-weight: 900;
+	color: #f10180;
+}
+.user{
+	border: 1px solid transparent;
+	font-size: 20px;
+	margin-left: 60px;
+	font-weight: 600;
+	color: dimgray;
+}
+.intitle{
+	margin: 10px 20px;
+}
+.code-box{
+	height: 230px;
+	padding-top: 60px;
+}
+.code-box .code{
+	margin-left: 125px;
+	height: 150px;
+	width: 150px;
+	border: 1px solid #ddd;
+}
+.code-box .phone{
+	position: absolute;
+	right:40px;
+	top: 80px;
+	opacity: 0;
+}
+.code-box .content {
+	width: 250px;
+	padding-top: 30px;
+	margin: 0 auto;
+}
+.content img{
+	margin-right: 5px;
+}
+.content span{
+	color: #f10180;
+}
+.login-box .vchat{
+	margin: 0 auto;
+	color: #ddd;
+	height: 56px;
+	width: 320px;
+}
+.login-box .vchat img{
+	margin: 0px 10px;
+}
+.other{
+	padding: 0px 25px;
+}
+.pay,.more,.register{
+	padding: 15px 16px;
+}
+.sina,.qq{
+	padding: 15px 0;
+}
+.insina,.inqq{
+	border-right: 1px solid #ddd;
+	padding: 0 16px;
+}
+.register{
+	font-size: 15px;
+    margin-top: -3px;
+}
+.register a{
+	color: #000000;
+}
+.user-box{
+	width: 313px;
+	margin: 0 auto;
+	padding-top: 30px;
+	display: none;
+}
+.name-input,.password-input,.tel-input{
+	width: 290px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 10px 5px 10px 10px;
+}
+.password-input{
+	margin-top: 30px;
+}
+#name,#password,#tel{
+	margin-left: 10px;
+	width: 210px;
+	font-size: 15px;
+	border: 0;
+	outline: 0;
+	background-color: white;
+}
+.test-confirm{
+	width: 313px;
+	margin: 0 auto;
+	padding-top: 30px;
+	display: none;
+}
+.test-input{
+	width: 150px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 10px 5px 10px 10px;
+	margin-top: 30px;
+}
+#test{
+	margin-left: 10px;
+	width: 80px;
+	font-size: 15px;
+	border: 0;
+	outline: 0;
+	background-color: white;
+}
+.get-test{
+	position: absolute;
+	right: 4px;
+	top: 106px;
+}
+#get-btn{
+	padding: 12px 27px 13px;
+	color: white;
+	background-color: #F10180;
+	border: 0;
+	border-radius: 4px;
+	outline: 0;
+	font-size: 15px;
+}
+.user-box .error{
+	position: absolute;
+	bottom: -22px;
+	left: 0px;
+	color: red;
+	display: none;
+}
+.test-confirm .error{
+	position: absolute;
+	bottom: -22px;
+	left: 0px;
+	color: red;
+	display: none;
+}
+.error-img{
+	display: none;
+}
+.msg-log,.lost-pass,.user-log{
+	margin-top: 30px;
+}
+.msg-log,.user-log{
+	font-size: 15px;
+	color: dimgray;
+}
+.lost-pass{
+	padding-right: 5px;
+}
+.btn{
+	padding-top: 65px;
+	padding-bottom: 30px;
+}
+.login-btn{
+	border: 0;
+	background-color: #f10180;
+	color: white;
+	padding: 12px 136px;
+	font-size: 18px;
+	border-radius: 4px;
+	outline: 0;
+}
+
+.foot-box{
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+}

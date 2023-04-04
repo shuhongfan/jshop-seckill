@@ -1,0 +1,795 @@
+package com.sugo.seckill.order.service.impl;
+
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.sugo.seckill.aop.Servicelock;
+import com.sugo.seckill.http.HttpResult;
+import com.sugo.seckill.http.HttpStatus;
+import com.sugo.seckill.mapper.order.SeckillGoodsMapper;
+import com.sugo.seckill.mapper.order.SeckillOrderMapper;
+import com.sugo.seckill.mapper.pay.TbPayLogMapper;
+import com.sugo.seckill.order.service.SeckillOrderService;
+import com.sugo.seckill.page.PageResult;
+import com.sugo.seckill.pojo.FrontUser;
+import com.sugo.seckill.pojo.TbPayLog;
+import com.sugo.seckill.pojo.TbSeckillGoods;
+import com.sugo.seckill.pojo.TbSeckillOrder;
+import com.sugo.seckill.queue.jvm.SeckillQueue;
+import com.sugo.seckill.utils.IdWorker;
+import com.sugo.seckill.utils.JsonUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+/**
+ * 服务实现层
+ * @author Administrator
+ *
+ */
+@Service
+public class SeckillOrderServiceImpl implements SeckillOrderService {
+
+	@Autowired
+	private SeckillOrderMapper seckillOrderMapper;
+
+	//注入支付
+	@Autowired
+	private TbPayLogMapper payLogMapper;
+
+
+	//注入商品对象
+	@Autowired
+	private SeckillGoodsMapper seckillGoodsMapper;
+
+	//注入redis
+	@Autowired
+	private RedisTemplate<String,String> redisTemplate;
+
+	//注入Idworker
+	@Autowired
+	private IdWorker idWorker;
+
+
+	//程序锁
+	//互斥锁 参数默认false，不公平锁
+	private Lock lock = new ReentrantLock(true);
+
+	//日志
+	private final static Logger LOGGER = LoggerFactory.getLogger(SeckillOrderServiceImpl.class);
+
+	//获取当前可用的cpu核心数
+	private static int corePoolSize = Runtime.getRuntime().availableProcessors();
+
+	//创建线程池  调整队列数 拒绝服务
+	private static ThreadPoolExecutor executor  = new ThreadPoolExecutor(corePoolSize, corePoolSize+1, 10l, TimeUnit.SECONDS,
+			new LinkedBlockingQueue<>(1000));
+
+
+
+	/**
+	 * 按分页查询
+	 */
+	@Override
+	@Transactional
+	public PageResult findPage(int pageNum, int pageSize) {
+		PageHelper.startPage(pageNum, pageSize);
+		Page<TbSeckillOrder> page=   (Page<TbSeckillOrder>) seckillOrderMapper.selectByExample(null);
+		return new PageResult(page.getTotal(), page.getResult());
+	}
+
+
+	/**
+	 * 根据ID获取实体
+	 * @param id
+	 * @return
+	 */
+	@Override
+	@Transactional
+	public TbSeckillOrder findOne(Long id){
+		return seckillOrderMapper.selectByPrimaryKey(id);
+	}
+
+	/**
+	 * @Description: 方式零：普通的下单方式,会出现库存超卖的问题
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 10:54
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 10:54
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	public HttpResult startSubmitOrder(Long seckillId, String userId) {
+		long orderId = idWorker.nextId();
+		try {
+			LOGGER.info("开始下单条件校验 订单ID {}",seckillId);
+			//从数据库中查询商品信息
+			TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(seckillId);
+			if(seckillGoods==null){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品不存在");
+			}
+			if(1 != seckillGoods.getStatus()){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品未审核");
+			}
+				if(seckillGoods.getStockCount()<=0){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品已抢购一空");
+			}
+			if(seckillGoods.getStartTimeDate().getTime() > new Date().getTime()){
+				System.out.println(seckillGoods.getStartTimeDate() + "==" + new Date());
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动未开始");
+			}
+			if(seckillGoods.getEndTimeDate().getTime() <= new Date().getTime() ){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动已结束");
+			}
+
+			LOGGER.info("开始扣减库存 订单ID {}",seckillId);
+			//扣减库存
+			seckillGoods.setStockCount(seckillGoods.getStockCount()-1);
+			//更新秒杀信息
+			seckillGoodsMapper.updateByPrimaryKey(seckillGoods);
+
+			LOGGER.info("开始下单");
+			//保存（redis）订单
+
+			System.out.println("cpu切换的随机性:======= "+ orderId +" ======");
+			TbSeckillOrder seckillOrder=new TbSeckillOrder();
+			seckillOrder.setId(orderId);
+			seckillOrder.setCreateTime(new Date());
+			seckillOrder.setMoney(seckillGoods.getPrice());//秒杀价格
+			seckillOrder.setSeckillId(seckillId);
+			seckillOrder.setStatus("0");//状态
+
+			//保存订单
+			seckillOrderMapper.insertSelective(seckillOrder);
+
+
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return HttpResult.ok(orderId+"");
+	}
+
+
+	/**
+	 * @Description: 方式零：普通的下单方式,会出现库存超卖的问题
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 10:54
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 10:54
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	public HttpResult startSubmitOrderMultiThread(Long seckillId, String userId) {
+		long orderId = idWorker.nextId();
+		try {
+			//从数据库中查询商品信息
+			TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(seckillId);
+			if(seckillGoods==null){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品不存在");
+			}
+			if(!"1".equals(seckillGoods.getStatus())){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品未审核");
+			}
+			if(seckillGoods.getStockCount()<=0){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品已抢购一空");
+			}
+			if(seckillGoods.getStartTimeDate().getTime()>new Date().getTime()){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动未开始");
+			}
+			if(seckillGoods.getEndTimeDate().getTime()<= new Date().getTime() ){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动已结束");
+			}
+			//扣减库存
+			seckillGoods.setStockCount(seckillGoods.getStockCount()-1);
+			//更新秒杀信息
+			seckillGoodsMapper.updateByPrimaryKey(seckillGoods);
+
+			Runnable task = () -> {
+				//保存（redis）订单
+				System.out.println("cpu切换的随机性:======= "+ orderId +" ======");
+				TbSeckillOrder seckillOrder=new TbSeckillOrder();
+				seckillOrder.setId(orderId);
+				seckillOrder.setCreateTime(new Date());
+				seckillOrder.setMoney(seckillGoods.getCostPrice());//秒杀价格
+				seckillOrder.setSeckillId(seckillId);
+				seckillOrder.setStatus("0");//状态
+
+				//保存订单
+				seckillOrderMapper.insertSelective(seckillOrder);
+
+			};
+			//执行
+			executor.execute(task);
+
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return HttpResult.ok(orderId+"");
+	}
+
+
+	/**
+	 * @Description: 方式一：程序锁方式下单
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 10:54
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 10:54
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	@Transactional
+	public HttpResult startSubmitOrderLock(Long seckillId, String userId) {
+		long orderId = idWorker.nextId();
+		try {
+			//加锁
+			lock.lock();
+
+			//从缓存中查询秒杀商品
+			TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(seckillId);
+			if(seckillGoods==null){
+                return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品不存在");
+            }
+			if(!"1".equals(seckillGoods.getStatus())){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品未审核");
+            }
+			if(seckillGoods.getStockCount()<=0){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品已抢购一空");
+            }
+			if(seckillGoods.getStartTimeDate().getTime()>new Date().getTime()){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动未开始");
+            }
+			if(seckillGoods.getEndTimeDate().getTime()<= new Date().getTime() ){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动已结束");
+            }
+
+			//扣减库存
+			seckillGoods.setStockCount(seckillGoods.getStockCount()-1);
+			//更新秒杀信息
+			seckillGoodsMapper.updateByPrimaryKey(seckillGoods);
+
+			IdWorker idWorker = new IdWorker();
+			//保存（redis）订单
+			TbSeckillOrder seckillOrder=new TbSeckillOrder();
+			seckillOrder.setId(orderId);
+			seckillOrder.setCreateTime(new Date());
+			seckillOrder.setMoney(seckillGoods.getCostPrice());//秒杀价格
+			seckillOrder.setSeckillId(seckillId);
+			seckillOrder.setStatus("0");//状态
+
+			//保存订单
+			seckillOrderMapper.insertSelective(seckillOrder);
+
+
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}finally {
+			//程序执行完毕，必须释放锁
+			lock.unlock();
+		}
+
+		return HttpResult.ok(orderId+"");
+	}
+
+
+	/**
+	 * @Description: 方式一：程序锁方式下单
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 10:54
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 10:54
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	@Transactional
+	public HttpResult startSubmitOrderLockMultiThread(Long seckillId, String userId) {
+		long orderId = idWorker.nextId();
+		try {
+			//加锁
+			lock.lock();
+
+			//从缓存中查询秒杀商品
+			TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(seckillId);
+			if(seckillGoods==null){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品不存在");
+			}
+			if(!"1".equals(seckillGoods.getStatus())){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品未审核");
+			}
+			if(seckillGoods.getStockCount()<=0){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品已抢购一空");
+			}
+			if(seckillGoods.getStartTimeDate().getTime()>new Date().getTime()){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动未开始");
+			}
+			if(seckillGoods.getEndTimeDate().getTime()<= new Date().getTime() ){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动已结束");
+			}
+
+			//扣减库存
+			seckillGoods.setStockCount(seckillGoods.getStockCount()-1);
+			//更新秒杀信息
+			seckillGoodsMapper.updateByPrimaryKey(seckillGoods);
+			//多线程下单
+			Runnable task = () -> {
+				//保存订单
+				TbSeckillOrder seckillOrder=new TbSeckillOrder();
+				seckillOrder.setId(orderId);
+				seckillOrder.setCreateTime(new Date());
+				seckillOrder.setMoney(seckillGoods.getCostPrice());//秒杀价格
+				seckillOrder.setSeckillId(seckillId);
+				seckillOrder.setStatus("0");//状态
+
+				//保存订单
+				seckillOrderMapper.insertSelective(seckillOrder);
+			};
+			//执行下单
+			executor.execute(task);
+
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}finally {
+			//程序执行完毕，必须释放锁
+			lock.unlock();
+		}
+
+		return HttpResult.ok(orderId+"");
+	}
+
+	/**
+	 * @Description: 方式二：AOP秒杀下单
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 17:58
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 17:58
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	@Transactional
+	@Servicelock
+	public HttpResult startSubmitOrderAopLock(Long seckillId, String userId) {
+		long orderId = idWorker.nextId();
+		try {
+			//从缓存中查询秒杀商品
+			TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(seckillId);
+			if(seckillGoods==null){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品不存在");
+			}
+			if(seckillGoods.getStatus()!=1){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品未审核");
+			}
+			if(seckillGoods.getStockCount()<=0){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品已抢购一空");
+			}
+			if(seckillGoods.getStartTimeDate().getTime()>new Date().getTime()){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动未开始");
+			}
+			if(seckillGoods.getEndTimeDate().getTime()<= new Date().getTime() ){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动已结束");
+			}
+
+			//扣减库存
+			seckillGoods.setStockCount(seckillGoods.getStockCount()-1);
+			//更新秒杀信息
+			seckillGoodsMapper.updateByPrimaryKey(seckillGoods);
+
+				//保存订单
+
+				TbSeckillOrder seckillOrder=new TbSeckillOrder();
+				seckillOrder.setId(orderId);
+				seckillOrder.setCreateTime(new Date());
+				seckillOrder.setMoney(seckillGoods.getCostPrice());//秒杀价格
+				seckillOrder.setSeckillId(seckillId);
+				seckillOrder.setStatus("0");
+				//状态
+				//保存订单
+				seckillOrderMapper.insertSelective(seckillOrder);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return HttpResult.ok(orderId+"");
+	}
+
+	/**
+	 * @Description: 方式二：AOP秒杀下单
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 17:58
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 17:58
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	@Transactional
+	@Servicelock
+	public HttpResult startsubmitOrderAopLockWithMultiThread(Long seckillId, String userId) {
+		long orderId = idWorker.nextId();
+		try {
+			//从缓存中查询秒杀商品
+			TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(seckillId);
+			if(seckillGoods==null){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品不存在");
+			}
+			if(seckillGoods.getStatus()!=1){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品未审核");
+			}
+			if(seckillGoods.getStockCount()<=0){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品已抢购一空");
+			}
+			if(seckillGoods.getStartTimeDate().getTime()>new Date().getTime()){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动未开始");
+			}
+			if(seckillGoods.getEndTimeDate().getTime()<= new Date().getTime() ){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动已结束");
+			}
+
+			//扣减库存
+			seckillGoods.setStockCount(seckillGoods.getStockCount()-1);
+			//更新秒杀信息
+			seckillGoodsMapper.updateByPrimaryKey(seckillGoods);
+
+			Runnable task = () -> {
+				//保存订单
+				TbSeckillOrder seckillOrder=new TbSeckillOrder();
+				seckillOrder.setId(orderId);
+				seckillOrder.setCreateTime(new Date());
+				seckillOrder.setMoney(seckillGoods.getCostPrice());//秒杀价格
+				seckillOrder.setSeckillId(seckillId);
+				seckillOrder.setStatus("0");
+				//状态
+				//保存订单
+				seckillOrderMapper.insertSelective(seckillOrder);
+			};
+			executor.execute(task);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return HttpResult.ok(orderId+"");
+	}
+
+	/**
+	 * @Description: 方式三：数据库悲观锁秒杀下单
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 18:10
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 18:10
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	@Transactional
+	public HttpResult submitOrderDataBaseLockForUpdateOne(Long seckillId, String userId) {
+		long orderId = idWorker.nextId();
+		try {
+			//使用悲观锁，从数据库查询库存，防止多个线程脏读
+			TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKeyBySQLLock(seckillId);
+
+			if(seckillGoods==null){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品不存在");
+			}
+			if(!"1".equals(seckillGoods.getStatus())){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品未审核");
+			}
+			if(seckillGoods.getStockCount()<=0){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品已抢购一空");
+			}
+			if(seckillGoods.getStartTimeDate().getTime()>new Date().getTime()){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动未开始");
+			}
+			if(seckillGoods.getEndTimeDate().getTime()<= new Date().getTime() ){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动已结束");
+			}
+
+			//扣减库存
+			seckillGoods.setStockCount(seckillGoods.getStockCount()-1);
+			//更新秒杀信息
+			seckillGoodsMapper.updateByPrimaryKey(seckillGoods);
+
+			TbSeckillOrder seckillOrder=new TbSeckillOrder();
+			seckillOrder.setUserId(userId);
+			seckillOrder.setCreateTime(new Date());
+			seckillOrder.setMoney(seckillGoods.getCostPrice());//秒杀价格
+			seckillOrder.setSeckillId(seckillId);
+			seckillOrder.setStatus("0");//状态
+
+			//保存订单
+			seckillOrderMapper.insertSelective(seckillOrder);
+
+
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return HttpResult.ok(orderId+"");
+	}
+
+	/**
+	 * @Description: 方式三：数据库悲观锁秒杀下单，多线程下单模式
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 18:10
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 18:10
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	@Transactional
+	public HttpResult submitOrderDataBaseLockForUpdateOneWithMultiThread(Long seckillId, String userId) {
+		long orderId = idWorker.nextId();
+		try {
+			//使用悲观锁，从数据库查询库存，防止多个线程脏读
+			TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKeyBySQLLock(seckillId);
+
+			if(seckillGoods==null){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品不存在");
+			}
+			if(!"1".equals(seckillGoods.getStatus())){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品未审核");
+			}
+			if(seckillGoods.getStockCount()<=0){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"商品已抢购一空");
+			}
+			if(seckillGoods.getStartTimeDate().getTime()>new Date().getTime()){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动未开始");
+			}
+			if(seckillGoods.getEndTimeDate().getTime()<= new Date().getTime() ){
+				return HttpResult.error(HttpStatus.SC_NOT_FOUND,"活动已结束");
+			}
+
+			Runnable task = () -> {
+				//扣减库存
+				seckillGoods.setStockCount(seckillGoods.getStockCount()-1);
+				//更新秒杀信息
+				seckillGoodsMapper.updateByPrimaryKey(seckillGoods);
+
+				TbSeckillOrder seckillOrder=new TbSeckillOrder();
+				seckillOrder.setId(orderId);
+				seckillOrder.setUserId(userId);
+				seckillOrder.setCreateTime(new Date());
+				seckillOrder.setMoney(seckillGoods.getCostPrice());//秒杀价格
+				seckillOrder.setSeckillId(seckillId);
+				seckillOrder.setStatus("0");//状态
+
+				//保存订单
+				seckillOrderMapper.insertSelective(seckillOrder);
+			};
+
+			//执行多线程
+			executor.execute(task);
+
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return HttpResult.ok(orderId+"");
+	}
+
+	/**
+	 * @Description: 方式三：悲观锁第二种方式；SHOW STATUS LIKE 'innodb_row_lock%';
+	 * 				 如果发现锁争用比较严重，如InnoDB_row_lock_waits和InnoDB_row_lock_time_avg的值比较高
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 18:10
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 18:10
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	@Transactional
+	public HttpResult submitOrderDataBaseLockForUpdateTwo(Long seckillId, String userId) {
+		long orderId = idWorker.nextId();
+		try {
+			//单用户抢购一件商品没有问题、但是抢购多件商品不建议这种写法,使用update锁表
+			int count = seckillGoodsMapper.updateSeckillGoodsByPrimaryKeyByLock(seckillId);
+			//判断
+			if(count > 0){
+				TbSeckillOrder seckillOrder =new TbSeckillOrder();
+				seckillOrder.setId(orderId);
+				seckillOrder.setUserId(userId);
+				seckillOrder.setCreateTime(new Date());
+				seckillOrder.setSeckillId(seckillId);
+				seckillOrder.setStatus("0");//状态
+				//保存订单
+				seckillOrderMapper.insertSelective(seckillOrder);
+
+				return HttpResult.ok(orderId+"");
+			}
+			//秒杀失败
+			return HttpResult.error(HttpStatus.SC_NOT_FOUND,"秒杀失败");
+
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return HttpResult.ok(orderId+"");
+	}
+
+
+	/**
+	 * @Description: 方式五：数据库乐观锁秒杀下单第二种方式，解放锁资源
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 18:10
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 18:10
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	public HttpResult submitOrderDataBaseLockForVersion(Long seckillId, String userId) {
+		long orderId = idWorker.nextId();
+		try {
+			//
+			int count = seckillGoodsMapper.updateSeckillGoodsByPrimaryKeyByVersion(seckillId);
+			//判断
+			if(count > 0){
+				TbSeckillOrder seckillOrder =new TbSeckillOrder();
+				seckillOrder.setId(orderId);
+				seckillOrder.setUserId(userId);
+				seckillOrder.setCreateTime(new Date());
+				seckillOrder.setSeckillId(seckillId);
+				seckillOrder.setStatus("0");//状态
+				//保存订单
+				seckillOrderMapper.insertSelective(seckillOrder);
+
+				return HttpResult.ok(orderId+"");
+			}
+			//秒杀失败
+			return HttpResult.error(HttpStatus.SC_NOT_FOUND,"秒杀失败");
+
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return HttpResult.ok(orderId+"");
+	}
+
+	/**
+	 * @Description: 方式六：阻塞队列BlockingQueue方式，调用秒杀下单接口
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 18:10
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 18:10
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Transactional
+	@Override
+	public HttpResult startSeckilByQueue(long seckillId, long userId) {
+		long orderId = idWorker.nextId();
+		try {
+			//生成订单id
+			//直接获取对象入队，表示下单成功
+			Runnable task = () -> {
+				TbSeckillOrder kill = new TbSeckillOrder();
+				kill.setId(orderId);
+				kill.setSeckillId(seckillId);
+				kill.setUserId(userId+"");
+				try {
+					Boolean flag = SeckillQueue.getMailQueue().produce(kill);
+					if(flag){
+						LOGGER.info("用户:{}{}",kill.getUserId(),"秒杀成功");
+					}else{
+						LOGGER.info("用户:{}{}",userId,"秒杀失败");
+					}
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					LOGGER.info("用户:{}{}",userId,"秒杀失败");
+				}
+			};
+			//异步执行多线程
+			executor.execute(task);
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		}
+		return HttpResult.ok(orderId+"");
+	}
+
+	/**
+	 * @Description: 方式七：DisruptorQueue队列方式，调用秒杀下单接口
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 18:10
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 18:10
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	public HttpResult startSeckilByDisruptorQueue(long seckillId, long userId) {
+		return null;
+	}
+
+	/**
+	 * @Description: 使用RocketMQ进行秒杀
+	 * @Author: hubin
+	 * @CreateDate: 2020/7/15 15:32
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/7/15 15:32
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	public HttpResult startSeckilByRocketMQ(long seckillId, long userId) {
+		return null;
+	}
+
+	/**
+	 * @Description: 支付完毕，更新订单的状态
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 22:20
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 22:20
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	@Transactional
+	public void updateOrderStatus(String out_trade_no, String transaction_id) {
+		//1.修改支付日志状态
+
+		TbPayLog payLog = payLogMapper.selectByPrimaryKey(out_trade_no);
+		payLog.setPayTime(new Date());//支付时间
+		payLog.setTradeState("1");//交易状态
+		payLog.setTransactionId(transaction_id);//流水号
+		payLogMapper.updateByPrimaryKey(payLog);
+
+		//2.修改订单状态
+		String orderList = payLog.getOrderList();
+		String[] ids = orderList.split(",");//订单号
+		for(String id:ids){
+
+			TbSeckillOrder order = seckillOrderMapper.selectByPrimaryKey( Long.valueOf(id) );
+			order.setStatus("2");//支付状态
+			order.setPayTime(new Date());//支付时间
+			seckillOrderMapper.updateByPrimaryKey(order);
+		}
+	}
+
+
+	@Override
+	public TbPayLog searchPayLogFromRedis(String userId) {
+		return (TbPayLog) redisTemplate.boundHashOps("payLog").get(userId);
+	}
+
+	/**
+	 * @Description: 根据token查询用户信息
+	 * @Author: hubin
+	 * @CreateDate: 2020/6/10 10:47
+	 * @UpdateUser: hubin
+	 * @UpdateDate: 2020/6/10 10:47
+	 * @UpdateRemark: 修改内容
+	 * @Version: 1.0
+	 */
+	@Override
+	public FrontUser getUserInfoFromRedis(String token) {
+		String ujson = redisTemplate.opsForValue().get(token);
+		//判断
+		if(StringUtils.isBlank(ujson)){
+			return null;
+		}
+		FrontUser frontUser = JsonUtils.jsonToPojo(ujson, FrontUser.class);
+		return frontUser;
+	}
+
+	@Override
+	public HttpResult getOrderMoney(Long orderId) {
+		TbSeckillOrder order = seckillOrderMapper.selectByPrimaryKey(orderId);
+		HttpResult httpResult = new HttpResult();
+		httpResult.setData(order.getMoney());
+		return httpResult;
+	}
+
+	@Override
+	public TbSeckillOrder findOrderById(Long orderId) {
+		return seckillOrderMapper.selectByPrimaryKey(orderId);
+	}
+}

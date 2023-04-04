@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<title>订单验证</title>
+		<!-- 重置样式表 -->
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<!-- valid插件 -->
+		<link rel="stylesheet" type="text/css" href="lib/Validform_v5.3.2/css/style.css" />
+		<!-- 全局 header/footer -->
+		<link rel="stylesheet" type="text/css" href="css/goods_search/header&footer.css" />
+		
+		<!-- 订单验证の样式 -->
+		<link rel="stylesheet" type="text/css" href="css/pay_verify/style.css" />
+		<!-- 主要内容 -->
+		<link rel="stylesheet" type="text/css" href="css/pay_verify/second-style.css" />
+	</head>
+	<body>
+		<div id="app">
+		<div class="head-border">
+			<div class="container">
+				<table class="table">
+					<tr>
+						<td rowspan="2">
+							<div class="logo">
+								<a href="index.html"><img src="img/pay_verify/logo.png" width="220px"></a>
+							</div>
+						</td>
+						<td class="clearfix head">
+							<a href="">
+								<div class="number float-right">
+									<img src="img/pay_verify/number.png" class="middle">
+									<span class="middle">会员服务</span>
+								</div>
+							</a>
+							<a href="">
+								<div class="customer float-right">
+									<img src="img/pay_verify/customer.png" class="middle">
+									<span class="middle">在线客服</span>
+								</div>
+							</a>
+							<a href="">
+								<div class="tel-tel float-right">
+									<img src="img/pay_verify/tel.png" class="middle">
+									<span class="middle">400-6789-888</span>
+								</div>
+							</a>
+							<div class="order-ctrl float-right">
+								<a href="user_order.html"><span class="middle ">订单管理</span></a>
+							</div>
+							<div class="user float-right">
+								<a href="user.html"><span class="middle">您好，********！</span>
+									<img src="img/shopping_cart/user.png" class="middle"></a>
+								<span>[退出]</span>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="serve-img float-right">
+								<img src="img/pay_verify/serve.png" width="400px">
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="container">
+
+			<div class="cart-box">
+				<table class="cart">
+					<thead class="cart-head">
+						<tr>
+							<td class="goods">收货信息</td>
+						</tr>
+					</thead>
+				</table>
+				<div class="cart-body form">
+					<div class="save_box">
+						<ul class="address_box ">
+							<li class="relative" data-msg="" v-for="(addressi,i) in addressList">
+								<div class="item">
+									<div class="default">默认地址</div>
+									<div class="name">
+									<img class="vertical-mid" src="./img/user_address/name_address.png" alt="">
+									<span class="vertical-mid">{{addressi.contact}}</span>
+									</div>
+									<div class="location">
+									<img class="vertical-mid" src="./img/user_address/location_address.png" alt="">
+									<span class="vertical-mid">
+										<span class="province">{{addressi.provinceId}}</span>
+										<span class="city">{{addressi.cityId}}</span>
+										<span class="detail_address">{{addressi.address}}</span>
+									</span>
+									</div>
+									<div class="tel">
+									<img class="vertical-mid" src="./img/user_address/tel_address.png" alt="">
+									<span class="mobile">{{addressi.mobile}}</span>
+									</div>
+									<div class="btn">
+									<button type="button" id="edit" @click="updateAddress(addressi.id)">修改</button>
+									<button type="button" id="del" @click="delAddress(addressi.id)">删除</button>
+									</div>
+								</div>
+							</li>
+							<li class="add-address relative">
+								<div class="add-content">
+									<div class="plus">+</div>
+									<div class="add-font">添加地址</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+					
+					<div class="clear"></div>
+					
+					<!-- 编辑地址/新增地址 -->
+					<div class="input_box editTop">
+					  <div class="title">新增收货地址</div>
+					  <form class="edit_box form">
+						
+					    <!-- 收货人 -->
+					    <div class="name item clearfix relative">
+					      <div class="tip fl vertical-mid">
+					        <span>*</span>
+					        <span>收货人：</span>
+					      </div>
+					      <input class="fl vertical-mid" type="text" id="name" datatype="s" nullmsg="请输入收货人姓名"
+					        errormsg="收货人姓名只支持中文" placeholder="收货人姓名" v-model="address.contact">
+					      <div class="error-tip"><img src="./img/user_address/tips_error.png" alt=""></div>
+					    </div>
+					    <!-- 手机号 -->
+					    <div class="tel item clearfix relative">
+					      <div class="tip fl vertical-mid">
+					        <span>*</span>
+					        <span>手机号：</span>
+					      </div>
+					      <input class="fl vertical-mid" type="text" id="name" datatype="m" nullmsg=" 请输入收货人手机号"
+					        errormsg="手机格式不正确" placeholder="手机号" v-model="address.mobile">
+					      <div class="error-tip"></div>
+					    </div>
+					    <!-- 收货时间 -->
+					    <div class="time item clearfix relative">
+					      <div class="tip fl vertical-mid">
+					        <span>*</span>
+					        <span>收货时间：</span>
+					      </div>
+					      <select class="time_sel vertical-mid">
+					        <option  value="allday">周一至周日均可收货</option>
+					        <option value="holiday">周六日、节假日收货</option>
+					        <option value="weekday">周一至周五收货</option>
+					      </select>
+					    </div>
+					    <!-- 所在地区 -->
+					    <div class="city item clearfix relative">
+					      <div class="tip fl vertical-mid">
+					        <span>*</span>
+					        <span>所在地区：</span>
+					      </div>
+							<input class="fl vertical-mid" type="text" id="province" datatype="s" nullmsg="请输入省份"
+								   errormsg="省份只支持中文" placeholder="省份" v-model="address.provinceId">
+
+							<input class="fl vertical-mid" type="text" id="city" datatype="s" nullmsg="请输入城市"
+								   errormsg="城市只支持中文" placeholder="城市" v-model="address.cityId">
+							
+					      <div id="target" class="city_sel" data-toggle="distpicker">
+					        <select id="province"></select>
+					        <select id="city"></select>
+					        <select id="district"></select>
+					      </div>
+					     
+					    </div>
+					    <!-- 详细地址 -->
+					    <div class="detail_address item clearfix relative">
+					      <div class="tip fl vertical-mid">
+					        <span>*</span>
+					        <span>详细地址：</span>
+					      </div>
+					      <input class="fl vertical-mid" type="text" id="address" datatype="s" nullmsg="请填写完整的地址信息"
+					        placeholder="详细地址" v-model="address.address">
+					      <div class="error-tip"></div>
+					    </div>
+					    <!-- 地址类型 -->
+					    <div class="type item clearfix relative">
+					      <div class="tip fl vertical-mid">
+					        <span>*</span>
+					        <span>地址类型：</span>
+					      </div>
+					      <div class="check_box vertical-mid">
+					        <input class="vertical-mid" type="radio" class="address_type" name="type" value="1" />
+					        <span class="vertical-mid home">家庭</span>
+					        <input class="vertical-mid" type="radio" class="address_type" name="type" value="2" />
+					        <span class="vertical-mid company">公司</span>
+					        <input class="vertical-mid" type="radio" class="address_type" name="type" value="3" />
+					        <span class="vertical-mid rests">其他</span>
+					      </div>
+					    </div>
+					    <!-- 设为默认地址 -->
+					    <div class="setDefault item clearfix relative">
+					      <div class="tip fl vertical-mid"></div>
+					      <input class="vertical-mid" type="checkbox" /><span class="vertical-mid">设为默认地址</span>
+					    </div>
+					    <!-- 保存 取消 -->
+					    <div class="btn item clearfix">
+					      <div class="tip fl vertical-mid"></div>
+
+					      <button type="button" id="save" @click="submitSave(address.id)">保存</button>
+					      <button type="button" id="cancel">取消</button>
+					  </form>
+					</div>
+				</div>
+                
+			</div>
+				<div class="detailed-list">
+					<span class="detailed-list-head">商品清单</span>
+					<span class="go-back float-right"><a href="shopping_cart.html">返回购物袋修改商品</a></span>
+				</div>
+				<div class="detailed-list-body">
+					<table>
+						<thead>
+							<tr class="body-title">
+								<td class="title-logo">开课吧 发货订单</span>
+								<td class="title-size">尺码</td>
+								<td class="title-price">单价</td>
+								<td class="title-num">数量</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="arrive-time">
+									<img src="img/pay_verify/clock.png" class="middle">
+									<span class="middle">预计 <b>02月27号（周四）</b> 送达</span>
+								</td>
+							</tr>
+							<tr class="body-content">
+								<td class="body-logo">
+									<a href="goods_detail.html"><img v-bind:src="goods.smallPic" width="60px"></a>
+									<span class="top">{{goods.title}}</span>
+								</td>
+								<td class="body-size">
+									<span>{{goods.stockCount}}</span>
+								</td>
+								<td class="body-price">
+									<span>￥<span class="body-price-num">{{goods.price}}</span></span>
+								</td>
+								<td class="body-num">
+									<span>1</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="detailed-list">
+					<span class="detailed-list-head">支付清单</span>
+				</div>
+				<div class="my-money">
+					<div class="money-title">我的资产</div>
+					<div class="vipcard">
+						<input type="checkbox" name="" id="" value="" />
+						<span>开课卡支付</span>
+						<span>余额999999999元</span>
+						<img src="img/pay_verify/gray-tip.png" class="middle">
+						<a href="#">激活开课卡</a>
+					</div>
+					<div class="balance">
+						<input type="checkbox" name="" id="" value="" />
+						<span>零钱支付</span>
+						<span>余额999999999元</span>
+					</div>
+					<div class="pay-mode">支付方式</div>
+					<div class="mode-box clearfix">
+						<input type="radio" name="" id="" value="" class="float-left" />
+						<span class="mode-title float-left">在线支付</span>
+						<div class="mode float-left">
+							<div class="mode-up"><a href="#">支持绝大多数银行卡、微信支付等，可在提交订单后选择。</a></div>
+							<div class="mode-down"><a href="#">如唯品金融、中国建设银行、中国工商银行、中国农业银行、中国银行、微信支付等</a></div>
+						</div>
+					</div>
+					<div class="invoice-title">发票信息</div>
+					<div class="invoice-box">
+						<input type="checkbox" name="" id="" value="" />
+						<span>开具发票</span>
+						<img src="img/pay_verify/gray-tip.png" class="middle">
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="pay-box clearfix">
+				<div class="sum-box float-right">
+					<div class="calculation-price">商品金额：<span class="sum">{{goods.price}}</span>元</div>
+					<div class="no-freight">运费：<span class="fre-num">7</span>元</div>
+					<div class="wait-pay">待支付：<span class="sum">{{parseInt(goods.price + 7)}}</span>元</div>
+					<!-- <div class="arrive-address" id="arrive-address"></div> -->
+				</div>
+			</div>
+			<div class="calculation clearfix">
+				<div class="tips float-left"><span class="middle">请在倒计时结束前结算</span><img src="img/shopping_cart/tip.png" class="middle"></div>
+				<a :href="'pay_success.html?orderId='+orderId">
+					<div class="calculation-btn float-right">立即结算</div>
+				</a>
+			</div>
+			<div class="serve-box">
+				<img src="img/shopping_cart/serve-content.png" width="1000px">
+			</div>
+		<div class="footer">
+			<div class="container">
+				<div class="about">
+					<ul>
+						<li><a href="#">关于我们</a></li>
+						<li><a href="#">About us</a></li>
+						<li><a href="#">Investor Relations</a></li>
+						<li><a href="#">媒体报道</a></li>
+						<li><a href="#">品牌招商</a></li>
+						<li><a href="#">隐私条款</a></li>
+						<li><a href="#">慧科诚聘</a></li>
+						<li><a href="#">开课吧卡</a></li>
+						<li><a href="#">联系我们</a></li>
+					</ul>
+				</div>
+			<div class="Copyright">Copyright 2003-2020 kaikeba.com，All Rights Reserved 使用本网站即表示接受 <a href="#">开课吧用户协议</a>。版权所有
+				<a href="#">北京开课吧电子商务有限公司</a> </div>
+			<div class="put_on_records">
+				<span><a href="#" class="vertical-mid"><img src="./img/index/police_icon.png" class="vertical-mid">京公网安备
+						xxxxxxxxxxxxxxx号</a> <a href="#">京ICP备xxxxxxxx号</a> <a href="#">增值业务经营许可证：京B2-20200000</a> <a
+						href="#">网络文化经营许可证：京网文〔2020〕5030-1743号</a>
+				</span>
+				<span><a href="#">自营主体经营证照</a> <a href="#">风险监测信息</a> <a href="#">互联网药品信息服务资格证书：（京）-经营性-2020-0271</a> <a
+						href="#">网络食品交易第三方平台备案凭证：京B2-20200000</a>
+					<a href="#">医疗器械网络交易服务第三方平台</a></span>
+				<span><a href="#">备案凭证：（京）网械平台备字[2020]第00001号</a></span>
+			</div>
+				<div class="identification">
+					<a href="#"><i class="icon_identification icon_identification_Unionpay"></i></a>
+					<!-- <a href="#"><i class="icon_identification icon_identification_Alipay"></i></a>
+			<a href="#"><i class="icon_identification icon_identification_CreditEnterprise"></i></a> -->
+					<a href="#"><i class="icon_identification icon_identification_LegalRights"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_RedLink"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_callPolice"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_netPolice"></i></a>
+					<!-- <a href="#"><i class="icon_identification icon_identification_ccredit"></i></a> -->
+					<a href="#"><i class="icon_identification icon_identification_integrityWeb"></i></a>
+					<a href="#"><i class="icon_identification icon_identification_credibleWeb"></i></a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</body>
+	<script src="js/jquery-3.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<!-- 收货地址 -->
+	<script src="./lib/jQueryAddress-3thLinkage/js/distpicker.data.js"></script>
+	<script src="./lib/jQueryAddress-3thLinkage/dist/distpicker.min.js"></script>
+	<script src="./lib/jQueryAddress-3thLinkage/js/main.js"></script>
+
+	<!-- Validform插件js -->
+	<script src="./lib/Validform_v5.3.2/js/Validform_v5.3.2_min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		// 特价售卖倒计时
+		function date() {
+			var oResult = document.querySelector(".result");
+			var oCalculation = document.querySelector(".calculation-btn");
+			var time = 1200;
+			setInterval(function() {
+				time = time - 1;
+				var minute = parseInt(time / 60);
+				var second = parseInt(time % 60);
+				oResult.innerHTML = '特卖商品 ' + minute + ' : ' + second;
+				oCalculation.innerHTML = '立即结算 ' + minute + ' : ' + second;
+			}, 1000);
+		}
+
+		function calSum() {
+			var sum = 0;
+			$('.body-content .body-price-num').each(function(index) {
+				var n = parseFloat($(this).text());
+				sum += n;
+			});
+			$('.sum-box .sum').text(sum);
+		};
+	</script>
+	<script src="js/vuejs-2.5.16.js"></script>
+	<script src="js/axios-0.18.0.js"></script>
+	<script src="js/api.js"></script>
+	<script src="js/urlParm.js"></script>
+	<!-- 当前页面 -->
+	<script src="js/pay_verify/pay_verify.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		new Vue({
+			el: "#app",
+			data: {
+				username: '',
+				userid:'',
+				addressList: [],
+				addressId: 1,
+				address:{},
+				seckillId:0,
+				goods:{}
+			},
+			methods: {
+				 //获取用户名
+				 getUserInfo:function(){
+                    //获取token
+                    var token = localStorage.getItem("token");
+
+                    //判断token是否存在
+                    if(!token){
+                        location.href = "login.html";
+                    }
+                    //获取用户信息
+					let _this = this;
+					 userInfo(token).then( res => {
+                        _this.username = res.data.data.username;
+                        _this.userid = res.data.data.id;
+                    })
+
+                },
+				//查询地址列表
+				getAddressAll: function () {
+					//api接口方法
+					let _this = this;
+					var token = window.localStorage.getItem("token")
+					getAddressListAll().then(res => {
+						//总记录
+						_this.addressList = res.data.data;
+					})
+				},
+				getAddress: function (addressId) {
+					let _this = this;
+					//api接口方法
+					getAddress(addressId).then(res => {
+						
+						_this.address = res.data;
+						console.log(res.data);
+
+					})
+
+				},
+
+				updateAddress: function (addressId) {
+					let _this = this;
+					getAddress(addressId).then(res => {
+						_this.address = res.data;
+
+
+					});
+
+					$('.input_box').css('display','block');
+
+				},
+
+				//删除地址
+				delAddress: function (addressId) {
+					let _this = this;
+					//api接口方法
+					delAddress(addressId).then(res => {
+						if (res.data.code == 200) {
+						alert("success");
+
+					} else {
+						//打印登录失败信息
+						alert(res.data.msg);
+					}
+
+					})
+				},
+
+				//保证收货地址
+				submitSave:function(addressId){
+					let _this = this;
+					if (addressId == undefined){
+						//调用api函数
+						saveAddress(this.address).then(res => {
+							//判断登录状态
+							if (res.data.code == 200) {
+							_this.getAddressAll(_this.pageNo, _this.pageSize);
+						} else {
+							//打印登录失败信息
+							alert(res.data.msg);
+						}
+					})
+					}else{
+						upateAddress(this.address).then(res => {
+							//判断登录状态
+							if (res.data.code == 200) {
+								window.location.reload(); 
+							_this.getAddressAll(_this.pageNo, _this.pageSize);
+						} else {
+							//打印登录失败信息
+							alert(res.data.msg);
+							window.location.reload(); 
+						}
+					})
+					}
+
+
+				},
+				//查询商品详情信息
+				getGoodsDetails:function(){
+					//根据秒杀商品id查询商品信息
+					let _this = this;
+					var test =window.location.href;
+					var seckillId=test.split("?seckillId=")[1].split("&")[0];
+					this.seckillId = seckillId;
+					goodsDetails(this.seckillId).then( res => {
+						_this.goods = res.data;
+				})
+				},
+
+			},
+			mounted:function(){
+				$('.tips .tip img').hover(function() {
+					$('.order-tip').css('opacity', '1');
+					$('.order-tip').css('transition', 'all 0.5s');
+				}, function() {
+					$('.order-tip').css('opacity', '0');
+				});				
+				$('.add-address').click(function () {
+					$('.input_box').css('display','block');
+
+				})
+
+
+
+			},
+			created:function(){
+				//加载用户信息
+				this.getUserInfo();
+				//自动刷新加载
+				this.getAddressAll();
+				this.orderId=UrlParm.parm("orderId");
+				
+				this.getGoodsDetails();
+
+
+			},
+			updated:function () {
+				/* --------------已保存的收货地址 操作------------- */
+				//第一个地址为默认地址----初始化
+
+				$('.address_box li').eq(0).addClass('isDefault');
+				//默认地址无法删除--------初始化
+				$('.address_box li').eq(0).find('#del').css('display', 'none')
+				//设为默认地址无法点击----初始化
+				$('.address_box li').eq(0).find('.default').addClass('cannot');
+
+
+
+				var add = $('.address_box li').eq(0).find('.province').text()+
+							$('.address_box li').eq(0).find('.city').text()+
+						$('.address_box li').eq(0).find('.detail_address').text()+
+						$('.address_box li').eq(0).find('.mobile').text();
+
+				$('#arrive-address').text(add);
+				//非默认地址的 移入----------------
+				$('.address_box li').on('mouseenter', function () {
+
+					var isShow = $(this).hasClass('isDefault');
+					if (isShow) {
+						//默认地址
+						return;
+					} else {
+						$('.address_box li').removeClass('isDefault');
+						//非默认
+						$(this).addClass('isDefault');
+						var add2 = $(this).find('.province').text()+
+								$(this).find('.city').text()+
+								$(this).find('.detail_address').text()+
+								$(this).find('.mobile').text();
+
+						$('#arrive-address').text(add2);
+						// $(this).find('.default').stop(true).animate({ 'top': '0' });
+					}
+				});
+				//非默认地址的 移出---------------
+				$('.address_box li').on('mouseleave', function () {
+
+					var isShow = $(this).hasClass('isDefault');
+					if (isShow) {
+						//默认地址
+						return;
+					} else {
+						//非默认
+						$(this).find('.default').stop(true).animate({ 'top': '-20px' });
+					}
+				});
+				//点击设为默认地址-----------------
+				$('.address_box li .default').on('click', function () {
+					//删除按钮出现
+					$('.address_box li #del').css('display', 'inline-block');
+					//取消所有的不能点击
+					$('.address_box li .default').removeClass('cannot');
+					//隐藏非默认
+					$('.address_box li.isDefault .default').stop(true).animate({ 'top': '-20px' });
+					//当前设为默认
+					$('.address_box li').removeClass('isDefault');
+					$(this).parents('.address_box li').addClass('isDefault');
+					//隐藏默认地址的删除按钮
+					$(this).siblings('.btn').children('#del').css('display', 'none')
+					//默认的改成无法点击
+					$(this).addClass('cannot');
+				});
+				//删除地址------------------------
+				$('.address_box').on('click', '#del', function () {
+
+					$(this).parents('li').remove();
+					//判断已保存的数量
+					var Box_num = $('.address_box li').length;
+					console.log(Box_num);
+					//赋值显示
+					$('.save_box .now_num').text(Box_num);
+				});
+				/*  ---------------------点击新增地址------------------  */
+				$('#add_new').on('click', function () {
+					//清空val
+					$('.edit_box .name input').val('');
+					$('.edit_box .tel input').val('');
+					$('.edit_box .time .time_sel').val('allday').trigger("change")
+					$('.edit_box .detail_address input').val('');
+					$('.edit_box .type input').prop('checked', false);
+					$('.edit_box .setDefault input').prop('checked', false);
+					//重置城市选择
+					$('#target').distpicker('reset', true);
+					$('html, body').stop(true).animate({
+						scrollTop: inputTop
+					});
+				});
+			
+				
+			}
+		})
+	</script>
+
+</html>
