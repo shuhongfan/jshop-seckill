@@ -1,0 +1,26 @@
+docker安装：（容器引擎----根据镜像构建容器环境）
+例如：
+	安装系统：
+		linux系统  ----> 镜像 xxx.iso ----> 操作系统环境
+	docker  centos系统 ----> 镜像centos   ----> 操作系统环境（沙箱环境）【操作系统中 操作系统】
+	区别：
+	前者是一个系统
+	后者是一个软件（进程），运行在系统中
+
+1、 yum install docker  --- 安装最新版本的docker ,从docker hub registry 中下载
+2、查询版本： docker -v
+3、启动docker： systemctl start docker
+4、停止docker： systemctl stop docker
+5、查询镜像：docker images
+6、查询运行中容器： docker ps
+7、查询所有的容器： docker ps -a
+8、从registry查询所有可用镜像： docker search jenkins
+9、从registry拉去镜像：docker pull jenkinsci/blueocean
+
+dockerfile构建镜像：
+1、FROM image_name:tag   根据那个基础镜像构建新的镜像
+2、MAINTAINER user_name  声明镜像作者
+3、ADD source_dir/file  dest_dir/file 把宿主机的文件复制到容器，如果是压缩包，自动解压
+4、WORKDIR path_dir 设置宿主机的工作目录
+5、ENTRYPOINT argument 构建容器时，设置运行参数
+6、VOLUME 把本地文件夹，文件挂载到容器

@@ -1,0 +1,89 @@
+﻿FROM jdk1.8:v3
+VOLUME /tmp
+ADD app.jar /usr/local
+ENTRYPOINT ["java","-jar","/usr/local/app.jar"]
+
+
+
+#依赖镜像名称和ID
+FROM centos:latest
+#指定镜像创建者信息
+MAINTAINER Hulk
+#切换工作目录
+WORKDIR /javaee
+ADD jdk-8u65-linux-x64.tar.gz /usr/local/java
+#ADD 是相对路径jar,把java添加到容器中
+#配置java环境变量
+ENV JAVA_HOME /usr/local/java/jdk1.8.0_65
+ENV PATH $JAVA_HOME/bin:$PATH
+
+
+
+    <build>
+        <finalName>app</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.13</version>
+                <configuration>
+                    <!--用于指定镜像名称-->
+                    <imageName>192.168.66.66:5000/${project.artifactId}:${project.version}</imageName>
+                    <!--用于指定基础镜像，相当于Dockerfile中的FROM指令-->
+                    <baseImage>jdk1.8:v1</baseImage>
+                    <!--指定工作目录-->
+                    <!--<workdir>/</workdir>-->
+                    <!--相当于Dockerfile的ENTRYPOINT指令-->
+                    <entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
+                    <!--是否跳过docker build-->
+                    <!--<skipDockerBuild>true</skipDockerBuild>-->
+                    <resources>
+                        <resource>
+                            <!--workdir 工作目录-->                            
+                            <targetPath>/</targetPath>
+                            <!--用于指定需要复制的根目录，${project.build.directory}表示target目录-->                            
+                            <directory>${project.build.directory}</directory>
+                            <!--用于指定需要复制的文件。${project.build.finalName}.jar指的是打包后的jar包文件-->                           
+                            <include>${project.build.finalName}.jar</include>                                        
+                        </resource>
+                    </resources>
+                    <dockerHost>http://192.168.66.66:2375</dockerHost>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+
+
+
+
+
+docker run \
+  -u root \
+  --rm \
+  -d \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  -v /root/.jenkins:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /usr/local/git:/usr/local/git \
+  -v /usr/local/jdk1.8.0_65:/usr/local/jdk1.8 \
+  -v /usr/local/maven/apache-maven-3.6.1:/usr/local/maven \
+  jenkinsci/blueocean
+
+
+  docker run \
+  -u root \
+  --rm \ ---- 建议把rm删除，因为rm一旦容器退出，自动删除容器，且删除此容器的jar仓库，导致下次启动，必须重新下载jar包仓库
+  -d \
+  -p 8080:8080 \
+  -p 50000:50000 \
+  -v /root/.jenkins:/var/jenkins_home \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /usr/local/maven/apache-maven-3.6.1:/usr/local/maven \
+  jenkinsci/blueocean
