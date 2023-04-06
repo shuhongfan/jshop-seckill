@@ -19,7 +19,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class WebServerConfig implements WebServerFactoryCustomizer<ConfigurableWebServerFactory>{
 
-    // 定制tomcat服务器
+    /**
+     * 定制tomcat服务器,设置相关keeplive
+     */
     @Override
     public void customize(ConfigurableWebServerFactory configurableWebServerFactory) {
 
@@ -30,8 +32,10 @@ public class WebServerConfig implements WebServerFactoryCustomizer<ConfigurableW
             public void customize(Connector connector) {
                 // 获取protocol
                 Http11NioProtocol protocolHandler = (Http11NioProtocol) connector.getProtocolHandler();
+
                 // 如果keepalive连接30s，还没有人使用，释放此链接
                 protocolHandler.setKeepAliveTimeout(30000);
+
                 // 允许开启最大长连接数量,4cpu,8gb
                 protocolHandler.setMaxKeepAliveRequests(10000);
 

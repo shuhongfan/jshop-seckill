@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @ClassName LockAspect
- * @Description
+ * @Description 利用 aop 锁实现锁上移，解决锁和事务冲突的问题
  * @Author hubin
  * @Date 2021/6/4 21:06
  * @Version V1.0
@@ -28,15 +28,22 @@ public class LockAspect {
     // 定义锁对象
     private static Lock lock = new ReentrantLock(true);
 
+    /**
+     * service 切入点
+     */
     @Pointcut("@annotation(com.sugo.seckill.aop.lock.ServiceLock)")
     public void lockAspect(){
 
     }
 
-    // 增强方法
+    /**
+     * 环绕增强方法
+     * @param joinPoint
+     * @return
+     */
     @Around("lockAspect()")
     public Object around(ProceedingJoinPoint joinPoint){
-
+        // 初始化一个对象
         Object obj = null;
         // 加锁
         lock.lock();
@@ -46,7 +53,7 @@ public class LockAspect {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         } finally {
-            // 释放锁
+            // 业务执行结束后,释放锁
             lock.unlock();
         }
 

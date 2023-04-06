@@ -132,6 +132,10 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
 
 	/**
 	 * @Description: 普通下单操作
+	 * 		事务和锁冲突,事务提交之前,锁已经释放;事务提交一定是在方法结束之后才提条
+	 * 		解决方法:
+	 * 			1.锁上移(controller控制层)
+	 * 			2.AOP锁(利用 aop 锁实现锁上移，解决锁和事务冲突的问题)
 	 * @Author: hubin
 	 * @CreateDate: 2020/11/27 22:01
 	 * @UpdateUser: hubin
@@ -140,6 +144,7 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
 	 * @Version: 1.0
 	 */
 	@Transactional
+	@ServiceLock
 	@Override
 	public HttpResult startKilled(Long killId, String userId) {
 

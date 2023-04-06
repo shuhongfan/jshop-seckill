@@ -28,7 +28,7 @@ public class GuavaCacheConfig {
                 .initialCapacity(10)
                 // 设置缓存中最大的支持存储缓存的key, 超过100个，采用LRU淘汰策略淘汰缓存
                 .maximumSize(100)
-                // 设置缓存写入后过期时间
+                // 设置缓存写入后过期时间 60s过期
                 .expireAfterWrite(60, TimeUnit.SECONDS)
                 .build();
     }
