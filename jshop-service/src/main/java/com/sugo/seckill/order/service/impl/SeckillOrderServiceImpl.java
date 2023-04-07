@@ -338,8 +338,9 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
 				return HttpResult.error(HttpStatus.SEC_ACTIVE_END,"活动结束");
 			}
 
-			// 使用乐观锁的方式更新库存
+			// 使用乐观锁的方式更新库存  1.扣减库存 2.更新版本
 			int res = seckillGoodsMapper.updateSeckillGoodsByPrimaryKeyByVersion(killId, seckillGoods.getVersion());
+			// 判断结果
 			if(res == 0){
 				return HttpResult.error("版本匹配失败");
 			}
@@ -491,8 +492,11 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
 				throw new BaseException(HttpStatus.SEC_GOODS_STOCK_FAIL,"下单失败");
 			}
 
+//			设置事务状态
 			seckillGoods.setStockCount(null);
+//			提交状态
 			seckillGoods.setTranStatus(1);
+
 			// 更新事务状态
 			seckillGoodsMapper.updateByPrimaryKeySelective(seckillGoods);
 
@@ -557,7 +561,7 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
 		if(res > 0){
 			return true;
 		}else if(res == 0){
-			// 添加一个标识
+			// 商品售罄，添加一个标识
 			redisTemplate.opsForValue().set(Constants.REDIS_GOODS_END_KEY+killId,HttpStatus.SEC_GOODS_END);
 			return true;
 		}

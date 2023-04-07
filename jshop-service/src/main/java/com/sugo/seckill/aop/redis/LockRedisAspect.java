@@ -28,6 +28,9 @@ import java.util.concurrent.locks.ReentrantLock;
 public class LockRedisAspect {
 
 
+    /**
+     * 切入点
+     */
     @Pointcut("@annotation(com.sugo.seckill.aop.redis.ServiceRedisLock)")
     public void lockAspect(){
 

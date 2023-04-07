@@ -1,5 +1,6 @@
 package com.sugo.seckill.web.order;
 
+import com.sugo.seckill.error.BaseException;
 import com.sugo.seckill.http.HttpResult;
 import com.sugo.seckill.http.HttpStatus;
 import com.sugo.seckill.order.service.SeckillOrderService;
@@ -45,7 +46,7 @@ public class SeckillOrderController {
 	});
 
 
-			/**
+	/**
              * @Description: 获取时间
              * @Author: hubin
              * @CreateDate: 2020/6/10 16:19
@@ -198,7 +199,6 @@ public class SeckillOrderController {
 	}
 
 
-
 	/**
 	 * @Description: Redis分布式锁控制库存超卖
 	 * @Author: hubin
@@ -233,7 +233,6 @@ public class SeckillOrderController {
 	}
 
 
-
 	/**
 	 * @Description: Redis分布式锁控制库存超卖
 	 * @Author: hubin
@@ -245,7 +244,7 @@ public class SeckillOrderController {
 	 */
 
 	@RequestMapping("/order/kill/better/{killId}/{token}")
-	public HttpResult startKilledMoreBetter(@PathVariable Long killId, @PathVariable String token){
+	public HttpResult startKilledMoreBetter(@PathVariable Long killId, @PathVariable String token) throws BaseException {
 		//判断
 		if(StringUtils.isBlank(token)){
 			return HttpResult.error(HttpStatus.SC_EXPECTATION_FAILED,"用户未登录");
@@ -263,19 +262,23 @@ public class SeckillOrderController {
 
 		try {
 			// 在业务开始之前就发送一个消息：half message
+			// 线程同步的调用方法，20个等待队列，流量泄洪
 			Object obj = executorService.submit(()-> {
                 // 发送消息
 				boolean res = producer.asncSendTransactionMsg(killId, userId);
 				// 判断
 				if(!res){
-					return HttpResult.error("下单失败");
+//					return HttpResult.error("下单失败");
+					throw new BaseException(HttpStatus.SEC_GOODS_STOCK_FAIL, "消息发送失败");
 				}
 				return res;
 			}).get();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+			throw new BaseException(HttpStatus.SEC_GOODS_STOCK_FAIL, "消息发送失败");
 		} catch (ExecutionException e) {
 			e.printStackTrace();
+			throw new BaseException(HttpStatus.SEC_GOODS_STOCK_FAIL, "消息发送失败");
 		}
 
 		return HttpResult.ok();

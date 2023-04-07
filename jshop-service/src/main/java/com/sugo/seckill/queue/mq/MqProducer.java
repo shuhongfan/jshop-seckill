@@ -80,12 +80,21 @@ public class MqProducer {
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }catch (BaseException e){
+//                        业务处理中出现一个预知的异常
                         // 订单下单异常现象，为了保证缓存操作一致性，需要对库存做回补
-                        redisTemplate.opsForValue().increment(Constants.REDIS_GOODS_STOCK_KEY+seckillId, 1);
+//                        redisTemplate.opsForValue().increment(Constants.REDIS_GOODS_STOCK_KEY+seckillId, 1);
+
+                        TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(seckillId);
+                        seckillGoods.setTranStatus(2);
+                        seckillGoods.setStockCount(null);
+                        seckillGoodsMapper.updateByPrimaryKeySelective(seckillGoods);
+
+//                        返回回滚
+                        return LocalTransactionState.ROLLBACK_MESSAGE;
                     }
 
-
-                    return null;
+//                    业务执行成功，确定事务提交状态
+                    return LocalTransactionState.COMMIT_MESSAGE;
                 }
 
                 /*状态回查,确定事务提交，还是回滚*/
@@ -103,7 +112,7 @@ public class MqProducer {
                         // 根据id查询事务状态
                         TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(seckillId);
 
-                        // 获取事务状态
+                        // 获取事务状态,判定事务commit,rollback,unknown
                         Integer tranStatus = seckillGoods.getTranStatus();
 
                         if (null != tranStatus) {
@@ -117,8 +126,6 @@ public class MqProducer {
                             }
                         }
                         return LocalTransactionState.COMMIT_MESSAGE;
-
-
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
